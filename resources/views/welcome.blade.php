@@ -17,9 +17,9 @@
                         @auth
                             <li><a href="{{ url('/home') }}" class="">ホーム</a></li>
                         @else
-                            <li><a href="{{ route('login') }}" class="">ログイン</a></li>
+                            <li><a href="{{ route('login') }}" class="">{{ __('Login') }}</a></li>
                             @if (Route::has('register'))
-                                <li><a href="{{ route('register') }}" class="">新規登録</a></li>
+                                <li><a href="{{ route('register') }}" class="">{{ __('Register') }}</a></li>
                             @endif
                         @endif
                     </ul>
@@ -65,6 +65,5 @@
             </div>
         </footer>
     </body>
-
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
 </html>
