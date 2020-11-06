@@ -56,6 +56,27 @@
                                 <label for="password-confirm">{{ __('Confirm Password') }}</label>
                                 <input id="password-confirm" type="password" class="validate" name="password_confirmation" required autocomplete="new-password">
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <a class="waves-effect waves-light btn-flat modal-trigger" href="#modal1">{{ __('Term of service') }}</a>
+                                <div id="modal1" class="modal modal-fixed-footer"> 
+                                    <div class="modal-content">
+                                        @include('../tos')
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" class="modal-close waves-effect waves-light btn-flat">閉じる</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s10">
+                                <label for="term-of-service">
+                                    <input class="filled-in" type="checkbox" name="term-of-service" id="term-of-service" required>
+                                    <span>{{ __('Accept Term of service') }}</span>
+                                </label>
+                            </div>
                             <div class="input-field col s12">
                                 <button type="submit" class="waves-effect waves-light btn right">
                                     {{ __('Register') }}
