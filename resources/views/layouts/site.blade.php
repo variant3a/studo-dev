@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
 
-    <body>
+<body>
+    <div id="app">
         @if (Route::has('login'))
-            <!-------navbar------->
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="{{ url('/') }}" class="brand-logo center">Studo!</a>
-                    <ul id="nav-mobile" class="right hide-on-small-only">
-                        @auth
-                            <li><a href="{{ url('/home') }}" class="">ホーム</a></li>
-                        @else
-                            <li><a href="{{ route('login') }}" class="">{{ __('Login') }}</a></li>
-                            @if (Route::has('register'))
-                                <li><a href="{{ route('register') }}" class="">{{ __('Register') }}</a></li>
-                            @endif
-                        @endif
-                    </ul>
-                </div>
-            </nav>
+        <!-------navbar------->
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="{{ url('/') }}" class="brand-logo center">Studo!</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    @auth
+                    <li><a href="{{ url('/home') }}" class="">ホーム</a></li>
+                    @else
+                    <li><a href="{{ route('login') }}" class="">{{ __('Login') }}</a></li>
+                    @if (Route::has('register'))
+                    <li><a href="{{ route('register') }}" class="">{{ __('Register') }}</a></li>
+                    @endif
+                    @endif
+                </ul>
+                <ul id="slide-out" class="sidenav show-on-small">
+                    @auth
+                    <li><a href="{{ url('/home') }}" class="">ホーム</a></li>
+                    @else
+                    <li><a href="{{ route('login') }}" class="">{{ __('Login') }}</a></li>
+                    @if (Route::has('register'))
+                    <li><a href="{{ route('register') }}" class="">{{ __('Register') }}</a></li>
+                    @endif
+                    @endif
+                </ul>
+            </div>
+        </nav>
         @endif
 
         <!-------content------->
@@ -62,6 +74,7 @@
                 </div>
             </div>
         </footer>
-    </body>
-    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
+    </div>
+</body>
+<script src="{{ asset('js/app.js') }}"></script>
 </html>
