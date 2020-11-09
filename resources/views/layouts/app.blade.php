@@ -12,27 +12,28 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
     <nav>
         <div class="nav-wrapper">
             <a href="#slide-out" data-target="slide-out" class="sidenav-trigger  show-on-small"><i class="material-icons">menu</i></a>
-            <a class="brand-logo" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+            <a class="brand-logo" href="@guest {{ url('/') }} @else {{ route('home') }} @endguest">{{ config('app.name', 'Studo!') }}</a>
             <ul class="right hide-on-med-and-down">
                 @guest
                 <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                @if (Route::has('register'))
-                <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                @endif
+                    @if (Route::has('register'))
+                    <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                    @endif
                 @else
-                <li><a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}</a>
-                    <div class="" aria-labelledby="navbarDropdown">
-                        <a class="" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-
+                <li><a class="dropdown-trigger" href="#" data-target="dropdown1">{{ Auth::user()->user_id . __('San') }}</a>
+                    <ul id="dropdown1" class="dropdown-content">
+                        <li><a href="#">{{ __('Profile') }}</a></li>
+                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
                             @csrf
                         </form>
-                    </div>
+                    </ul>
                 </li>
                 @endguest
             </ul>
@@ -43,18 +44,22 @@
                 <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                 @endif
                 @else
-                <li><a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}</a>
-                    <div class="" aria-labelledby="navbarDropdown">
-                        <a class="" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                        </a>
+                <li>
+                    <div class="user-view">
+                        <div class="background">
+
+                        </div>
+                    </div>
+                    <a href="#"><span>{{ Auth::user()->user_id }}</span></a>
+                </li>
+                <li><a href="#">{{ __('Profile') }}</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">{{ __('Other') }}</a></li>
+                <li><a class="" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
                             @csrf
                         </form>
                     </div>
-                </li>
                 @endguest
             </ul>
         </div>
@@ -64,5 +69,4 @@
         @yield('content')
     </main>
 </body>
-<script src="{{ asset('js/app.js') }}"></script>
 </html>

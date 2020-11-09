@@ -23,7 +23,7 @@
                                 @enderror
                             </div>
                             <div class="input-field col s12">
-                                <label for="name">{{ __('Name') }}</label>
+                                <label for="name">{{ __('Name any') }}</label>
                                 <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
 
                                 @error('name')
@@ -85,7 +85,7 @@
                         </div>
                         <div class="row">
                             <div class="col s12">
-                                アカウントをお持ちですか？
+                                {{ __('Have Account?') }}
                                 <a href="{{ route('login') }}">{{ __('Login') }}</a>
                             </div>
                         </div>

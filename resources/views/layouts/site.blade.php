@@ -6,6 +6,7 @@
     <title>Laravel</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
 <body>
@@ -15,7 +16,7 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a href="{{ url('/') }}" class="brand-logo center">Studo!</a>
+                <a href="{{ url('/') }}" class="brand-logo center">{{ config('app.name', 'Studo!') }}</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     @auth
                     <li><a href="{{ url('/home') }}" class="">ホーム</a></li>
@@ -28,7 +29,22 @@
                 </ul>
                 <ul id="slide-out" class="sidenav show-on-small">
                     @auth
-                    <li><a href="{{ url('/home') }}" class="">ホーム</a></li>
+                    <li>
+                        <div class="user-view">
+                            <div class="background">
+    
+                            </div>
+                        </div>
+                        <a href="#"><span>{{ Auth::user()->user_id }}</span></a>
+                    </li>
+                    <li><a href="#">{{ __('Profile') }}</a></li>
+                    <li><div class="divider"></div></li>
+                    <li><a class="subheader">{{ __('Other') }}</a></li>
+                    <li><a class="" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
+                                @csrf
+                            </form>
+                        </div>
                     @else
                     <li><a href="{{ route('login') }}" class="">{{ __('Login') }}</a></li>
                     @if (Route::has('register'))
@@ -76,5 +92,4 @@
         </footer>
     </div>
 </body>
-<script src="{{ asset('js/app.js') }}"></script>
 </html>
