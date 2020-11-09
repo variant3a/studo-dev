@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.site')
 
 @section('content')
 <div class="container">
@@ -42,7 +42,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="input-field col s12">
+                            <div class="input-field col s6">
                                 <label for="password">{{ __('Password') }}</label>
                                 <input id="password" type="password" class="@error('password') is-invalid @enderror validate" name="password" required autocomplete="new-password">
 
@@ -52,7 +52,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="input-field col s12">
+                            <div class="input-field col s6">
                                 <label for="password-confirm">{{ __('Confirm Password') }}</label>
                                 <input id="password-confirm" type="password" class="validate" name="password_confirmation" required autocomplete="new-password">
                             </div>

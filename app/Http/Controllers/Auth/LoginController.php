@@ -30,7 +30,7 @@ class LoginController extends Controller
     //protected $redirectTo = RouteServiceProvider::HOME;
     protected function authenticated(Request $request, $user)
     {
-        return redirect('home')->with('status', __('You are logged in!'));
+        return redirect('user/home')->with('status', __('You are logged in!'));
     }
 
     /**

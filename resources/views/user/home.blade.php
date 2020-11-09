@@ -9,7 +9,7 @@
         <div class="col s12 l8 offset-l2">
             <div class="card">
                 <div class="card-content">
-                    <div class="card-title">{{ __('Dashboard') }}</div>
+                    <div class="card-title">{{ __('MyPage') }}</div>
                     <div class="card-content">
                         {{ __('You are logged in!') }}
                     </div>
