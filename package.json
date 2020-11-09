@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "jquery": "^3.5.1",
         "object-path": "^0.11.5"
     }
 }
