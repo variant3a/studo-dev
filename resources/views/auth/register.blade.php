@@ -83,6 +83,12 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col s12">
+                                アカウントをお持ちですか？
+                                <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
