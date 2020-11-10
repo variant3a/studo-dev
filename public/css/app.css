@@ -1,4 +1,14 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/icon?family=Material+Icons);@charset "UTF-8";
+
+main.app {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+  main.app {
+    padding-left: 0px;
+  }
+}
 
 /*!
  * Materialize v1.0.0 (http://materializecss.com)

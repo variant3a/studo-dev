@@ -23,7 +23,7 @@
 
                     <!-------user navigation------->
                     @auth
-                    <li><a class="dropdown-trigger" href="#" data-target="dropdown1">{{ Auth::user()->user_id . __('San') }}</a>
+                    <li><a class="dropdown-trigger" href="#" data-target="dropdown1">{{ Auth::user()->user_id . __('San') }}<i class="material-icons right">arrow_drop_down</i></a>
                         <ul id="dropdown1" class="dropdown-content">
                             <li><a href="{{ route('profile') }}">{{ __('Profile') }}</a></li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
