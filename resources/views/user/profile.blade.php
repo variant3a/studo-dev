@@ -23,24 +23,24 @@
             </div>
         </div>
         <!-------edit profile------->
-        <form method="POST" action="{{ route('profile') }}">
+        <form method="POST" action="{{ route('update_profile') }}">
             @csrf
             <div id="edit-profile" class="card">
                 <div class="card-content">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" value="{{ Auth::user()->name }}" id="name" data-length="32" autofocus>
+                            <input type="text" value="{{ Auth::user()->name }}" id="name" name="name" data-length="32" autofocus>
                             <label for="name" class="@if(!(Auth::user()->name)) active @endif">{{ __('Name any') }}</label>
                         </div>
                         <div class="input-field col s12">
-                            <input class="@error('user_id') is-invalid @enderror validate" type="text" value="{{ Auth::user()->user_id }}" id="user_id" data-length="32">
+                            <input class="@error('user_id') is-invalid @enderror validate" type="text" value="{{ Auth::user()->user_id }}" id="user_id" name="user_id" data-length="32">
                             <label for="user_id" class="active">{{ __('User ID') }}</label>
                             @error('user_id')
                                 <script>M.toast({html: '{{ $message }}'})</script>
                             @enderror
                         </div>
                         <div class="input-field col s12">
-                            <input class="@error('email') is-invalid @enderror validate" type="email" value="{{ Auth::user()->email }}" id="email">
+                            <input class="@error('email') is-invalid @enderror validate" type="email" value="{{ Auth::user()->email }}" id="email" name="email">
                             <label for="email" class="active">{{ __('E-Mail Address') }}</label>
                             @error('user_id')
                                 <script>M.toast({html: '{{ $message }}'})</script>
