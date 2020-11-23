@@ -81227,6 +81227,7 @@ M.anime = function () {
 /***/ (function(module, exports) {
 
 $(function () {
+  M.AutoInit();
   $('.modal').modal();
   $('.sidenav').sidenav();
   $('input#user_id, input#name').characterCounter();

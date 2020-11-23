@@ -1,4 +1,5 @@
 $(function(){
+    M.AutoInit();
     $('.modal').modal();
     $('.sidenav').sidenav();
     $('input#user_id, input#name').characterCounter();

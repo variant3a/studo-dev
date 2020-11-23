@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,12 +34,12 @@ class HomeController extends Controller
         return view('user.profile');
     }
 
-    public function update(Request $request)
+    public function update(UserRequest $request)
     {
         $user = User::findOrFail(Auth::user()->id);
-        $user->user_id = $request->user_id;
         $user->name = $request->name;
-        $user->email = $request->email;
+        if(isset($request->user_id)) $user->user_id = $request->user_id;
+        if(isset($request->email)) $user->email = $request->email;
         $user->save();
 
         return redirect('/user/profile');

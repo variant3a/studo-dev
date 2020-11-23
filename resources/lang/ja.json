@@ -25,8 +25,10 @@
     "MyPage": "マイページ",
     "Edit profile": "プロフィールを編集",
     "Close": "閉じる",
-    "Save Changes": "変更を保存",
+    "Save": "保存",
     "Cancel": "キャンセル",
+    "Now Changes Saved": "変更を保存しました",
+    "Delete Account": "アカウントを削除",
 
     "Verify Your Email Address":"ユーザ登録を完了してください",
     "A fresh verification link has been sent to your email address.":"新しいリンクをあなたのメールアドレスに送信しました。",
