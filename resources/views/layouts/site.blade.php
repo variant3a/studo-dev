@@ -102,7 +102,7 @@
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    &copy; 2020 Yuma Nishimura
+                    &copy; 2020 Team Studo
                 </div>
             </div>
         </footer>

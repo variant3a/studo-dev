@@ -12,22 +12,18 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="user_id">{{ __('User ID') }}</label>
-                        <input id="user_id" type="text" class="@error('user_id') is-invalid @enderror validate" name="user_id" value="{{ old('user_id') }}" required autocomplete="id" autofocus>
+                        <input id="user_id" type="text" class="@error('user_id') is-invalid @enderror validate" name="user_id" value="{{ old('user_id') }}" required autocomplete="id" data-length="32" autofocus>
 
                         @error('user_id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <script>M.toast({html: '{{ $message }}'})</script>
                         @enderror
                     </div>
                     <div class="input-field col s12">
                         <label for="name">{{ __('Name any') }}</label>
-                        <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
+                        <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" data-length="32">
 
                         @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <script>M.toast({html: '{{ $message }}'})</script>
                         @enderror
                     </div>
                     <div class="input-field col s12">
@@ -35,9 +31,7 @@
                         <input id="email" type="email" class="@error('email') is-invalid @enderror validate" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <script>M.toast({html: '{{ $message }}'})</script>
                         @enderror
                     </div>
                     <div class="input-field col s6">
@@ -45,9 +39,7 @@
                         <input id="password" type="password" class="@error('password') is-invalid @enderror validate" name="password" required autocomplete="new-password">
 
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <script>M.toast({html: '{{ $message }}'})</script>
                         @enderror
                     </div>
                     <div class="input-field col s6">
@@ -63,7 +55,7 @@
                                 @include('../tos')
                             </div>
                             <div class="modal-footer">
-                                <a href="#" class="modal-close waves-effect waves-light btn-flat">閉じる</a>
+                                <a href="#" class="modal-close waves-effect waves-light btn-flat">{{ __('Close') }}</a>
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,8 @@
     <div class="card">
         <div class="card-content">
             <div class="center">
-                <canvas id="timer" height="500" width="500"></canvas>
+                <div class="timer-1">
+                </div>
             </div>
         </div>
     </div>
