@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('MyPage'))
+
 @section('content')
 @if (session('status'))
 <script>M.toast({html: '{{ session('status') }}'});</script>

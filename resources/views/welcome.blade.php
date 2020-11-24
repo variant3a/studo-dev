@@ -1,5 +1,8 @@
 @extends('layouts.site')
 
+@section('title', __('TopPage'))
+@section('description', 'トップページの説明が入ります')
+
 @section('content')
     <div class="container" style="min-height:80vh;">
         <div class="row">

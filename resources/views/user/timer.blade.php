@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('Timer'))
+
 @section('content')
 <div class="col s12 xl10 offset-xl1">
     <div class="center">

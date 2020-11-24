@@ -1,5 +1,8 @@
 @extends('layouts.site')
 
+@section('title', __('Term of service'))
+@section('description', @include('tos'))
+
 @section('content')
     <div class="container">
         <div class="row">
