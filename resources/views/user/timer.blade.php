@@ -2,12 +2,8 @@
 
 @section('content')
 <div class="col s12 xl10 offset-xl1">
-    <div class="card">
-        <div class="card-content">
-            <div class="center">
-                <div class="timer-1">
-                </div>
-            </div>
+    <div class="center">
+        <div id="timer-1">
         </div>
     </div>
 </div>
