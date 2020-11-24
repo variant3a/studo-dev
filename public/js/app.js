@@ -81253,6 +81253,9 @@ $(function () {
   $('#cancel-edit').on('click', function () {
     $('#edit-profile').toggle();
   });
+  $('#del-button-activate').on('click', function () {
+    $('#confirm-del').toggleClass('disabled');
+  });
 });
 
 /***/ }),

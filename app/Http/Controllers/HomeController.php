@@ -45,4 +45,12 @@ class HomeController extends Controller
         return redirect('/user/profile');
     }
 
+    public function destroy()
+    {
+        $user = User::findOrFail(Auth::user()->id);
+        $user->delete();
+
+        return redirect('/');
+    }
+
 }

@@ -23,3 +23,4 @@ Route::get('/user/home', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::get('/user/profile', [\App\Http\Controllers\HomeController::class, 'show'])->name('profile');
 Route::get('/user/timer', [\App\Http\Controllers\TimerController::class, 'index'])->name('timer');
 Route::post('/user/profile', [\App\Http\Controllers\HomeController::class, 'update'])->name('update_profile');
+Route::delete('/user/profile', [\App\Http\Controllers\HomeController::class, 'destroy'])->name('delete_account');

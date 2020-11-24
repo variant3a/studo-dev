@@ -23,13 +23,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-------edit profile------->
-        <form method="POST" action="{{ route('update_profile') }}">
-            @csrf
-            <div id="edit-profile" class="card">
-                <div class="card-content">
+                <!-------edit profile------->
+                <form method="POST" action="{{ route('update_profile') }}" id="edit-profile">
+                    @csrf
                     <div class="row">
                         <div class="input-field col s12">
                             <input type="text" value="{{ Auth::user()->name }}" id="name" name="name" data-length="32">
@@ -55,7 +51,7 @@
                     </div>
                     <div class="row">
                         <div class="col s12 l6">
-                            <a href="#" id="delete-account" class="waves-effect waves-light btn red">{{ __('Delete Account') }}</a>
+                            <a href="#del-account-modal" id="delete-account" class="waves-effect waves-light btn red modal-trigger">{{ __('Delete Account') }}</a>
                         </div>
                         <div class="col s12 l6">
                             <div class="right">
@@ -64,8 +60,28 @@
                             </div>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+        <!-------delete account modal------->
+        <form method="POST" action="{{ route('delete_account') }}">
+            <div id="del-account-modal" class="modal">
+                <div class="modal-content">
+                    <h4>{{ __('Attention!') }}</h4>
+                    <p>アカウントを削除すると保存していた記録は全て消去され、Studoの全てのサービスにアクセスできなくなります。</p>
+                    <p>{{ __('Check the checkbox below to delete it.') }}</p>
                 </div>
-            </div>        
+                <div class="modal-footer">
+                    <p class="left">
+                        <label>
+                            <input type="checkbox" class="filled-in" id="del-button-activate">
+                            <span>{{ __('Checked Notes') }}</span>
+                        </label>
+                    </p>
+                    <a href="#" class="modal-close waves-effect waves-light btn-flat">{{ __('Cancel') }}</a>
+                    <button type="submit" class="modal-close waves-effect waves-light btn red disabled" id="confirm-del">{{ __('Delete') }}</button>
+                </div>
+            </div>
         </form>
         <div class="card">
             <div class="card-content">

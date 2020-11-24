@@ -24,5 +24,8 @@ $(function(){
     $('#cancel-edit').on('click', () => {
         $('#edit-profile').toggle();
     });
+    $('#del-button-activate').on('click', () => {
+        $('#confirm-del').toggleClass('disabled');
+    });
 
 });
