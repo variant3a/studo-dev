@@ -54,18 +54,11 @@
 
                     <!-------user navigation------->
                     @auth
-                    <li>
-                        <div class="user-view">
-                            <div class="background">
-    
-                            </div>
-                        </div>
-                        <a href="{{ route('profile') }}"><span>{{ Auth::user()->user_id }}</span></a>
-                    </li>
-                    <li><a href="{{ route('home') }}">{{ __('MyPage') }}</a></li>
+                    @include('layouts.user_sidenav')
+                    <li class="divider"></li>
+                    <li><a href="{{ url('/') }}">{{ __('TopPage') }}</a></li>
                     <li class="divider"></li>
                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
-                    <li class="divider"></li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
                         @csrf
                     </form>

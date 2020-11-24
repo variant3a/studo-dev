@@ -18,7 +18,7 @@
     <div class="hide-on-large-only">
         <nav>
             <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <a class="brand-logo center" href="@auth {{ route('home') }} @else {{ url('/') }} @endauth">{{ config('app.name', 'Studo!') }}</a>
+            <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('title')</a>
         </nav>
     </div>  
     <!-------smartphone side navigation------->
@@ -26,20 +26,11 @@
 
         <!-------user navigation------->
         @auth
-        <li>
-            <div class="user-view">
-                <div class="background">
-                    
-                </div>
-            </div>
-            <a href="{{ route('profile') }}">{{ Auth::user()->user_id . __('San') }}</a>
-        </li>
-        <li><a href="{{ route('home') }}">{{ __('MyPage') }}</a></li>
-        <li><a href="{{ route('timer') }}">{{ __('Timer') }}</a></li>                
+        @include('layouts.user_sidenav')
         <li class="divider"></li>
         <li><a href="{{ url('/') }}">{{ __('TopPage') }}</a></li>
         <li class="divider"></li>
-        <li><a class="" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
             @csrf
         </form>

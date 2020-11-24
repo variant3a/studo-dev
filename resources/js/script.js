@@ -1,3 +1,5 @@
+const PrimaryColor = '#ee6e73';
+
 $(function(){
     M.AutoInit();
     $('.modal').modal();
@@ -20,7 +22,7 @@ $(function(){
     });
 
     const timer = new ProgressBar.Circle('#timer-1', {
-        color: '#555',
+        color: PrimaryColor,
         trailColor: '#eee',
         strokeWidth: 10,
         duration: 2500,
