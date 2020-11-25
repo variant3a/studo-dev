@@ -26,7 +26,10 @@ $(function(){
         trailColor: '#eee',
         strokeWidth: 10,
         duration: 2500,
-        easing: 'easeInOut'
+        easing: 'easeInOut',
+        text: {
+            //value: 
+        },
     });
     timer.animate(1);
 
