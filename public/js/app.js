@@ -50640,12 +50640,41 @@ $(function () {
     color: PrimaryColor,
     trailColor: '#eee',
     strokeWidth: 10,
-    duration: 2500,
-    easing: 'easeInOut',
+    duration: 1000,
+    easing: 'linear',
     text: {//value: 
     }
   });
-  timer.animate(1);
+  $('#timer-start-button').text('スタート');
+  $('#timer-end-button').text('終了');
+  $('#timer-end-button').addClass('disabled');
+  var addOnTime = 0;
+  $('#timer-start-button').on('click', function () {
+    $('#timer-start-button').toggleClass('counting');
+
+    if ($('#timer-start-button').hasClass('counting')) {
+      var i = 1 / ($('#minutes').val() * 60) + addOnTime;
+
+      var counter = function counter() {
+        timer.animate(i);
+        i += 1 / ($('#minutes').val() * 60);
+        if (i > 1) clearInterval(counter);
+      };
+
+      $('#timer-start-button').text('ストップ');
+      $('#timer-end-button').toggleClass('disabled');
+      setInterval(counter, 1000);
+    } else {
+      $('#timer-start-button').text('スタート');
+      addOnTime = i;
+      clearInterval(counter);
+    }
+  });
+  $('#timer-end-button').on('click', function () {
+    $('#timer-start-button').text('スタート');
+    $('#timer-end-button').toggleClass('disabled');
+    clearInterval(counter);
+  });
 });
 
 /***/ }),

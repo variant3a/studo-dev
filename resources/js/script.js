@@ -1,3 +1,5 @@
+const { functionsIn } = require("lodash");
+
 const PrimaryColor = '#ee6e73';
 
 $(function(){
@@ -25,12 +27,54 @@ $(function(){
         color: PrimaryColor,
         trailColor: '#eee',
         strokeWidth: 10,
-        duration: 2500,
-        easing: 'easeInOut',
+        duration: 1000,
+        easing: 'linear',
         text: {
             //value: 
         },
     });
-    timer.animate(1);
 
+    $('#timer-start-button').text('スタート');
+    $('#timer-end-button').text('終了');
+    $('#timer-end-button').addClass('disabled');
+    let i = 0;
+    $('#timer-start-button').on('click', () => {
+        $('#timer-start-button').toggleClass('counting');
+        if($('#timer-start-button').hasClass('counting')) {
+            if(i === 0) startTimer();
+            if(i === 1) resumeTimer();
+        }else{
+            pauseTimer();
+        }
+    });
+    $('#timer-end-button').on('click', () => {
+        $('#timer-start-button').text('スタート');
+        $('#timer-end-button').toggleClass('disabled');
+        pauseTimer();
+        resetTimer();
+    })
+
+    function minToSec(inPause) {
+        const Sec = 1 / ($('#minutes').val() * 60);
+    }
+
+    function startTimer() {
+        var timer1;
+        const minToSec = 1 / ($('#minutes').val() * 60);
+        i = 1;
+        timer.animate(minToSec);
+    }
+
+    function pauseTimer() {
+        let addOnSec = minToSec;
+
+    }
+
+    function resumeTimer() {
+
+    }
+
+    function resetTimer() {
+        
+    }
 });

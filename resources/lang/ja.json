@@ -32,7 +32,11 @@
     "Delete": "削除",
     "Checked Notes": "注意事項を確認しました",
     "Attention!": "注意!",
-    "Select Timer Count": "時間を選択",
+    "Choose Your Option": "選択",
+    "Choose Time": "時間を選択",
+    "Minutes": "分",
+    "Option": "オプション",
+    "Start": "始める",
 
     "Verify Your Email Address":"ユーザ登録を完了してください",
     "A fresh verification link has been sent to your email address.":"新しいリンクをあなたのメールアドレスに送信しました。",
