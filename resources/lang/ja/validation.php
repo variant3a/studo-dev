@@ -147,7 +147,10 @@ return [
 
     'attributes' => [
         'email' => 'メールアドレス',
-        'password' => 'パスワード'
+        'password' => 'パスワード',
+        'user_id' => 'ユーザID',
+        'name' => 'ニックネーム',
+        
     ],
 
 ];

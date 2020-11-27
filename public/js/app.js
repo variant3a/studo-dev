@@ -50613,12 +50613,18 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   !*** ./resources/js/script.js ***!
   \********************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
+    functionsIn = _require.functionsIn;
 
 var PrimaryColor = '#ee6e73';
 $(function () {
   M.AutoInit();
   $('.modal').modal();
+  $('#term-of-service').on('click', function () {
+    $('#register-button').toggleClass('disabled');
+  });
   $('.sidenav').sidenav();
   $('input#user_id, input#name').characterCounter();
   $('.dropdown-trigger').dropdown({
@@ -50648,33 +50654,37 @@ $(function () {
   $('#timer-start-button').text('スタート');
   $('#timer-end-button').text('終了');
   $('#timer-end-button').addClass('disabled');
-  var addOnTime = 0;
+  var pauseTime = 0;
   $('#timer-start-button').on('click', function () {
     $('#timer-start-button').toggleClass('counting');
 
     if ($('#timer-start-button').hasClass('counting')) {
-      var i = 1 / ($('#minutes').val() * 60) + addOnTime;
-
-      var counter = function counter() {
-        timer.animate(i);
-        i += 1 / ($('#minutes').val() * 60);
-        if (i > 1) clearInterval(counter);
-      };
-
-      $('#timer-start-button').text('ストップ');
-      $('#timer-end-button').toggleClass('disabled');
-      setInterval(counter, 1000);
+      console.log('#timer-start-button has pressed. status: begun');
+      setInterval(onTimerStarted(), 1000);
     } else {
-      $('#timer-start-button').text('スタート');
-      addOnTime = i;
-      clearInterval(counter);
+      console.log('#timer-start-button has pressed. status: paused');
+      onTimerPaused();
     }
   });
   $('#timer-end-button').on('click', function () {
     $('#timer-start-button').text('スタート');
     $('#timer-end-button').toggleClass('disabled');
-    clearInterval(counter);
+    pauseTimer();
+    resetTimer();
   });
+
+  function onTimerStarted() {
+    isStarted = 1;
+    timer.animate(minutes);
+    minutes += minutes;
+    console.log(minutes);
+  }
+
+  function onTimerPaused() {
+    pauseTime = minutes;
+    clearInterval(onTimerStarted());
+    console.log(pauseTime);
+  }
 });
 
 /***/ }),
@@ -50697,9 +50707,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\script.js */"./resources/js/script.js");
-module.exports = __webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\script.js */"./resources/js/script.js");
+module.exports = __webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

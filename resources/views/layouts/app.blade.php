@@ -15,6 +15,9 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
+    @if (session('status'))
+        <script>M.toast({html: '{{ session('status') }}'});</script>
+    @endif
     <div class="hide-on-large-only">
         <nav>
             <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>

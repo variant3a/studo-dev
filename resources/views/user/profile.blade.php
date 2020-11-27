@@ -3,9 +3,6 @@
 @section('title', __('Profile'))
 
 @section('content')
-@if (session('status'))
-<script>M.toast({html: '{{ session('status') }}'});</script>
-@endif
     <div class="col s12 xl10 offset-xl1">
         <div id="profile" class="card">
             <div class="card-content">

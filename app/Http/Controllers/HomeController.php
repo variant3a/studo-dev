@@ -42,7 +42,7 @@ class HomeController extends Controller
         if(isset($request->email)) $user->email = $request->email;
         $user->save();
 
-        return redirect('/user/profile');
+        return redirect('/user/profile')->with('status', __('Profile Updated'));
     }
 
     public function destroy()

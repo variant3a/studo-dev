@@ -5,6 +5,9 @@ const PrimaryColor = '#ee6e73';
 $(function(){
     M.AutoInit();
     $('.modal').modal();
+    $('#term-of-service').on('click', () => {
+        $('#register-button').toggleClass('disabled');
+    })
     $('.sidenav').sidenav();
     $('input#user_id, input#name').characterCounter();
     $('.dropdown-trigger').dropdown({
@@ -37,14 +40,15 @@ $(function(){
     $('#timer-start-button').text('スタート');
     $('#timer-end-button').text('終了');
     $('#timer-end-button').addClass('disabled');
-    let i = 0;
+    let pauseTime = 0;
     $('#timer-start-button').on('click', () => {
         $('#timer-start-button').toggleClass('counting');
         if($('#timer-start-button').hasClass('counting')) {
-            if(i === 0) startTimer();
-            if(i === 1) resumeTimer();
+            console.log('#timer-start-button has pressed. status: begun');
+            setInterval(onTimerStarted(), 1000);
         }else{
-            pauseTimer();
+            console.log('#timer-start-button has pressed. status: paused');
+            onTimerPaused();
         }
     });
     $('#timer-end-button').on('click', () => {
@@ -54,27 +58,17 @@ $(function(){
         resetTimer();
     })
 
-    function minToSec(inPause) {
-        const Sec = 1 / ($('#minutes').val() * 60);
+    function onTimerStarted() {
+        isStarted = 1;
+        timer.animate(minutes);
+        minutes += minutes;
+        console.log(minutes);
     }
 
-    function startTimer() {
-        var timer1;
-        const minToSec = 1 / ($('#minutes').val() * 60);
-        i = 1;
-        timer.animate(minToSec);
+    function onTimerPaused() {
+        pauseTime = minutes;
+        clearInterval(onTimerStarted());
+        console.log(pauseTime);
     }
 
-    function pauseTimer() {
-        let addOnSec = minToSec;
-
-    }
-
-    function resumeTimer() {
-
-    }
-
-    function resetTimer() {
-        
-    }
 });

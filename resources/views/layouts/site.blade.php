@@ -21,6 +21,9 @@
 </head>
 
 <body>
+    @if (session('status'))
+        <script>M.toast({html: '{{ session('status') }}'});</script>
+    @endif
     <div id="app">
         <nav>
             <div class="nav-wrapper">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class LoginController extends Controller
 {
@@ -31,6 +32,11 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         return redirect('user/home')->with('status', __('You are logged in!'));
+    }
+
+    protected function loggedOut(Request $request)
+    {
+        return redirect('/')->with('status', __('You are logged out'));
     }
 
     /**

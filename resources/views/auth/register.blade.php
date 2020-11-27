@@ -70,7 +70,7 @@
                         </label>
                     </div>
                     <div class="input-field col s12">
-                        <button type="submit" class="waves-effect waves-light btn right">
+                        <button type="submit" class="waves-effect waves-light btn right disabled" id="register-button">
                             {{ __('Register') }}
                         </button>
                     </div>

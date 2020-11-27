@@ -24,8 +24,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'sometimes|nullable|string|min:8|max:32|unique:users',
-            'name' => 'nullable|string|max:32',
+            'user_id' => 'sometimes|nullable|alpha_dash|min:8|max:32|unique:users',
+            'name' => 'nullable|alpha_dash|max:32',
             'email' => 'sometimes|nullable|email|unique:users'
         ];
     }
