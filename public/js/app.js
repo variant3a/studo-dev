@@ -50646,45 +50646,81 @@ $(function () {
     color: PrimaryColor,
     trailColor: '#eee',
     strokeWidth: 10,
-    duration: 1000,
-    easing: 'linear',
+    duration: 250,
+    easing: 'easeOutCubic',
     text: {//value: 
     }
+  });
+  $('a.disable').on('click', function () {
+    return false;
   });
   $('#timer-start-button').text('スタート');
   $('#timer-end-button').text('終了');
   $('#timer-end-button').addClass('disabled');
   var pauseTime = 0;
+  var interval;
   $('#timer-start-button').on('click', function () {
-    $('#timer-start-button').toggleClass('counting');
+    var minutes = 1 / ($('#minutes').val() * 60) + pauseTime;
+    $('#timer-start-button').toggleClass('started');
 
-    if ($('#timer-start-button').hasClass('counting')) {
-      console.log('#timer-start-button has pressed. status: begun');
-      setInterval(onTimerStarted(), 1000);
+    if ($('#timer-end-button').hasClass('disabled')) {
+      $('#timer-end-button').toggleClass('disabled');
+    }
+
+    if ($('#timer-start-button').hasClass('started')) {
+      var onTimerStarted = function onTimerStarted() {
+        timer.animate(minutes);
+        minutes += 1 / ($('#minutes').val() * 60);
+        console.log(minutes);
+        pauseTime = minutes;
+
+        if (timer.value() >= 1) {
+          onTimeIsUp();
+          M.toast({
+            html: 'タイマーが終了しました'
+          });
+        }
+      };
+
+      console.log('start');
+      $('#timer-start-button').text('ストップ');
+      onTimerStarted(); //require once
+
+      interval = setInterval(onTimerStarted, 1000);
+      $('.sidenav-fixed li a').addClass('disable');
     } else {
-      console.log('#timer-start-button has pressed. status: paused');
-      onTimerPaused();
+      console.log('stop');
+      $('#timer-start-button').text('再開');
+      clearInterval(interval);
     }
   });
-  $('#timer-end-button').on('click', function () {
+
+  function onTimeIsUp() {
+    console.log('clear');
     $('#timer-start-button').text('スタート');
-    $('#timer-end-button').toggleClass('disabled');
-    pauseTimer();
-    resetTimer();
+    $('#timer-start-button').toggleClass('started');
+
+    if (!$('#timer-end-button').hasClass('disabled')) {
+      $('#timer-end-button').toggleClass('disabled');
+    }
+
+    pauseTime = 0;
+    clearInterval(interval);
+    M.toast({
+      html: '記録を保存しました'
+    });
+    timer.animate(2, {
+      duration: 1500,
+      easing: 'easeInOutCubic'
+    }, function () {
+      timer.set(0);
+    });
+    $('.sidenav-fixed li a').removeClass('disable');
+  }
+
+  $('#timer-end-button').on('click', function () {
+    onTimeIsUp();
   });
-
-  function onTimerStarted() {
-    isStarted = 1;
-    timer.animate(minutes);
-    minutes += minutes;
-    console.log(minutes);
-  }
-
-  function onTimerPaused() {
-    pauseTime = minutes;
-    clearInterval(onTimerStarted());
-    console.log(pauseTime);
-  }
 });
 
 /***/ }),

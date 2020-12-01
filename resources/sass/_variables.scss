@@ -1,5 +1,5 @@
-//$primary-color: !default;
-//$secondary-color: !default;
+$primary-color: lighten(green, 1) !default;
+$secondary-color: darken(yellow, 2) !default;
 
 main.app {
     padding-left: 300px;
