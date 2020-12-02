@@ -25,6 +25,9 @@ $(function(){
     $('#del-button-activate').on('click', () => {
         $('#confirm-del').toggleClass('disabled');
     });
+    $('select#minutes').formSelect({
+        constrainWidth: true
+    });
 
     const timer = new ProgressBar.Circle('#timer-1', {
         color: PrimaryColor,
@@ -48,9 +51,13 @@ $(function(){
     $('#timer-start-button').on('click', () => {
         let minutes = 1 / ($('#minutes').val() * 60) + pauseTime;
         $('#timer-start-button').toggleClass('started');
-        if($('#timer-end-button').hasClass('disabled')) {
-            $('#timer-end-button').toggleClass('disabled');
-        }
+        if($('#timer-end-button').hasClass('disabled')) $('#timer-end-button').toggleClass('disabled');
+        if(!$('.select-dropdown').prop('disabled')) $('.select-dropdown').prop('disabled', true);
+        $('.sidenav-fixed li a').css('pointer-events', 'none').css('color', 'lightgray');
+        $('a.disabled').on('click', () => {
+            console.log('link pressed');
+            return false;
+        })
 
         if($('#timer-start-button').hasClass('started')) {
             function onTimerStarted() {
@@ -68,7 +75,6 @@ $(function(){
             $('#timer-start-button').text('ストップ');
             onTimerStarted(); //require once
             interval = setInterval(onTimerStarted, 1000);
-            $('.sidenav-fixed li a').addClass('disable');
         }else{
             console.log('stop');
             $('#timer-start-button').text('再開');
@@ -79,10 +85,11 @@ $(function(){
     function onTimeIsUp() {
         console.log('clear');
         $('#timer-start-button').text('スタート');
-        $('#timer-start-button').toggleClass('started');
-        if(!$('#timer-end-button').hasClass('disabled')) {
-            $('#timer-end-button').toggleClass('disabled');
-        }
+        if($('#timer-start-button').hasClass('started')) $('#timer-start-button').toggleClass('started');
+        if(!$('#timer-end-button').hasClass('disabled')) $('#timer-end-button').toggleClass('disabled');
+        $('.sidenav-fixed li a').css('pointer-events', 'auto').css('color', 'black');
+        if($('.select-dropdown').prop('disabled')) $('.select-dropdown').prop('disabled', false);
+
         pauseTime = 0;
         clearInterval(interval);
         M.toast({html: '記録を保存しました'});
@@ -92,7 +99,6 @@ $(function(){
         }, () => {
             timer.set(0);
         });
-        $('.sidenav-fixed li a').removeClass('disable');
         }
     $('#timer-end-button').on('click', () => {
         onTimeIsUp();
