@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTimerTable extends Migration
+class CreateTimersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTimerTable extends Migration
      */
     public function up()
     {
-        Schema::create('timer', function (Blueprint $table) {
+        Schema::create('timers', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->unique();
-            $table->timestamp('started_at');
+            $table->string('user_id');
+            $table->string('subject_name')->nullable();
+            $table->bigInteger('started_at');
+            $table->bigInteger('ended_at');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateTimerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timer');
+        Schema::dropIfExists('timers');
     }
 }

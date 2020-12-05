@@ -22,7 +22,7 @@
                     </div>
                     <div class="input-field col s12">
                         <label for="name">{{ __('Name any') }}</label>
-                        <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" data-length="32">
+                        <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" data-length="32">
 
                         @error('name')
                             <script>M.toast({html: '{{ $message }}'})</script>

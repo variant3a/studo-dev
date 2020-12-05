@@ -64,6 +64,7 @@
         </div>
         <!-------delete account modal------->
         <form method="POST" action="{{ route('delete_account') }}">
+            @method('DELETE')
             <div id="del-account-modal" class="modal">
                 <div class="modal-content">
                     <h4>{{ __('Attention!') }}</h4>

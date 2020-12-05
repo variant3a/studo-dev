@@ -19,8 +19,11 @@ Route::get('/privacy', function () { return view('privacy'); })->name('privacy')
 
 Auth::routes();
 
-Route::get('/user/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/user/profile', [\App\Http\Controllers\HomeController::class, 'show'])->name('profile');
-Route::get('/user/timer', [\App\Http\Controllers\TimerController::class, 'index'])->name('timer');
-Route::post('/user/profile', [\App\Http\Controllers\HomeController::class, 'update'])->name('update_profile');
-Route::delete('/user/profile', [\App\Http\Controllers\HomeController::class, 'destroy'])->name('delete_account');
+Route::get('/user/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/user/profile', '\App\Http\Controllers\HomeController@show')->name('profile');
+Route::get('/user/timer', '\App\Http\Controllers\TimerController@index')->name('timer');
+Route::post('/user/profile', '\App\Http\Controllers\HomeController@update')->name('update_profile');
+Route::post('/user/timer', '\App\Http\Controllers\TimerController@ajaxCreate')->name('ajax_create_timer');
+Route::post('/user/', '\App\Http\Controllers\SubjectController@create')->name('add_subject');
+Route::delete('/user/profile', '\App\Http\Controllers\HomeController@destroy')->name('delete_account');
+Route::delete('/user/timer', '\App\Http\Controllers\TimerController@destroy')->name('del_timer_rec');

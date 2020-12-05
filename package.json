@@ -26,6 +26,7 @@
         "chart.js": "^2.9.4",
         "jquery": "^3.5.1",
         "materialize-css": "^1.0.0",
+        "moment": "^2.29.1",
         "object-path": "^0.11.5",
         "progressbar.js": "^1.1.0"
     }
