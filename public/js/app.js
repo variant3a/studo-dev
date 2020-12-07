@@ -72330,16 +72330,16 @@ $(function () {
         'started_at': startedAt,
         'ended_at': endedAt,
         'subject_name': subject
-      }
-    }).done(function (data, response) {
+      },
+      async: false
+    }).done(function (data, timer, response) {
       M.toast({
         html: '記録を保存しました'
       });
       var startTime = moment(startedAt * 1000).format("MM-DD HH:mm");
       var endTime = endedAt - startedAt;
-      var newId = response;
-      console.log(newId);
-      $('table#histories tr:first').after('<tr class="records"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat"><i class="material-icons">delete</i></button></td></tr>');
+      var responseId = response.responseJSON.id;
+      $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat"><i class="material-icons">delete</i></button></td></tr>');
       isTableEmpty();
     }).fail(function (data) {
       M.toast({
@@ -72409,9 +72409,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\script.js */"./resources/js/script.js");
-module.exports = __webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\script.js */"./resources/js/script.js");
+module.exports = __webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -20,7 +20,7 @@ class TimerController extends Controller
         $subjects = Subject::all();
         $timer = Timer::where('user_id', Auth::user()->id);
         if($timer === null) return view('user.timer', compact('subjects'));
-        $timer = $timer->orderBy('id', 'desc')->get();
+        $timer = $timer->latest()->get();
         return view('user.timer', compact('timer'), compact('subjects'));
     }
 
@@ -32,9 +32,8 @@ class TimerController extends Controller
         $timer->started_at = $request->started_at;
         $timer->ended_at = $request->ended_at;
         $timer->save();
-        $timer = Timer::where('user_id', Auth::user()->id);
-        $timer = $timer->orderBy('id', 'desc')->first();
-        return response()->json($timer);
+        $timer = Timer::where('user_id', Auth::user()->id)->latest()->first('id');
+        return response($timer);
     }
 
     public function destroy(Request $request)

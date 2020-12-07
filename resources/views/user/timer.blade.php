@@ -87,7 +87,7 @@
                         <th class="center">{{ __('Delete') }}</th>
                     </tr>
                     <p class="no-recs"></p>
-                    @if ($timer ?? '' ?? '')
+                    @if ($timer ?? '')
                         @foreach ($timer ?? '' as $time)
                             <tr class="records" data-id="{{ $time->id }}">
                                 <td>{{ date('m/d H:i', $time->started_at) }}</td>

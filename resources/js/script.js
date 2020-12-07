@@ -135,15 +135,15 @@ $(function(){
                 'started_at': startedAt,
                 'ended_at': endedAt,
                 'subject_name': subject
-            }
+            },
+            async: false
         })
-        .done((data, response) => {
+        .done((data, timer, response) => {
             M.toast({html: '記録を保存しました'})
             const startTime = moment(startedAt * 1000).format("MM-DD HH:mm")
             const endTime = endedAt - startedAt
-            const newId = response
-            console.log(newId);
-            $('table#histories tr:first').after('<tr class="records"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat"><i class="material-icons">delete</i></button></td></tr>')
+            const responseId = response.responseJSON.id
+            $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat"><i class="material-icons">delete</i></button></td></tr>')
             isTableEmpty()
         })
         .fail((data) => {
