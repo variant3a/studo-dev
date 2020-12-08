@@ -72206,11 +72206,8 @@ $(function () {
   });
   $('.tooltipped').tooltip();
   $('#edit-profile').hide();
-  $('#edit-button').on('click', function () {
-    $('#edit-profile').toggle();
-  });
-  $('#cancel-edit').on('click', function () {
-    $('#edit-profile').toggle();
+  $('#edit-button, #cancel-edit').on('click', function () {
+    $('#edit-profile').stop(true, false).slideToggle(250);
   });
   $('#del-button-activate').on('click', function () {
     $('#confirm-del').toggleClass('disabled');
@@ -72218,16 +72215,19 @@ $(function () {
   $('select#minutes, select#subjects, select#select-subject-category').formSelect({
     constrainWidth: true
   });
-  var timer = new ProgressBar.Circle('#timer-1', {
-    color: PrimaryColor,
-    trailColor: '#eee',
-    strokeWidth: 5,
-    duration: 100,
-    easing: 'easeOutCubic',
-    text: {
-      value: minutes
-    }
-  });
+
+  try {
+    timer = new ProgressBar.Circle('#timer-1', {
+      color: PrimaryColor,
+      trailColor: '#eee',
+      strokeWidth: 5,
+      duration: 100,
+      easing: 'easeOutCubic'
+    });
+  } catch (e) {
+    console.log(e);
+  }
+
   $('a.disable').on('click', function () {
     return false;
   });
@@ -72339,7 +72339,7 @@ $(function () {
       var startTime = moment(startedAt * 1000).format("MM-DD HH:mm");
       var endTime = endedAt - startedAt;
       var responseId = response.responseJSON.id;
-      $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat"><i class="material-icons">delete</i></button></td></tr>');
+      $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>');
       isTableEmpty();
     }).fail(function (data) {
       M.toast({
@@ -72351,8 +72351,8 @@ $(function () {
   $('#timer-end-button').on('click', function () {
     onTimeIsUp();
   });
-  $('button#rec-del-btn').on('click', function () {
-    var recordId = $('button#rec-del-btn').val();
+  $(document).on('click', 'button.rec-del-btn', function () {
+    var recordId = $('button.rec-del-btn').val();
     $.ajax({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -72367,13 +72367,17 @@ $(function () {
       M.toast({
         html: '削除しました'
       });
-      $('button#rec-del-btn').parents('td').parents('tr[data-id="' + recordId + '"]').remove();
+      $('button.rec-del-btn').parents('td').parents('tr[data-id="' + recordId + '"]').remove();
       isTableEmpty();
     }).fail(function (data) {
       M.toast({
         html: 'エラーが発生しました'
       });
     });
+  });
+  $('.card#add-note-card').hide();
+  $('a#add-note-btn').on('click', function () {
+    $('.card#add-note-card').stop(true, false).slideToggle(250);
   });
 
   function sec2time(timeInSeconds) {
@@ -72409,9 +72413,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\script.js */"./resources/js/script.js");
-module.exports = __webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\script.js */"./resources/js/script.js");
+module.exports = __webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

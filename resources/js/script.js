@@ -16,11 +16,8 @@ $(function(){
     })
     $('.tooltipped').tooltip()
     $('#edit-profile').hide()
-    $('#edit-button').on('click', () => {
-        $('#edit-profile').toggle()
-    })
-    $('#cancel-edit').on('click', () => {
-        $('#edit-profile').toggle()
+    $('#edit-button, #cancel-edit').on('click', () => {
+        $('#edit-profile').stop(true, false).slideToggle(250)
     })
     $('#del-button-activate').on('click', () => {
         $('#confirm-del').toggleClass('disabled')
@@ -29,16 +26,17 @@ $(function(){
         constrainWidth: true
     })
 
-    const timer = new ProgressBar.Circle('#timer-1', {
-        color: PrimaryColor,
-        trailColor: '#eee',
-        strokeWidth: 5,
-        duration: 100,
-        easing: 'easeOutCubic',
-        text: {
-            value: minutes
-        },
-    })
+    try {
+        timer = new ProgressBar.Circle('#timer-1', {
+            color: PrimaryColor,
+            trailColor: '#eee',
+            strokeWidth: 5,
+            duration: 100,
+            easing: 'easeOutCubic'
+        })    
+    } catch (e) {
+        console.log(e)
+    }
     $('a.disable').on('click', () => {
         return false
     })
@@ -143,7 +141,7 @@ $(function(){
             const startTime = moment(startedAt * 1000).format("MM-DD HH:mm")
             const endTime = endedAt - startedAt
             const responseId = response.responseJSON.id
-            $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat"><i class="material-icons">delete</i></button></td></tr>')
+            $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>')
             isTableEmpty()
         })
         .fail((data) => {
@@ -154,8 +152,8 @@ $(function(){
     $('#timer-end-button').on('click', () => {
         onTimeIsUp()
     })
-    $('button#rec-del-btn').on('click', () => {
-        const recordId = $('button#rec-del-btn').val()
+    $(document).on('click', 'button.rec-del-btn', () => {
+        const recordId = $('button.rec-del-btn').val()
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -169,7 +167,7 @@ $(function(){
         })
         .done((data) => {
             M.toast({html: '削除しました'})
-            $('button#rec-del-btn').parents('td').parents('tr[data-id="' + recordId + '"]').remove()
+            $('button.rec-del-btn').parents('td').parents('tr[data-id="' + recordId + '"]').remove()
             isTableEmpty()
         })
         .fail((data) => {
@@ -177,13 +175,18 @@ $(function(){
         })
     })
 
+    $('.card#add-note-card').hide()
+    $('a#add-note-btn').on('click', () => {
+        $('.card#add-note-card').stop(true, false).slideToggle(250)
+    })
+    
     function sec2time(timeInSeconds) {
-        var pad = function(num, size) { return ('000' + num).slice(size * -1); }
+        var pad = function(num, size) { return ('000' + num).slice(size * -1) }
         time = parseFloat(timeInSeconds).toFixed(3)
         hours = Math.floor(time / 60 / 60)
         minutes = Math.floor(time / 60) % 60
         seconds = Math.floor(time - minutes * 60)
     
-        return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2);
+        return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2)
     }
 })

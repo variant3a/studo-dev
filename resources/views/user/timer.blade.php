@@ -93,7 +93,7 @@
                                 <td>{{ date('m/d H:i', $time->started_at) }}</td>
                                 <td>{{ $time->subject_name ?? __('blank') }}</td>
                                 <td>{{ gmdate('H:i:s', ($time->ended_at - $time->started_at)) }}</td>
-                                <td><button type="submit" class="waves-effect waves-light btn-flat" value="{{ $time->id }}" id="rec-del-btn"><i class="material-icons">delete</i></button></td>
+                                <td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="{{ $time->id }}"><i class="material-icons">delete</i></button></td>
                             </tr>
                         @endforeach
                     @endif
