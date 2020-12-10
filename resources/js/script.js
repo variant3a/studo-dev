@@ -138,7 +138,7 @@ $(function(){
         })
         .done((data, timer, response) => {
             M.toast({html: '記録を保存しました'})
-            const startTime = moment(startedAt * 1000).format("MM-DD HH:mm")
+            const startTime = moment(startedAt * 1000).format("MM/DD HH:mm")
             const endTime = endedAt - startedAt
             const responseId = response.responseJSON.id
             $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>')
@@ -178,6 +178,10 @@ $(function(){
     $('.card#add-note-card').hide()
     $('a#add-note-btn').on('click', () => {
         $('.card#add-note-card').stop(true, false).slideToggle(250)
+    })
+    $('#notepad-content').on('input', () => {
+        $('#notepad-content').val().replace(/\[/g, '<span style="color: #26c6da">[</span>')
+        $('#notepad-content').val().replace(/\]/g, '<span style="color: #26c6da">]</span>')
     })
     
     function sec2time(timeInSeconds) {

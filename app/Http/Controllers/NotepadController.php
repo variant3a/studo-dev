@@ -11,7 +11,7 @@ class NotepadController extends Controller
 {
     public function index()
     {
-        $notes = Notepad::where('user_id', Auth::user()->id);
+        $notes = Notepad::where('user_id', Auth::user()->id)->get();
         return view('user.notepad', compact('notes'));
     }
 

@@ -13,29 +13,17 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}"></script>
+    <style>html::-webkit-scrollbar{display: none}</style>
 </head>
 <body>
     @if (session('status'))
         <script>M.toast({html: '{{ session('status') }}'});</script>
     @endif
     <div class="hide-on-large-only">
-        @hasSection ('extended-nav')
-            <nav class="nav-extended">
-                <div class="nav-wrapper">
-                    <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('title')</a>
-                </div>
-                <div class="nav-content">
-                    <span class="nav-title">あああ</span>
-                    <a class="btn-floating btn-large halfway-fab waves-effect waves-light" id="add-note-btn"><i class="material-icons">add</i></a>
-                </div>
-            </nav>
-        @else
-            <nav>
-                <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('title')</a>
-            </nav>
-        @endif
+        <nav>
+            <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('title')</a>
+        </nav>
     </div>  
     <!-------smartphone side navigation------->
     <ul id="slide-out" class="sidenav sidenav-fixed">
