@@ -175,14 +175,27 @@ $(function(){
         })
     })
 
+    $('.fixed-action-btn').floatingActionButton()
     $('.card#add-note-card').hide()
+    let isClicked = 0
+    $('a#add-note-btn i').css('transition', 'transform 0.25s')
     $('a#add-note-btn').on('click', () => {
         $('.card#add-note-card').stop(true, false).slideToggle(250)
+        if(isClicked == 0) {
+            $('a#add-note-btn').addClass('red')
+            $('a#add-note-btn i').css('transform', 'rotate(135deg)')
+            isClicked = 1
+        } else {
+            $('a#add-note-btn').removeClass('red')
+            $('a#add-note-btn i').css('transform', 'rotate(0deg)')
+            isClicked = 0
+        }
     })
     $('#notepad-content').on('input', () => {
-        $('#notepad-content').val().replace(/\[/g, '<span style="color: #26c6da">[</span>')
-        $('#notepad-content').val().replace(/\]/g, '<span style="color: #26c6da">]</span>')
+        $(this).val().replace(/\[/g, '<span style="color: #26c6da">[</span>')
+        $(this).val().replace(/\]/g, '<span style="color: #26c6da">]</span>')
     })
+
     
     function sec2time(timeInSeconds) {
         var pad = function(num, size) { return ('000' + num).slice(size * -1) }

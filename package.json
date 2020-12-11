@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "chart.js": "^2.9.4",
+        "highlight.js": "^10.4.1",
         "jquery": "^3.5.1",
         "materialize-css": "^1.0.0",
         "moment": "^2.29.1",
