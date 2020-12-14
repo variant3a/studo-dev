@@ -1,20 +1,16 @@
-const { functionsIn, isSet } = require("lodash")
-
 const PrimaryColor = '#ee6e73'
+hljs.initHighlightingOnLoad()
 
 $(function(){
     M.AutoInit()
-    $('.modal').modal()
     $('#term-of-service').on('click', () => {
         $('#register-button').toggleClass('disabled')
     })
-    $('.sidenav').sidenav()
     $('input#user_id, input#name').characterCounter()
     $('.dropdown-trigger').dropdown({
         constrainWidth: false,
         coverTrigger: false,
     })
-    $('.tooltipped').tooltip()
     $('#edit-profile').hide()
     $('#edit-button, #cancel-edit').on('click', () => {
         $('#edit-profile').stop(true, false).slideToggle(250)
@@ -174,28 +170,46 @@ $(function(){
             M.toast({html: 'エラーが発生しました'})
         })
     })
-
     $('.fixed-action-btn').floatingActionButton()
     $('.card#add-note-card').hide()
-    let isClicked = 0
+    let isAddClicked = 0
     $('a#add-note-btn i').css('transition', 'transform 0.25s')
     $('a#add-note-btn').on('click', () => {
         $('.card#add-note-card').stop(true, false).slideToggle(250)
-        if(isClicked == 0) {
+        if(isAddClicked == 0) {
             $('a#add-note-btn').addClass('red')
             $('a#add-note-btn i').css('transform', 'rotate(135deg)')
-            isClicked = 1
+            isAddClicked = 1
         } else {
             $('a#add-note-btn').removeClass('red')
             $('a#add-note-btn i').css('transform', 'rotate(0deg)')
-            isClicked = 0
+            isAddClicked = 0
         }
     })
     $('#notepad-content').on('input', () => {
         $(this).val().replace(/\[/g, '<span style="color: #26c6da">[</span>')
         $(this).val().replace(/\]/g, '<span style="color: #26c6da">]</span>')
     })
+    let isEditClicked = 0
+    $('a#edit-note-btn i').css('transition', 'transform 0.5s')
+    $('a#edit-note-btn').on('click', () => {
+        $('.card#edit-note-card').stop(true, false).slideToggle(250)
+        $('#no-notes-text').hide()
+        if(isEditClicked == 0) {
+            $('a#edit-note-btn i').css('transform', 'rotate(360deg)')
+            isEditClicked = 1
+        } else {
+            $('a#edit-note-btn i').css('transform', 'rotate(0deg)')
+            isEditClicked = 0
+        }
+    })
+    if($('#no-notes-text').length != 0) {
+        $('.tap-target[data-target="add-note-btn"]').tapTarget('open')
+    }
 
+    $('button#edit-note-btn').on('click', () => {
+        //$('div.marked-body').prop('contenteditable', true)
+    })
     
     function sec2time(timeInSeconds) {
         var pad = function(num, size) { return ('000' + num).slice(size * -1) }

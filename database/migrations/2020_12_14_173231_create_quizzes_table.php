@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotepadsTable extends Migration
+class CreateQuizzesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateNotepadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notepads', function (Blueprint $table) {
+        Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
             $table->string('title')->nullable();
-            $table->text('content');
-            $table->integer('view_count');
+            $table->boolean('publishing_settings');
+            $table->string('question');
+            $table->string('answer')->nullable();
+            $table->integer('attempt_count');
+            $table->integer('correct_count');
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateNotepadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notepads');
+        Schema::dropIfExists('quizzes');
     }
 }

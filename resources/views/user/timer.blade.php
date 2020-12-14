@@ -20,11 +20,10 @@
         <div class="input-field">
             <select name="subjects" id="subjects">
                 <option value="" disabled selected>{{ __('Choose Your Option Any') }}</option>
-                @if (isset($subjects))
-                    @foreach ($subjects as $subject)
-                        <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
-                    @endforeach
-                @endif
+                @forelse ($subjects as $subject)
+                    <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                @empty
+                @endforelse
             </select>
             <label>{{ __('Choose Subjects') }}</label>
         </div>
@@ -87,16 +86,15 @@
                         <th class="center">{{ __('Delete') }}</th>
                     </tr>
                     <p class="no-recs"></p>
-                    @if ($timer ?? '')
-                        @foreach ($timer ?? '' as $time)
-                            <tr class="records" data-id="{{ $time->id }}">
-                                <td>{{ date('m/d H:i', $time->started_at) }}</td>
-                                <td>{{ $time->subject_name ?? __('blank') }}</td>
-                                <td>{{ gmdate('H:i:s', ($time->ended_at - $time->started_at)) }}</td>
-                                <td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="{{ $time->id }}"><i class="material-icons">delete</i></button></td>
-                            </tr>
-                        @endforeach
-                    @endif
+                    @forelse ($timer as $time)
+                        <tr class="records" data-id="{{ $time->id }}">
+                            <td>{{ date('m/d H:i', $time->started_at) }}</td>
+                            <td>{{ $time->subject_name ?? __('blank') }}</td>
+                            <td>{{ gmdate('H:i:s', ($time->ended_at - $time->started_at)) }}</td>
+                            <td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="{{ $time->id }}"><i class="material-icons">delete</i></button></td>
+                        </tr>
+                    @empty
+                    @endforelse
                 </table>
             </div>
         </div>

@@ -65,6 +65,7 @@
         <!-------delete account modal------->
         <form method="POST" action="{{ route('delete_account') }}">
             @method('DELETE')
+            @csrf
             <div id="del-account-modal" class="modal">
                 <div class="modal-content">
                     <h4>{{ __('Attention!') }}</h4>
@@ -79,7 +80,7 @@
                         </label>
                     </p>
                     <a href="#" class="modal-close waves-effect waves-light btn-flat">{{ __('Cancel') }}</a>
-                    <button type="submit" class="modal-close waves-effect waves-light btn red disabled" id="confirm-del">{{ __('Delete') }}</button>
+                    <button type="submit" class="waves-effect waves-light btn red disabled" id="confirm-del">{{ __('Delete') }}</button>
                 </div>
             </div>
         </form>

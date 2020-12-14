@@ -19,3 +19,12 @@ main.app {
         max-width: 86%;
     }
 }
+
+@font-face {
+    font-family: "Ricty Diminished";
+    src: url('/public/fonts/RictyDiminished-Regular.ttf')
+}
+
+code, kbd, pre, samp {
+    font-family: "Ricty Diminished", monospace;
+}

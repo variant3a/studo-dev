@@ -9,3 +9,4 @@
 <li><a href="{{ route('home') }}" class="waves-effect waves-light">{{ __('MyPage') }}</a></li>
 <li><a href="{{ route('timer') }}" class="waves-effect waves-light">{{ __('Timer') }}</a></li>                
 <li><a href="{{ route('notepad') }}" class="waves-effect waves-light">{{ __('Notepad') }}</a></li>                
+<li><a href="{{ route('quiz') }}" class="waves-effect waves-light">{{ __('Quiz') }}</a></li>                

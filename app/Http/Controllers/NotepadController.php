@@ -11,13 +11,16 @@ class NotepadController extends Controller
 {
     public function index()
     {
-        $notes = Notepad::where('user_id', Auth::user()->id)->get();
-        return view('user.notepad', compact('notes'));
+        $notes = Notepad::where('user_id', Auth::user()->id)->latest()->paginate(10);
+        return view('user.notepad.index', compact('notes'));
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('user.notepad');
+        $note = Notepad::findOrFail($id);
+        $note->timestamps = false;
+        $note->increment('view_count');
+        return view('user.notepad.details', compact('note'));
     }
 
     public function create(Request $request)
@@ -26,11 +29,33 @@ class NotepadController extends Controller
         $note->user_id = Auth::user()->id;
         $note->title = $request->title;
         $note->content = $request->content;
-        $note->status = false;
         $note->view_count = 0;
         $note->save();
 
-        return redirect('/user/notepad');
+        return redirect('/user/notepad/index')->with('status', __('Created'));
+    }
+
+    public function edit($id)
+    {
+        $note = Notepad::findOrFail($id);
+        return view('user.notepad.edit', compact('note'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $note = Notepad::find($id);
+        $note->title = $request->title;
+        $note->content = $request->content;
+        $note->save();
+
+        return redirect('/user/notepad/' . $id . '/details')->with('status', __('Updated'));
+    }
+
+    public function destroy($id)
+    {
+        $note = Notepad::find($id);
+        $note->delete();
+        return redirect('/user/notepad/index')->with('status', __('Delete Confirmed'));
     }
 
 }

@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Notepad extends Model
+class Quiz extends Model
 {
     use HasFactory;
-
-    protected $dates = [
-        'created_at',
-        'updated_at'
-    ];
 }
