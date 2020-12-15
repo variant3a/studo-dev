@@ -5,10 +5,13 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 // Variables
-@import 'variables';
+@import './variables';
 
 // Materialize
-@import '../../node_modules/materialize-css/dist/css/materialize.min.css';
+@import '../../node_modules/materialize-css/sass/materialize.scss';
 
 // Highlightjs.css
 @import '../../node_modules/highlight.js/scss/atom-one-dark.scss';
+
+// Style
+@import './style.scss';

@@ -88422,20 +88422,38 @@ __webpack_require__(/*! ./script */ "./resources/js/script.js");
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var PrimaryColor = '#ee6e73';
+var PrimaryColor = '#66bb6a';
 hljs.initHighlightingOnLoad();
 $(function () {
   var _this = this;
 
   M.AutoInit();
+  /*------------------------------------------------*/
+
+  /*--------------------register--------------------*/
+
+  /*------------------------------------------------*/
+
   $('#term-of-service').on('click', function () {
     $('#register-button').toggleClass('disabled');
   });
   $('input#user_id, input#name').characterCounter();
+  /*--------------------------------------------*/
+
+  /*--------------------home--------------------*/
+
+  /*--------------------------------------------*/
+
   $('.dropdown-trigger').dropdown({
     constrainWidth: false,
     coverTrigger: false
   });
+  /*-----------------------------------------------*/
+
+  /*--------------------profile--------------------*/
+
+  /*-----------------------------------------------*/
+
   $('#edit-profile').hide();
   $('#edit-button, #cancel-edit').on('click', function () {
     $('#edit-profile').stop(true, false).slideToggle(250);
@@ -88443,6 +88461,12 @@ $(function () {
   $('#del-button-activate').on('click', function () {
     $('#confirm-del').toggleClass('disabled');
   });
+  /*---------------------------------------------*/
+
+  /*--------------------timer--------------------*/
+
+  /*---------------------------------------------*/
+
   $('select#minutes, select#subjects, select#select-subject-category').formSelect({
     constrainWidth: true
   });
@@ -88549,8 +88573,7 @@ $(function () {
       easing: 'easeInOutCubic'
     }, function () {
       timer.set(0);
-    }); //ajax
-
+    });
     $.ajax({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -88570,6 +88593,7 @@ $(function () {
       var startTime = moment(startedAt * 1000).format("MM/DD HH:mm");
       var endTime = endedAt - startedAt;
       var responseId = response.responseJSON.id;
+      if (subject == '') subject = '空欄';
       $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>');
       isTableEmpty();
     }).fail(function (data) {
@@ -88606,7 +88630,12 @@ $(function () {
       });
     });
   });
-  $('.fixed-action-btn').floatingActionButton();
+  /*-----------------------------------------------*/
+
+  /*--------------------notepad--------------------*/
+
+  /*-----------------------------------------------*/
+
   $('.card#add-note-card').hide();
   var isAddClicked = 0;
   $('a#add-note-btn i').css('transition', 'transform 0.25s');
@@ -88648,6 +88677,11 @@ $(function () {
 
   $('button#edit-note-btn').on('click', function () {//$('div.marked-body').prop('contenteditable', true)
   });
+  /*---------------------------------------------*/
+
+  /*--------------------other--------------------*/
+
+  /*---------------------------------------------*/
 
   function sec2time(timeInSeconds) {
     var pad = function pad(num, size) {

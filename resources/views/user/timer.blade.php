@@ -19,7 +19,7 @@
     <div class="row">
         <div class="input-field">
             <select name="subjects" id="subjects">
-                <option value="" disabled selected>{{ __('Choose Your Option Any') }}</option>
+                <option value="" selected>{{ __('Choose Your Option Any') }}</option>
                 @forelse ($subjects as $subject)
                     <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
                 @empty

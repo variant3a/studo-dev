@@ -52,7 +52,7 @@
     {{ $notes->links() }}
 </div>
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light tooltipped" id="add-note-btn" data-position="left" data-tooltip="{{ __('Create Notepad') }}"><i class="material-icons">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light pulse tooltipped" id="add-note-btn" data-position="left" data-tooltip="{{ __('Create Notepad') }}"><i class="material-icons">add</i></a>
 </div>
 <div class="tap-target" data-target="add-note-btn">
     <div class="tap-target-content">

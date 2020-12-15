@@ -15,16 +15,34 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <style>html::-webkit-scrollbar{display: none}</style>
 </head>
+
 <body>
     @if (session('status'))
         <script>M.toast({html: '{{ session('status') }}'});</script>
     @endif
+
+
+    <!-------smartphone navigation bar------->
     <div class="hide-on-large-only">
-        <nav>
-            <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('title')</a>
-        </nav>
-    </div>  
+        @hasSection ('nav-content')
+            <nav class="nav-extended">
+                <div class="nav-wrapper">
+                    <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('title')</a>
+                </div>
+                <div class="nav-content">
+                    @yield('nav-content')
+                </div>
+            </nav>
+        @else
+            <nav>
+                <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('title')</a>
+            </nav>
+        @endif
+    </div>
+
+
     <!-------smartphone side navigation------->
     <ul id="slide-out" class="sidenav sidenav-fixed">
 
@@ -48,6 +66,7 @@
         @endauth
     </ul>
     
+
     <!-------content------->
     <main class="app">
         <div class="container">

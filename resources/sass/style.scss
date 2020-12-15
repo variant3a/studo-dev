@@ -1,0 +1,27 @@
+main.app {
+    padding-left: 300px;
+}
+@media only screen and (max-width: 992px) {
+    main.app {
+        padding-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    #toast-container {
+        top: auto;
+        right: auto;
+        left: 5%;
+        bottom: 7%;
+        max-width: 86%;
+    }
+}
+
+@font-face {
+    font-family: "Ricty Diminished";
+    src: url('/public/fonts/RictyDiminished-Regular.ttf')
+}
+
+code, kbd, pre, samp {
+    font-family: "Ricty Diminished", monospace;
+}

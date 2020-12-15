@@ -1,30 +1,15 @@
-$primary-color: lighten(green, 1) !default;
-$secondary-color: darken(yellow, 2) !default;
+@import '../../node_modules/materialize-css/sass/components/color-variables';
 
-main.app {
-    padding-left: 300px;
-}
-@media only screen and (max-width: 992px) {
-    main.app {
-        padding-left: 0px;
-    }
-}
+// 1. Colors
+// ==========================================================================
 
-@media only screen and (min-width: 993px) {
-    #toast-container {
-        top: auto;
-        right: auto;
-        left: 5%;
-        bottom: 7%;
-        max-width: 86%;
-    }
-}
+$primary-color: color("green", "lighten-1") !default;
+$primary-color-light: lighten($primary-color, 15%) !default;
+$primary-color-dark: darken($primary-color, 15%) !default;
 
-@font-face {
-    font-family: "Ricty Diminished";
-    src: url('/public/fonts/RictyDiminished-Regular.ttf')
-}
+$secondary-color: color("amber", "darken-1") !default;
+$success-color: color("green", "base") !default;
+$error-color: color("red", "base") !default;
+$link-color: color("light-blue", "darken-1") !default;
 
-code, kbd, pre, samp {
-    font-family: "Ricty Diminished", monospace;
-}
+@import '../../node_modules/materialize-css/sass/components/variables';

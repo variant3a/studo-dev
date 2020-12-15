@@ -1,16 +1,31 @@
-const PrimaryColor = '#ee6e73'
+const PrimaryColor = '#66bb6a'
 hljs.initHighlightingOnLoad()
 
 $(function(){
     M.AutoInit()
+
+    /*------------------------------------------------*/
+    /*--------------------register--------------------*/
+    /*------------------------------------------------*/
+
     $('#term-of-service').on('click', () => {
         $('#register-button').toggleClass('disabled')
     })
     $('input#user_id, input#name').characterCounter()
+
+    /*--------------------------------------------*/
+    /*--------------------home--------------------*/
+    /*--------------------------------------------*/
+
     $('.dropdown-trigger').dropdown({
         constrainWidth: false,
         coverTrigger: false,
     })
+
+    /*-----------------------------------------------*/
+    /*--------------------profile--------------------*/
+    /*-----------------------------------------------*/
+
     $('#edit-profile').hide()
     $('#edit-button, #cancel-edit').on('click', () => {
         $('#edit-profile').stop(true, false).slideToggle(250)
@@ -18,6 +33,11 @@ $(function(){
     $('#del-button-activate').on('click', () => {
         $('#confirm-del').toggleClass('disabled')
     })
+
+    /*---------------------------------------------*/
+    /*--------------------timer--------------------*/
+    /*---------------------------------------------*/
+
     $('select#minutes, select#subjects, select#select-subject-category').formSelect({
         constrainWidth: true
     })
@@ -118,7 +138,6 @@ $(function(){
         }, () => {
             timer.set(0)
         })
-        //ajax
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -137,6 +156,7 @@ $(function(){
             const startTime = moment(startedAt * 1000).format("MM/DD HH:mm")
             const endTime = endedAt - startedAt
             const responseId = response.responseJSON.id
+            if(subject == '') subject = '空欄'
             $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>')
             isTableEmpty()
         })
@@ -170,7 +190,11 @@ $(function(){
             M.toast({html: 'エラーが発生しました'})
         })
     })
-    $('.fixed-action-btn').floatingActionButton()
+
+    /*-----------------------------------------------*/
+    /*--------------------notepad--------------------*/
+    /*-----------------------------------------------*/
+
     $('.card#add-note-card').hide()
     let isAddClicked = 0
     $('a#add-note-btn i').css('transition', 'transform 0.25s')
@@ -211,6 +235,10 @@ $(function(){
         //$('div.marked-body').prop('contenteditable', true)
     })
     
+    /*---------------------------------------------*/
+    /*--------------------other--------------------*/
+    /*---------------------------------------------*/
+
     function sec2time(timeInSeconds) {
         var pad = function(num, size) { return ('000' + num).slice(size * -1) }
         time = parseFloat(timeInSeconds).toFixed(3)
