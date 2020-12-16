@@ -15,34 +15,18 @@
                     <div class="input-field col s12">
                         <label for="user_id">{{ __('User ID') }}</label>
                         <input id="user_id" type="text" class="@error('user_id') is-invalid @enderror validate" name="user_id" value="{{ old('user_id') }}" required autocomplete="id" data-length="32" autofocus>
-
-                        @error('user_id')
-                            <script>M.toast({html: '{{ $message }}'})</script>
-                        @enderror
                     </div>
                     <div class="input-field col s12">
                         <label for="name">{{ __('Name any') }}</label>
-                        <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" data-length="32">
-
-                        @error('name')
-                            <script>M.toast({html: '{{ $message }}'})</script>
-                        @enderror
+                        <input id="name" type="text" class="" name="name" value="{{ old('name') }}" autocomplete="name" data-length="32">
                     </div>
                     <div class="input-field col s12">
                         <label for="email">{{ __('E-Mail Address') }}</label>
-                        <input id="email" type="email" class="@error('email') is-invalid @enderror validate" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                        @error('email')
-                            <script>M.toast({html: '{{ $message }}'})</script>
-                        @enderror
+                        <input id="email" type="email" class="validate" name="email" value="{{ old('email') }}" required autocomplete="email">
                     </div>
                     <div class="input-field col s6">
                         <label for="password">{{ __('Password') }}</label>
-                        <input id="password" type="password" class="@error('password') is-invalid @enderror validate" name="password" required autocomplete="new-password">
-
-                        @error('password')
-                            <script>M.toast({html: '{{ $message }}'})</script>
-                        @enderror
+                        <input id="password" type="password" class="validate" name="password" required autocomplete="new-password">
                     </div>
                     <div class="input-field col s6">
                         <label for="password-confirm">{{ __('Confirm Password') }}</label>

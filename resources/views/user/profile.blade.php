@@ -32,16 +32,10 @@
                     <div class="input-field col s12">
                         <input class="@error('user_id') is-invalid @enderror validate" type="text" placeholder="{{ Auth::user()->user_id }}" id="user_id" name="user_id" data-length="32">
                         <label for="user_id" class="active">{{ __('User ID') }}</label>
-                        @error('user_id')
-                            <script>M.toast({html: '{{ $message }}'})</script>
-                        @enderror
                     </div>
                     <div class="input-field col s12">
                         <input class="@error('email') is-invalid @enderror validate" type="email" placeholder="{{ Auth::user()->email }}" id="email" name="email">
                         <label for="email" class="active">{{ __('E-Mail Address') }}</label>
-                        @error('email')
-                            <script>M.toast({html: '{{ $message }}'})</script>
-                        @enderror
                     </div>
                     <div class="col s12">
                         <a class="waves-effect waves-light btn-flat red-text" href="{{ route('password.request') }}">{{ __('Reset Password') }}</a>

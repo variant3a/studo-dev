@@ -12,12 +12,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="email">{{ __('E-Mail Address') }}</label>
-                        <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <input id="email" type="email" class="" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     </div>
                     <div class="col s12">
                         <button type="submit" class="waves-effect waves-light btn right">
