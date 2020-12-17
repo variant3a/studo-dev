@@ -50,13 +50,13 @@
                     <p>科目が一覧にない場合、自分で追加することができます。</p>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" id="add-subject-text">
+                            <input type="text" name="subject_name" id="add-subject-text" class="validate">
                             <label for="add-subject-text">{{ __('Subject Name') }}</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="select-subject-category" id="select-subject-category">
+                            <select name="category" id="select-subject-category">
                                 <option value="1" selected>{{ __('Programming Language') }}</option>
                                 <option value="2">{{ __('General Subject') }}</option>
                                 <option value="3">{{ __('Other') }}</option>

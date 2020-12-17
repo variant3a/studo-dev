@@ -82,6 +82,7 @@ $(function(){
         $('#timer-start-button').toggleClass('started')
         if($('#timer-end-button').hasClass('disabled')) $('#timer-end-button').toggleClass('disabled')
         if(!$('.select-dropdown').prop('disabled')) $('.select-dropdown').prop('disabled', true)
+        if(!$('a#add-subject').prop('disabled')) $('a#add-subject').prop('disabled', true)
         $('.sidenav-fixed li a').css('pointer-events', 'none').css('color', 'lightgray')
         $('a.disabled').on('click', () => {
             console.log('link pressed')
@@ -125,6 +126,7 @@ $(function(){
         if(!$('#timer-end-button').hasClass('disabled')) $('#timer-end-button').toggleClass('disabled')
         $('.sidenav-fixed li a').css('pointer-events', 'auto').css('color', 'black')
         if($('.select-dropdown').prop('disabled')) $('.select-dropdown').prop('disabled', false)
+        if($('a#add-subject').prop('disabled')) $('#add-subject').prop('disabled', false)
 
         const date = new Date()
         endedAt = Math.floor(date.getTime() / 1000)

@@ -17,7 +17,7 @@ class TimerController extends Controller
 
     public function index()
     {
-        $subjects = Subject::all();
+        $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->user_id)->orderBy('subject_name', 'asc')->get();
         $timer = Timer::where('user_id', Auth::user()->id);
         if($timer === null) return view('user.timer', compact('subjects'));
         $timer = $timer->latest()->get();

@@ -4,9 +4,9 @@
             
         </div>
     </div>
-    <a href="{{ route('profile') }}" class="waves-effect waves-light">{{ Auth::user()->user_id . __('San') }}</a>
+    <a href="{{ route('profile') }}" class="waves-effect">{{ Auth::user()->user_id . __('San') }}</a>
 </li>
-<li><a href="{{ route('home') }}" class="waves-effect waves-light">{{ __('MyPage') }}</a></li>
-<li><a href="{{ route('timer') }}" class="waves-effect waves-light">{{ __('Timer') }}</a></li>                
-<li><a href="{{ route('notepad') }}" class="waves-effect waves-light">{{ __('Notepad') }}</a></li>                
-<li><a href="{{ route('quiz') }}" class="waves-effect waves-light">{{ __('Quiz') }}</a></li>                
+<li><a href="{{ route('home') }}" class="waves-effect">{{ __('MyPage') }}</a></li>
+<li><a href="{{ route('timer') }}" class="waves-effect">{{ __('Timer') }}</a></li>                
+<li><a href="{{ route('notepad') }}" class="waves-effect">{{ __('Notepad') }}</a></li>                
+<li><a href="{{ route('quiz') }}" class="waves-effect">{{ __('Quiz') }}</a></li>                

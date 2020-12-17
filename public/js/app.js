@@ -88515,6 +88515,7 @@ $(function () {
     $('#timer-start-button').toggleClass('started');
     if ($('#timer-end-button').hasClass('disabled')) $('#timer-end-button').toggleClass('disabled');
     if (!$('.select-dropdown').prop('disabled')) $('.select-dropdown').prop('disabled', true);
+    if (!$('a#add-subject').prop('disabled')) $('a#add-subject').prop('disabled', true);
     $('.sidenav-fixed li a').css('pointer-events', 'none').css('color', 'lightgray');
     $('a.disabled').on('click', function () {
       console.log('link pressed');
@@ -88563,6 +88564,7 @@ $(function () {
     if (!$('#timer-end-button').hasClass('disabled')) $('#timer-end-button').toggleClass('disabled');
     $('.sidenav-fixed li a').css('pointer-events', 'auto').css('color', 'black');
     if ($('.select-dropdown').prop('disabled')) $('.select-dropdown').prop('disabled', false);
+    if ($('a#add-subject').prop('disabled')) $('#add-subject').prop('disabled', false);
     var date = new Date();
     endedAt = Math.floor(date.getTime() / 1000);
     console.log(endedAt);
@@ -88716,8 +88718,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
