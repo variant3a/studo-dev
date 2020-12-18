@@ -2,6 +2,8 @@
 
 @section('title', __('Timer'))
 
+@section('app-title', __('Timer'))
+
 @section('content')
 <div class="col s10 offset-s1 m8 offset-m2 xl6 offset-xl3">
     <div class="row">
@@ -91,7 +93,7 @@
                             <td>{{ date('m/d H:i', $time->started_at) }}</td>
                             <td>{{ $time->subject_name ?? __('blank') }}</td>
                             <td>{{ gmdate('H:i:s', ($time->ended_at - $time->started_at)) }}</td>
-                            <td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="{{ $time->id }}"><i class="material-icons">delete</i></button></td>
+                            <td><button type="submit" class="waves-effect waves-red btn-flat rec-del-btn" value="{{ $time->id }}"><i class="material-icons">delete</i></button></td>
                         </tr>
                     @empty
                     @endforelse

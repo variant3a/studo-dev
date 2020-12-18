@@ -19,6 +19,7 @@ class CreateQuizzesTable extends Migration
             $table->string('title')->nullable();
             $table->boolean('publishing_settings');
             $table->string('question');
+            $table->string('subject_name')->nullable();
             $table->string('answer')->nullable();
             $table->integer('attempt_count');
             $table->integer('correct_count');

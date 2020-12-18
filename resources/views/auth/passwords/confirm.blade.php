@@ -2,6 +2,8 @@
 
 @section('title', __('Confirm Password'))
 
+@section('app-title', __('Confirm Password'))
+
 @section('content')
 <div class="col s12 xl10 offset-xl1">
     <div class="card">

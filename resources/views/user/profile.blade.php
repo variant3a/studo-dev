@@ -2,6 +2,8 @@
 
 @section('title', __('Profile'))
 
+@section('app-title', __('Profile'))
+
 @section('content')
     <div class="col s12 xl10 offset-xl1">
         <div id="profile" class="card-panel">

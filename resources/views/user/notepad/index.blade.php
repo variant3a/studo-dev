@@ -2,6 +2,8 @@
 
 @section('title', __('Notepad'))
 
+@section('app-title', __('Note List'))
+
 @section('content')
 <div class="col s12 xl8 offset-xl2">
     <div class="card" id="add-note-card">
@@ -9,19 +11,36 @@
             <form method="POST" action="{{ route('create_note') }}">
                 @csrf
                 <div class="row">
-                    <div class="card-title">{{ __('New Create') }}</div>
-                    <div class="input-field">
-                        <input id="notepad-title" type="text" name="title">
-                        <label for="notepad-title">{{ __('Title') }}</label>
-                    </div>
-                    <div class="input-field">
-                        <textarea id="notepad-content" type="text" class="materialize-textarea validate" name="content" style="max-height: 50vh"></textarea>
+                    <div class="col s12">
+                        <div class="card-title">{{ __('New Create') }}</div>
+                        <div class="input-field">
+                            <input id="notepad-title" type="text" name="title">
+                            <label for="notepad-title">{{ __('Title') }}</label>
+                        </div>
+                        <div class="input-field">
+                            <textarea id="notepad-content" type="text" class="materialize-textarea validate" name="content" style="overflow:auto; min-height: 20vh; max-height: 50vh" required></textarea>
+                            <label for="notepad-content">{{ __('Main Context') }}</label>
+                        </div>    
                     </div>
                 </div>
                 <div class="row">
-                    <a href="#notepad-hint" class="waves-effect waves-light btn-flat modal-trigger tooltipped" id="store-notes" data-position="top" data-tooltip="{{ __('Hint') }}"><i class="material-icons">info_outline</i></a>
-                    <div class="right">
-                        <button type="submit" class="waves-effect waves-light btn" id="store-notes">{{ __('Save') }}</button>
+                    <div class="input-field col s12 l6">
+                        <select name="subjects" id="subjects">
+                            <option value="" selected>{{ __('Choose Your Option Any') }}</option>
+                            @forelse ($subjects as $subject)
+                                <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                            @empty
+                            @endforelse
+                        </select>
+                        <label>{{ __('Choose Subjects') }}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a href="#notepad-hint" class="waves-effect waves-light btn-flat modal-trigger tooltipped" id="store-notes" data-position="top" data-tooltip="{{ __('Hint') }}"><i class="material-icons">info_outline</i></a>
+                        <div class="right">
+                            <button type="submit" class="waves-effect waves-light btn" id="store-notes">{{ __('Save') }}</button>
+                        </div>    
                     </div>
                 </div>
             </form>

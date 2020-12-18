@@ -1,7 +1,7 @@
 const PrimaryColor = '#66bb6a'
 hljs.initHighlightingOnLoad()
 
-$(function(){
+$(() => {
     M.AutoInit()
 
     /*------------------------------------------------*/
@@ -159,7 +159,7 @@ $(function(){
             const endTime = endedAt - startedAt
             const responseId = response.responseJSON.id
             if(subject == '') subject = '空欄'
-            $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>')
+            $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-red btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>')
             isTableEmpty()
         })
         .fail((data) => {
@@ -236,6 +236,23 @@ $(function(){
     $('button#edit-note-btn').on('click', () => {
         //$('div.marked-body').prop('contenteditable', true)
     })
+
+    /*--------------------------------------------*/
+    /*--------------------quiz--------------------*/
+    /*--------------------------------------------*/
+
+    $('.tabs').tabs({
+        swipeable: true
+    })
+
+    text2quiz($('#my-question').data())
+    text2quiz($('#global-question').data())
+
+    function text2quiz(text) {
+        console.log(text)
+        //const arr = escape(text.split('[\[\]]'))
+        //console.log(arr)
+    }
     
     /*---------------------------------------------*/
     /*--------------------other--------------------*/

@@ -2,6 +2,8 @@
 
 @section('title', __('Verify Your Email Address'))
 
+@section('app-title', __('Verify Your Email Address'))
+
 @section('content')
 <div class="col s12 xl10 offset-xl1">
     <div class="card">

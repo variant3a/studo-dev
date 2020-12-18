@@ -2,6 +2,8 @@
 
 @section('title', __('Reset Password'))
 
+@section('app-title', __('Reset Password'))
+
 @section('content')
 <div class="col s12 xl10 offset-xl1">
     <div class="card">

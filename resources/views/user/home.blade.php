@@ -2,6 +2,8 @@
 
 @section('title', __('MyPage'))
 
+@section('app-title', __('MyPage'))
+
 @section('nav-content')
 <ul class="tabs tabs-transparent">
     <li class="tab col s3"><a class="active" href="#test1">Test 1</a></li>

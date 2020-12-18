@@ -15,6 +15,8 @@ $markdown
     @section('title', __('Edit Note') . ' - ' . __('No Title'))
 @endif
 
+@section('app-title', __('Edit Note'))
+
 @section('content')
 &nbsp;
 <form method="POST" action="{{ route('update_note', $note->id) }}">
@@ -45,7 +47,7 @@ $markdown
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea name="content" id="update-note-content" class="materialize-textarea validate">{{ $note->content }}</textarea>
+                            <textarea name="content" id="update-note-content" class="materialize-textarea validate" required>{{ $note->content }}</textarea>
                         </div>
                     </div>
                 </div>

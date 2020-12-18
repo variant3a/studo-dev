@@ -28,7 +28,7 @@
             <nav class="nav-extended">
                 <div class="nav-wrapper">
                     <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                    <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('title')</a>
+                    <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('app-title')</a>
                 </div>
                 <div class="nav-content">
                     @yield('nav-content')
@@ -37,7 +37,7 @@
         @else
             <nav>
                 <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('title')</a>
+                <a class="brand-logo" @guest href="{{ url('/') }}" @endguest >@yield('app-title')</a>
             </nav>
         @endif
     </div>
@@ -50,17 +50,17 @@
         @auth
         @include('layouts.user_sidenav')
         <li class="divider"></li>
-        <li><a href="{{ url('/') }}">{{ __('TopPage') }}</a></li>
+        <li><a href="{{ url('/') }}" class="waves-effect waves-green">{{ __('TopPage') }}</a></li>
         <li class="divider"></li>
-        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+        <li><a href="{{ route('logout') }}" class="waves-effect waves-red" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
             @csrf
         </form>
 
         <!-------guest navigation------->
         @else
-        <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
-        <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+        <li><a href="{{ route('register') }}" class="waves-effect waves-orange">{{ __('Register') }}</a></li>
+        <li><a href="{{ route('login') }}" class="waves-effect waves-green">{{ __('Login') }}</a></li>
         <li class="divider"></li>
         <li><a href="{{ url('/') }}">{{ __('TopPage') }}</a></li>
         @endauth

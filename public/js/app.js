@@ -88422,11 +88422,11 @@ __webpack_require__(/*! ./script */ "./resources/js/script.js");
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+var _this = this;
+
 var PrimaryColor = '#66bb6a';
 hljs.initHighlightingOnLoad();
 $(function () {
-  var _this = this;
-
   M.AutoInit();
   /*------------------------------------------------*/
 
@@ -88596,7 +88596,7 @@ $(function () {
       var endTime = endedAt - startedAt;
       var responseId = response.responseJSON.id;
       if (subject == '') subject = '空欄';
-      $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-light btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>');
+      $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-red btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>');
       isTableEmpty();
     }).fail(function (data) {
       M.toast({
@@ -88679,11 +88679,28 @@ $(function () {
 
   $('button#edit-note-btn').on('click', function () {//$('div.marked-body').prop('contenteditable', true)
   });
+  /*--------------------------------------------*/
+
+  /*--------------------quiz--------------------*/
+
+  /*--------------------------------------------*/
+
+  $('.tabs').tabs({
+    swipeable: true
+  });
+  text2quiz($('#my-question').data());
+  text2quiz($('#global-question').data());
+
+  function text2quiz(text) {
+    console.log(text); //const arr = escape(text.split('[\[\]]'))
+    //console.log(arr)
+  }
   /*---------------------------------------------*/
 
   /*--------------------other--------------------*/
 
   /*---------------------------------------------*/
+
 
   function sec2time(timeInSeconds) {
     var pad = function pad(num, size) {
@@ -88718,8 +88735,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

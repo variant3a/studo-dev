@@ -17,6 +17,7 @@ class CreateNotepadsTable extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('title')->nullable();
+            $table->string('subject_name')->nullable();
             $table->text('content');
             $table->integer('view_count');
             $table->timestamps();

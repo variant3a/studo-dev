@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Notepad;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +13,8 @@ class NotepadController extends Controller
     public function index()
     {
         $notes = Notepad::where('user_id', Auth::user()->id)->latest()->paginate(10);
-        return view('user.notepad.index', compact('notes'));
+        $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->user_id)->orderBy('subject_name', 'asc')->get();
+        return view('user.notepad.index', compact('notes'), compact('subjects'));
     }
 
     public function show($id)
@@ -28,6 +30,7 @@ class NotepadController extends Controller
         $note = new Notepad;
         $note->user_id = Auth::user()->id;
         $note->title = $request->title;
+        $note->subject_name = $request->subjects;
         $note->content = $request->content;
         $note->view_count = 0;
         $note->save();

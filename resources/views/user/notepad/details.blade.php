@@ -6,6 +6,8 @@
     @section('title', __('No Title') . ' | ' . __('Notepad'))  
 @endif
 
+@section('app-title', __('Notepad Details'))
+
 @section('content')
 &nbsp;
 <div class="row">
