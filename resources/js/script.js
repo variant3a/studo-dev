@@ -48,7 +48,24 @@ $(() => {
             trailColor: '#eee',
             strokeWidth: 5,
             duration: 100,
-            easing: 'easeOutCubic'
+            easing: 'easeOutCubic',
+            text: {
+                value: '',
+                className: 'timer-count',
+                style: {
+                    color: PrimaryColor,
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    padding: 0,
+                    margin: 0,
+                    'font-size': '2.4rem',
+                    transform: {
+                        prefix: true,
+                        value: 'translate(-50%, -50%)'
+                    }
+                }
+            }
         })    
     } catch (e) {
         console.log(e)
@@ -94,12 +111,15 @@ $(() => {
             console.log(startedAt)
             subject = $('select#subjects').val()
             console.log(subject)
+            secs = ($('#minutes').val() * 60) - 0
         }
 
         if($('#timer-start-button').hasClass('started')) {
             function onTimerStarted() {
                 timer.animate(minutes)
+                timer.setText(sec2time(secs))
                 minutes += 1 / ($('#minutes').val() * 60)
+                secs -= 1
                 console.log(minutes)
                 pauseTime = minutes   
                 if(timer.value() >= 1) {
@@ -127,6 +147,7 @@ $(() => {
         $('.sidenav-fixed li a').css('pointer-events', 'auto').css('color', 'black')
         if($('.select-dropdown').prop('disabled')) $('.select-dropdown').prop('disabled', false)
         if($('a#add-subject').prop('disabled')) $('#add-subject').prop('disabled', false)
+        timer.setText('')
 
         const date = new Date()
         endedAt = Math.floor(date.getTime() / 1000)
@@ -159,6 +180,8 @@ $(() => {
             const endTime = endedAt - startedAt
             const responseId = response.responseJSON.id
             if(subject == '') subject = '空欄'
+            if(subject == 'Assembly Language') subject = 'アセンブリ言語'
+            if(subject == 'FORTLAN') subject = 'フォートラン'
             $('table#histories tr:first').after('<tr class="records" data-id="' + responseId + '"><td>' + startTime + '</td><td>' + subject + '</td><td>' + sec2time(endTime) + '</td><td><button type="submit" class="waves-effect waves-red btn-flat rec-del-btn" value="' + responseId + '"><i class="material-icons">delete</i></button></td></tr>')
             isTableEmpty()
         })
@@ -192,6 +215,16 @@ $(() => {
             M.toast({html: 'エラーが発生しました'})
         })
     })
+
+    function sec2time(timeInSeconds) {
+        var pad = function(num, size) { return ('000' + num).slice(size * -1) }
+        time = parseFloat(timeInSeconds).toFixed(3)
+        hours = Math.floor(time / 60 / 60)
+        minutes = Math.floor(time / 60) % 60
+        seconds = Math.floor(time - minutes * 60)
+    
+        return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2)
+    }
 
     /*-----------------------------------------------*/
     /*--------------------notepad--------------------*/
@@ -258,13 +291,4 @@ $(() => {
     /*--------------------other--------------------*/
     /*---------------------------------------------*/
 
-    function sec2time(timeInSeconds) {
-        var pad = function(num, size) { return ('000' + num).slice(size * -1) }
-        time = parseFloat(timeInSeconds).toFixed(3)
-        hours = Math.floor(time / 60 / 60)
-        minutes = Math.floor(time / 60) % 60
-        seconds = Math.floor(time - minutes * 60)
-    
-        return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2)
-    }
 })

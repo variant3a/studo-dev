@@ -7,8 +7,11 @@
 @section('content')
 <div class="col s10 offset-s1 m8 offset-m2 xl6 offset-xl3">
     <div class="row">
+        &nbsp;
+    </div>
+    <div class="row">
         <div class="center">
-            <div id="timer-1" style="padding: 5rem 0 2rem 0"></div>
+            <div id="timer-1"></div>
             <div class="progressbar-text"></div>
         </div>
     </div>
@@ -91,7 +94,7 @@
                     @forelse ($timer as $time)
                         <tr class="records" data-id="{{ $time->id }}">
                             <td>{{ date('m/d H:i', $time->started_at) }}</td>
-                            <td>{{ $time->subject_name ?? __('blank') }}</td>
+                            <td>{{ __($time->subject_name) ?? __('blank') }}</td>
                             <td>{{ gmdate('H:i:s', ($time->ended_at - $time->started_at)) }}</td>
                             <td><button type="submit" class="waves-effect waves-red btn-flat rec-del-btn" value="{{ $time->id }}"><i class="material-icons">delete</i></button></td>
                         </tr>
