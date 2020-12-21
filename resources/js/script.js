@@ -1,3 +1,5 @@
+const { indexOf } = require("lodash")
+
 const PrimaryColor = '#66bb6a'
 hljs.initHighlightingOnLoad()
 
@@ -278,13 +280,21 @@ $(() => {
         swipeable: true
     })
 
-    text2quiz($('#my-question').data())
-    text2quiz($('#global-question').data())
-
+    $('.my-question, .global-question').map((i, value) => {
+        text2quiz($(value).data('value'))
+    })
     function text2quiz(text) {
+        const sbrkt = text.indexOf(/\[/)
+        const ebrkt = text.indexOf(/\]/)
+        const head = (text.match(/\[/g) || []).length
+        const tail = (text.match(/\]/g) || []).length
+        if(sbrkt < ebrkt && head == tail) {
+            text = text.replace(/\[/g, '<div class="hidden-answer-text">')
+            text = text.replace(/\]/g, '</div>')
+        } else {
+            text = text.replace(/[\[\]]/g, '')
+        }
         console.log(text)
-        //const arr = escape(text.split('[\[\]]'))
-        //console.log(arr)
     }
     
     /*---------------------------------------------*/

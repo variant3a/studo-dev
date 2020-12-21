@@ -16,6 +16,6 @@ class SubjectController extends Controller
         $subject->subject_name = $request->subject_name;
         $subject->save();
         
-        return view('/user/timer');
+        return redirect('user/timer')->with('status', __('Added Success'));
     }
 }

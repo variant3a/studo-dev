@@ -30,7 +30,7 @@
                     </div>    
                     <div class="row">
                         <div class="col s12">
-                            <span id="my-question" data-name="{!! $my_quiz->question !!}"></span>
+                            <span class="my-question" data-value="{!! $my_quiz->question !!}">{{ $my_quiz->question }}</span>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                     </div>    
                     <div class="row">
                         <div class="col s12">
-                            <span id="global-question" data-name="{!! $global_quiz->question !!}"></span>
+                            <span class="global-question" data-value="{!! $global_quiz->question !!}">{{ $global_quiz->question }}</span>
                         </div>
                     </div>
                 </div>
