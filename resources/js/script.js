@@ -277,7 +277,7 @@ $(() => {
     /*--------------------------------------------*/
 
     $('.tabs').tabs({
-        swipeable: true
+        swipeable: false
     })
 
     $('.my-question, .global-question').map((i, value) => {
@@ -295,6 +295,10 @@ $(() => {
             text = text.replace(/[\[\]]/g, '')
         }
         console.log(text)
+    }
+
+    if($('#no-quizzes-text').length != 0) {
+        $('.tap-target[data-target="add-quiz-btn"]').tapTarget('open')
     }
     
     /*---------------------------------------------*/

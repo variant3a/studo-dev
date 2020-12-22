@@ -72,6 +72,8 @@
     "Updated At": "更新日時",
     "Add Notes": "ノートを追加",
     "Tap + To Start Create Notes": "+ を押してノートを作成しよう",
+    "Add Quizzes": "クイズを追加",
+    "Tap + To Start Share Quizzes": "+ を押してクイズを共有してみよう",
     "No Notes": "ノートはありません",
     "Times": "回",
     "Views": "表示した回数",
@@ -95,6 +97,7 @@
     "No Selected": "選択なし",
     "Details Link": "詳細へ",
     "Added Success": "追加しました",
+    "Back To List": "一覧へ戻る",
 
     "Verify Your Email Address":"ユーザ登録を完了してください",
     "A fresh verification link has been sent to your email address.":"新しいリンクをあなたのメールアドレスに送信しました。",

@@ -12,6 +12,9 @@
 &nbsp;
 <div class="row">
     <div class="col s12">
+        <div class="left">
+            <a href="{{ route('notepad') }}" class="waves-effect waves-green btn-flat tooltipped" data-position="bottom" data-tooltip="{{ __('Back To List') }}"><i class="material-icons">arrow_back</i></a>
+        </div>
         <div class="right">
             <a href="#!" class="waves-effect waves-light btn tooltipped" data-position="bottom" data-tooltip="{{ __('Share') }}"><i class="material-icons">share</i></a>
             <a href="{{ route('edit_note', $note->id) }}" class="waves-effect waves-light btn tooltipped" id="edit-note-btn" data-position="bottom" data-tooltip="{{ __('Edit') }}"><i class="material-icons">edit</i></a>

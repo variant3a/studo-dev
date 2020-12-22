@@ -47,4 +47,12 @@ class QuizController extends Controller
 
         return redirect('/user/quiz/index');
     }
+
+    public function destroy($id)
+    {
+        $quiz = Quiz::find($id);
+        $quiz->delete();
+        return redirect('/user/quiz/index')->with('status', __('Delete Confirmed'));
+    }
+
 }

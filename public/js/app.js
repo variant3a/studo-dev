@@ -105890,7 +105890,7 @@ $(function () {
   /*--------------------------------------------*/
 
   $('.tabs').tabs({
-    swipeable: true
+    swipeable: false
   });
   $('.my-question, .global-question').map(function (i, value) {
     text2quiz($(value).data('value'));
@@ -105910,6 +105910,10 @@ $(function () {
     }
 
     console.log(text);
+  }
+
+  if ($('#no-quizzes-text').length != 0) {
+    $('.tap-target[data-target="add-quiz-btn"]').tapTarget('open');
   }
   /*---------------------------------------------*/
 
@@ -105939,8 +105943,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

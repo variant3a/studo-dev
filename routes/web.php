@@ -24,6 +24,7 @@ Route::get('/user/profile', '\App\Http\Controllers\HomeController@show')->name('
 Route::get('/user/timer', '\App\Http\Controllers\TimerController@index')->name('timer');
 Route::get('/user/quiz/index', '\App\Http\Controllers\QuizController@index')->name('quiz');
 Route::get('/user/quiz/create', '\App\Http\Controllers\QuizController@create')->name('create_quiz');
+Route::get('/user/quiz/{id}/details', '\App\Http\Controllers\QuizController@show')->name('quiz_details');
 Route::get('/user/notepad/index', '\App\Http\Controllers\NotepadController@index')->name('notepad');
 Route::get('/user/notepad/{id}/details', '\App\Http\Controllers\NotepadController@show')->name('notepad_details');
 Route::get('/user/notepad/{id}/note', '\App\Http\Controllers\NotepadController@edit')->name('edit_note');
@@ -36,3 +37,4 @@ Route::put('/user/notepad/{id}/edit', '\App\Http\Controllers\NotepadController@u
 Route::delete('/user/profile', '\App\Http\Controllers\HomeController@destroy')->name('delete_account');
 Route::delete('/user/timer', '\App\Http\Controllers\TimerController@destroy')->name('del_timer_rec');
 Route::delete('/user/notepad/{id}/details', '\App\Http\Controllers\NotepadController@destroy')->name('delete_note');
+Route::delete('/user/quiz/{id}/details', '\App\Http\Controllers\QuizController@destroy')->name('delete_quiz');
