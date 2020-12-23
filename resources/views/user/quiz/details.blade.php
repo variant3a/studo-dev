@@ -48,11 +48,18 @@
                 </div>    
                 <div class="row">
                     <div class="col s12">
-                        <span class="global-question" data-value="{!! $quiz->question !!}">{{ $quiz->question }}</span>
+                        <span class="global-question" data-value="{{ $quiz->question }}"></span>
                     </div>
                 </div>
             </div>
         </div>    
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <div class="right">
+            <button class="waves-effect waves-light btn-large">{{ __('Answer') }}</button>
+        </div>
     </div>
 </div>
 @endsection

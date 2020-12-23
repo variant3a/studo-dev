@@ -281,26 +281,43 @@ $(() => {
     })
 
     $('.my-question, .global-question').map((i, value) => {
-        text2quiz($(value).data('value'))
+        $(value).after('<div>' + text2quiz($(value).data('value')) + '</div>')
     })
+    
+    $('.hidden-answer-text').map((i, value) => {
+        $(value).text($(value).text().replace(/./g, '？'))
+    })
+
     function text2quiz(text) {
-        const sbrkt = text.indexOf(/\[/)
-        const ebrkt = text.indexOf(/\]/)
+        const sbrkt = text.search(/\[/)
+        const ebrkt = text.search(/\]/)
         const head = (text.match(/\[/g) || []).length
         const tail = (text.match(/\]/g) || []).length
+        console.log(sbrkt+':'+ebrkt+':'+head+':'+tail)
         if(sbrkt < ebrkt && head == tail) {
-            text = text.replace(/\[/g, '<div class="hidden-answer-text">')
-            text = text.replace(/\]/g, '</div>')
+            text = text.replace(/\[/g, '<span class="hidden-answer-text">')
+            text = text.replace(/\]/g, '</span>')
         } else {
             text = text.replace(/[\[\]]/g, '')
         }
-        console.log(text)
+        return text
     }
 
     if($('#no-quizzes-text').length != 0) {
         $('.tap-target[data-target="add-quiz-btn"]').tapTarget('open')
     }
-    
+
+    function escape_html(string) {
+        if(typeof string !== 'string') return string
+        string = string.replace('&', '&amp;')
+            .replace("'", '&#x27;')
+            .replace('`', '&#x60;')
+            .replace('"', '&quot;')
+            .replace('<', '&lt;')
+            .replace('>', '&gt;')
+        return string
+    }
+
     /*---------------------------------------------*/
     /*--------------------other--------------------*/
     /*---------------------------------------------*/

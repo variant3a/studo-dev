@@ -37,9 +37,22 @@
                     </div>    
                     <div class="row">
                         <div class="col s12">
-                            <span class="my-question" data-value="{!! $my_quiz->question !!}">{{ $my_quiz->question }}</span>
+                            <span class="my-question" data-value="{!! $my_quiz->question !!}"></span>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="left">
+                                <div class="grey-text">@if($my_quiz->attempt_count) {{ (($my_quiz->correct_count / $my_quiz->appempt_count) * 100) }} @else {{ __('No Challenger') }} @endif</div>
+                            </div>
+                            <div class="right">
+                                <div class="grey-text">{{ $my_quiz->created_at }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="{{ route('quiz_details', $my_quiz->id) }}">{{ __('Answer Quiz') }}</a>
                 </div>
             </div>
         @empty
@@ -64,9 +77,22 @@
                     </div>    
                     <div class="row">
                         <div class="col s12">
-                            <span class="global-question" data-value="{!! $global_quiz->question !!}">{{ $global_quiz->question }}</span>
+                            <span class="global-question" data-value="{!! $global_quiz->question !!}"></span>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="left">
+                                <div class="grey-text">@if($global_quiz->attempt_count) {{ (($global_quiz->correct_count / $global_quiz->appempt_count) * 100) }} @else {{ __('No Challenger') }} @endif</div>
+                            </div>
+                            <div class="right">
+                                <div class="grey-text">{{ $global_quiz->created_at }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="{{ route('quiz_details', $global_quiz->id) }}">{{ __('Answer Quiz') }}</a>
                 </div>
             </div>
         @empty

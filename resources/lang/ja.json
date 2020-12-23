@@ -98,6 +98,12 @@
     "Details Link": "詳細へ",
     "Added Success": "追加しました",
     "Back To List": "一覧へ戻る",
+    "Attempt Count": "挑戦者数",
+    "Correct Count": "正解者数",
+    "Accuracy Rate": "正解率",
+    "No Challenger": "挑戦者なし",
+    "Answer Quiz": "回答する",
+    "Answer": "回答",
 
     "Verify Your Email Address":"ユーザ登録を完了してください",
     "A fresh verification link has been sent to your email address.":"新しいリンクをあなたのメールアドレスに送信しました。",
