@@ -13,7 +13,7 @@ class QuizController extends Controller
     {
         $global_quizzes = Quiz::where('publishing_settings', 1)->latest()->paginate(30);
         $my_quizzes = Quiz::where('user_id', Auth::user()->id)->latest()->get();
-        return view('user.quiz.index', compact('my_quizzes'), compact('global_quizzes'));
+        return view('user.quiz.index', compact('my_quizzes', 'global_quizzes'));
     }
 
     public function show($id)
