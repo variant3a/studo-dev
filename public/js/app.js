@@ -104637,17 +104637,22 @@ $(function () {
 
   /*--------------------------------------------*/
 
-  new Chartist.Line('.chartist', {
-    labels: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
-    series: [[5, 2, 4, 7, 9, 8, 0]]
-  }, {
-    height: 400
-  });
+  try {
+    new Chartist.Line('.chartist', {
+      labels: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+      series: [[5, 2, 4, 7, 9, 8, 0]]
+    }, {
+      height: 400
+    });
+  } catch (e) {
+    console.log(e);
+  }
   /*-----------------------------------------------*/
 
   /*--------------------profile--------------------*/
 
   /*-----------------------------------------------*/
+
 
   $('#edit-profile').hide();
   $('#edit-button, #cancel-edit').on('click', function () {
@@ -104906,6 +104911,9 @@ $(function () {
 
   if ($('#no-notes-text').length != 0) {
     $('.tap-target[data-target="add-note-btn"]').tapTarget('open');
+    setTimeout(function () {
+      $('.tap-target[data-target="add-note-btn"]').tapTarget('close');
+    }, 3000);
   }
 
   $('button#edit-note-btn').on('click', function () {//$('div.marked-body').prop('contenteditable', true)
@@ -104920,22 +104928,41 @@ $(function () {
     swipeable: false
   });
   $('.my-question, .global-question').map(function (i, value) {
-    $(value).after('<div>' + text2quiz($(value).data('value')) + '</div>');
+    $(value).after('<div class="index">' + text2quiz($(value).data('value')) + '</div>');
   });
-  $('.hidden-answer-text').map(function (i, value) {
-    $(value).text($(value).text().replace(/./g, '？'));
+  $('.index .hidden-answer-text').map(function (i, value) {
+    $(value).text('Question');
   });
+  $('.question').map(function (i, value) {
+    $(value).after('<div class="details">' + text2quiz($(value).data('value')) + '</div>');
+  });
+  $('.details .hidden-answer-text').map(function (i, value) {
+    $('#answer-list').append('<div>Q.' + (i + 1) + ' = ' + $(value).text() + '</div>');
+    $(value).text('Q.' + (i + 1));
+  });
+  $('.hidden-answer-text').css('color', PrimaryColor);
+  $('#show-answer-btn').toggleClass('hide-answer');
+  $('#answer-container').hide();
+
+  if ($('#answer-container').data('count') != 0) {
+    $('#show-answer-btn').on('click', function () {
+      $('#answer-container').stop(true, false).slideToggle(250);
+    });
+  } else {
+    $('#show-answer-btn').addClass('disabled').text('正解はありません');
+    $('#answer-quiz-btn').addClass('disabled');
+  }
 
   function text2quiz(text) {
+    text = nl2br(escape_html(text));
     var sbrkt = text.search(/\[/);
     var ebrkt = text.search(/\]/);
     var head = (text.match(/\[/g) || []).length;
     var tail = (text.match(/\]/g) || []).length;
-    console.log(sbrkt + ':' + ebrkt + ':' + head + ':' + tail);
 
     if (sbrkt < ebrkt && head == tail) {
-      text = text.replace(/\[/g, '<span class="hidden-answer-text">');
-      text = text.replace(/\]/g, '</span>');
+      text = text.replace(/\[/g, '[<span class="hidden-answer-text">');
+      text = text.replace(/\]/g, '</span>]');
     } else {
       text = text.replace(/[\[\]]/g, '');
     }
@@ -104945,12 +104972,20 @@ $(function () {
 
   if ($('#no-quizzes-text').length != 0) {
     $('.tap-target[data-target="add-quiz-btn"]').tapTarget('open');
+    setTimeout(function () {
+      $('.tap-target[data-target="add-quiz-btn"]').tapTarget('close');
+    }, 3000);
   }
 
   function escape_html(string) {
     if (typeof string !== 'string') return string;
-    string = string.replace('&', '&amp;').replace("'", '&#x27;').replace('`', '&#x60;').replace('"', '&quot;').replace('<', '&lt;').replace('>', '&gt;');
+    string = string.replace('&', '&amp;').replace(/'/g, '&#x27;').replace(/`/g, '&#x60;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return string;
+  }
+
+  function nl2br(str) {
+    str = str.replace(/\r\n/g, "<br>").replace(/(\n|\r)/g, "<br>");
+    return str;
   }
   /*---------------------------------------------*/
 
@@ -104980,8 +105015,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\boxst\Documents\work\studo-dev\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Users\911gt2rs\Documents\studo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

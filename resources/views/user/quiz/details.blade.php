@@ -25,7 +25,7 @@
                     <div id="delete-quiz" class="modal">
                         <div class="modal-content">
                             <h4>{{ __('Attention!') }}</h4>
-                            <p>{{ __('Delete This quiz?') }}</p>
+                            <p>{{ __('Are you sure you want to delete this post?') }}</p>
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="modal-close waves-effect waves-light btn-flat">{{ __('Cancel') }}</a>
@@ -48,17 +48,27 @@
                 </div>    
                 <div class="row">
                     <div class="col s12">
-                        <span class="global-question" data-value="{{ $quiz->question }}"></span>
+                        <span class="question details" data-value="{{ $quiz->question }}"></span>
                     </div>
                 </div>
             </div>
-        </div>    
+            <div class="card-action" id="answer-container" data-count="{{ $quiz->number_of_answers }}">
+                <div class="row">
+                    <div class="col s12">
+                        <span id="answer-list"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row">
     <div class="col s12">
+        <div class="left">
+            <button id="answer-quiz-btn" class="waves-effect waves-light btn">{{ __('Answer') }}</button>
+        </div>
         <div class="right">
-            <button class="waves-effect waves-light btn-large">{{ __('Answer') }}</button>
+            <button id="show-answer-btn" class="waves-effect waves-green btn-flat">{{ __('Show Answer') }}</button>
         </div>
     </div>
 </div>

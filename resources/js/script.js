@@ -26,12 +26,16 @@ $(() => {
     /*--------------------home--------------------*/
     /*--------------------------------------------*/
 
-    new Chartist.Line('.chartist', {
-        labels: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
-        series: [[5, 2, 4, 7, 9, 8, 0]]
-    }, {
-        height: 400
-    })
+    try {
+        new Chartist.Line('.chartist', {
+            labels: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+            series: [[5, 2, 4, 7, 9, 8, 0]]
+        }, {
+            height: 400
+        })    
+    } catch(e) {
+        console.log(e)
+    }
 
     /*-----------------------------------------------*/
     /*--------------------profile--------------------*/
@@ -77,7 +81,7 @@ $(() => {
                     }
                 }
             }
-        })    
+        })
     } catch (e) {
         console.log(e)
     }
@@ -132,7 +136,7 @@ $(() => {
                 minutes += 1 / ($('#minutes').val() * 60)
                 secs -= 1
                 console.log(minutes)
-                pauseTime = minutes   
+                pauseTime = minutes
                 if(timer.value() >= 1) {
                     onTimeIsUp()
                     M.toast({html: 'タイマーが終了しました'})
@@ -233,7 +237,7 @@ $(() => {
         hours = Math.floor(time / 60 / 60)
         minutes = Math.floor(time / 60) % 60
         seconds = Math.floor(time - minutes * 60)
-    
+
         return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2)
     }
 
@@ -275,6 +279,9 @@ $(() => {
     })
     if($('#no-notes-text').length != 0) {
         $('.tap-target[data-target="add-note-btn"]').tapTarget('open')
+        setTimeout(() => {
+            $('.tap-target[data-target="add-note-btn"]').tapTarget('close')
+        }, 3000)
     }
 
     $('button#edit-note-btn').on('click', () => {
@@ -288,24 +295,40 @@ $(() => {
     $('.tabs').tabs({
         swipeable: false
     })
-
     $('.my-question, .global-question').map((i, value) => {
-        $(value).after('<div>' + text2quiz($(value).data('value')) + '</div>')
+        $(value).after('<div class="index">' + text2quiz($(value).data('value')) + '</div>')
     })
-    
-    $('.hidden-answer-text').map((i, value) => {
-        $(value).text($(value).text().replace(/./g, '？'))
+    $('.index .hidden-answer-text').map((i, value) => {
+        $(value).text('Question')
     })
+    $('.question').map((i, value) => {
+        $(value).after('<div class="details">' + text2quiz($(value).data('value')) + '</div>')
+    })
+    $('.details .hidden-answer-text').map((i, value) => {
+        $('#answer-list').append('<div>Q.' + (i + 1) + ' = ' + $(value).text() + '</div>')
+        $(value).text('Q.' + (i + 1))
+    })
+    $('.hidden-answer-text').css('color', PrimaryColor)
+    $('#show-answer-btn').toggleClass('hide-answer')
+    $('#answer-container').hide()
+    if($('#answer-container').data('count') != 0) {
+        $('#show-answer-btn').on('click', () => {
+            $('#answer-container').stop(true, false).slideToggle(250)
+        })
+    } else {
+        $('#show-answer-btn').addClass('disabled').text('正解はありません')
+        $('#answer-quiz-btn').addClass('disabled')
+    }
 
     function text2quiz(text) {
+        text = nl2br(escape_html(text))
         const sbrkt = text.search(/\[/)
         const ebrkt = text.search(/\]/)
         const head = (text.match(/\[/g) || []).length
         const tail = (text.match(/\]/g) || []).length
-        console.log(sbrkt+':'+ebrkt+':'+head+':'+tail)
         if(sbrkt < ebrkt && head == tail) {
-            text = text.replace(/\[/g, '<span class="hidden-answer-text">')
-            text = text.replace(/\]/g, '</span>')
+            text = text.replace(/\[/g, '[<span class="hidden-answer-text">')
+            text = text.replace(/\]/g, '</span>]')
         } else {
             text = text.replace(/[\[\]]/g, '')
         }
@@ -314,17 +337,26 @@ $(() => {
 
     if($('#no-quizzes-text').length != 0) {
         $('.tap-target[data-target="add-quiz-btn"]').tapTarget('open')
+        setTimeout(() => {
+            $('.tap-target[data-target="add-quiz-btn"]').tapTarget('close')
+        }, 3000)
     }
 
     function escape_html(string) {
         if(typeof string !== 'string') return string
         string = string.replace('&', '&amp;')
-            .replace("'", '&#x27;')
-            .replace('`', '&#x60;')
-            .replace('"', '&quot;')
-            .replace('<', '&lt;')
-            .replace('>', '&gt;')
+            .replace(/'/g, '&#x27;')
+            .replace(/`/g, '&#x60;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
         return string
+    }
+
+    function nl2br(str) {
+        str = str.replace(/\r\n/g, "<br>")
+            .replace(/(\n|\r)/g, "<br>")
+        return str
     }
 
     /*---------------------------------------------*/

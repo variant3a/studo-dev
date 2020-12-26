@@ -22,7 +22,7 @@ class QuizController extends Controller
         return view('user.quiz.details', compact('quiz'));
     }
 
-    public function create()
+    public function createView()
     {
         $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->user_id)->orderBy('subject_name', 'asc')->get();
         return view('user.quiz.create', compact('subjects'));
@@ -35,12 +35,22 @@ class QuizController extends Controller
         } else {
             $publishing_settings = 0;
         }
+        $sbrkt = mb_strpos($request->content, '[');
+        $ebrkt = mb_strpos($request->content, ']');
+        $sbrkt_count = mb_substr_count($request->content, '[');
+        $ebrkt_count = mb_substr_count($request->content, ']');
+        if($sbrkt_count == $ebrkt_count && $sbrkt < $ebrkt) {
+            $number_of_answers = $sbrkt_count;
+        } else {
+            $number_of_answers = 0;
+        }
         $quiz = new Quiz;
         $quiz->user_id = Auth::user()->id;
         $quiz->title = $request->title;
         $quiz->publishing_settings = $publishing_settings;
         $quiz->subject_name = $request->subjects;
         $quiz->question = $request->content;
+        $quiz->number_of_answers = $number_of_answers;
         $quiz->attempt_count = 0;
         $quiz->correct_count = 0;
         $quiz->save();
