@@ -52,11 +52,21 @@
                     </div>
                 </div>
             </div>
+            <div class="card-action" id="answer-input-container">
+                <div class="row">
+                    <div class="col s12" id="answer-input"></div>
+                </div>
+            </div>
             <div class="card-action" id="answer-container" data-count="{{ $quiz->number_of_answers }}">
                 <div class="row">
                     <div class="col s12">
                         <span id="answer-list"></span>
                     </div>
+                </div>
+            </div>
+            <div class="card-action" id="answer-result">
+                <div class="row">
+                    <div class="col s12" id="exp-of-question"></div>
                 </div>
             </div>
         </div>

@@ -104603,9 +104603,12 @@ __webpack_require__(/*! ./script */ "./resources/js/script.js");
   !*** ./resources/js/script.js ***!
   \********************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 var _this = this;
+
+var _require = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
+    ajax = _require.ajax;
 
 var PrimaryColor = '#66bb6a';
 hljs.initHighlightingOnLoad();
@@ -104936,8 +104939,10 @@ $(function () {
   $('.question').map(function (i, value) {
     $(value).after('<div class="details">' + text2quiz($(value).data('value')) + '</div>');
   });
+  var answersArray = [];
   $('.details .hidden-answer-text').map(function (i, value) {
-    $('#answer-list').append('<div>Q.' + (i + 1) + ' = ' + $(value).text() + '</div>');
+    answersArray.push(escape_html($(value).text()));
+    $('#answer-list').append('<div>Q.' + (i + 1) + ' = ' + escape_html($(value).text()) + '</div>');
     $(value).text('Q.' + (i + 1));
   });
   $('.hidden-answer-text').css('color', PrimaryColor);
@@ -104976,6 +104981,55 @@ $(function () {
       $('.tap-target[data-target="add-quiz-btn"]').tapTarget('close');
     }, 3000);
   }
+
+  for (var i = 0, d = $('#answer-container').data('count'); i < d; i++) {
+    $('#answer-input').append('<div class="col s12 m6"><div class="input-field"><input class="answer-input" id="answer-input-' + (i + 1) + '" type="text"><label for="answer-input-' + (i + 1) + '">Q.' + (i + 1) + '</label></div></div>');
+  }
+
+  $('#answer-result').hide();
+  var collectOrFail = [];
+  $('#answer-quiz-btn').on('click', function () {
+    $('.answer-input').map(function (i, value) {
+      if ($('#answer-input-' + (i + 1)).val() == '') {
+        console.log('未入力');
+        return false;
+      }
+
+      if (escape_html($('#answer-input-' + (i + 1)).val()) == answersArray[i]) {
+        collectOrFail[i] = true;
+      } else {
+        collectOrFail[i] = false;
+      }
+    });
+    $('.answer-input').map(function (i, value) {
+      if (collectOrFail[i]) {
+        $('#exp-of-question').append('<div class="col s12"><h6 class="green-text">Q.' + (i + 1) + ': 正解!</h6><p>Q.' + (i + 1) + 'の答えは' + answersArray[i] + 'でした。</p></div>');
+      } else {
+        $('#exp-of-question').append('<div class="col s12"><h6 class="red-text">Q.' + (i + 1) + ': 不正解</h6><p>もう一度挑戦してみよう。</p></div>');
+      }
+    });
+    $('#exp-of-question').append('<div class="col s12"><p><a href=""><i class="material-icons left">refresh</i>もう一度やってみる</a></p></div>');
+    $('#answer-input-container').stop(true, false).slideUp(250);
+    $('#answer-result').stop(true, false).slideDown(250);
+    $('#show-answer-btn').addClass('disabled');
+    $('#answer-quiz-btn').addClass('disabled');
+    /*
+    $.ajax ({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/user/quiz/{id}/details',
+        type: 'POST',
+        data: {
+            'id': recordId
+        }
+    })
+    .done((data, responce) => {
+      })
+    .fail((data) => {
+      })
+    */
+  });
 
   function escape_html(string) {
     if (typeof string !== 'string') return string;

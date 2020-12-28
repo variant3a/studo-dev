@@ -32,6 +32,7 @@ Route::post('/user/profile', '\App\Http\Controllers\HomeController@update')->nam
 Route::post('/user/timer', '\App\Http\Controllers\TimerController@ajaxCreate')->name('ajax_create_timer');
 Route::post('/user/notepad', '\App\Http\Controllers\NotepadController@create')->name('create_note');
 Route::post('/user/quiz/index', '\App\Http\Controllers\QuizController@store')->name('store_quiz');
+Route::post('/user/quiz/{id}/details', '\App\Http\Controllers\QuizController@ajaxUpdate')->name('store_result');
 Route::post('/user/timer/create', '\App\Http\Controllers\SubjectController@create')->name('add_subject');
 Route::put('/user/notepad/{id}/edit', '\App\Http\Controllers\NotepadController@update')->name('update_note');
 Route::delete('/user/profile', '\App\Http\Controllers\HomeController@destroy')->name('delete_account');
