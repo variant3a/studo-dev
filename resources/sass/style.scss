@@ -16,6 +16,9 @@ main.app {
         max-width: 86%;
     }
 }
+::selection {
+    background-color: #66bb6a;
+}
 
 @font-face {
     font-family: "Ricty Diminished";

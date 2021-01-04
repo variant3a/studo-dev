@@ -9278,6 +9278,14 @@ main.app {
   }
 }
 
+::-moz-selection {
+  background-color: #66bb6a;
+}
+
+::selection {
+  background-color: #66bb6a;
+}
+
 @font-face {
   font-family: "Ricty Diminished";
   src: url("/public/fonts/RictyDiminished-Regular.ttf");
