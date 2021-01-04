@@ -56,19 +56,19 @@
     </div>
 </div>
 <div class="row">
-    {{ $notes->links() }}
-</div>
-<div class="row">
     @forelse ($notes as $note)
+    <div class="row">
+        {{ $notes->render() }}
+    </div>    
     @include('user/notepad/note_module',  ['target' => 'index'])
+    <div class="row">
+        {{ $notes->render() }}
+    </div>    
     @empty
     <div class="col s12" id="no-notes-text">
         <p>{{ __('No Notes') }}</p>
     </div>
     @endforelse
-</div>
-<div class="row">
-    {{ $notes->links() }}
 </div>
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light pulse tooltipped" id="add-note-btn" data-position="left" data-tooltip="{{ __('Create Notepad') }}"><i class="material-icons">add</i></a>
