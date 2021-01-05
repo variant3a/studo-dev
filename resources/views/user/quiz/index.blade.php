@@ -12,6 +12,29 @@
 @endsection
 
 @section('content')
+&nbsp;
+<form action="{{ route('quiz') }}" method="GET">
+    <div class="col s4">
+        <div class="input-field inline">
+            <i class="material-icons prefix">filter_list</i>
+            <select name="search-subject">
+                <option value="" selected>{{ __('All') }}</option>
+                @foreach ($subjects as $subject)
+                    <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                @endforeach
+            </select>    
+        </div>
+    </div>
+    <div class="col s8">
+        <div class="input-field inline col s10">
+            <input type="text" id="search-word" name="keyword">
+            <label for="search-word">{{ __('Keyword') }}</label>    
+        </div>
+        <div class="input-field inline">
+            <button type="submit" class="waves-effect waves-light btn right">{{ __('Search') }}</button>
+        </div>
+    </div>
+</form>    
 <div class="row">
     <div class="col s12 hide-on-med-and-down">
         <ul class="tabs">

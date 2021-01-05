@@ -8,25 +8,6 @@
     $limit = 300;
     $end = '<br><br>...<a href="' . route('notepad_details', $note->id) . '" >' . __('Read More');
 @endphp
-<form action="{{ route('notepad') }}" method="POST">
-    <div class="row">
-        <div class="input-field col s8">
-            <input type="text" id="search-word" name="keyword">
-            <label for="search-word">{{ __('Keyword') }}</label>
-        </div>
-        <div class="input-field col s4">
-            <select name="search-subject">
-                <option value="" selected>{{ __('Choose Subjects') }}</option>
-                @foreach ($subjects as $subject)
-                    <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col s12">
-            <button type="submit" class="waves-effect waves-light btn right">{{ __('Search') }}</button>
-        </div>
-    </div>    
-</form>
 <div class="col s12">
     <div class="card">
         <div class="card-content" style="word-wrap: break-word">

@@ -56,27 +56,51 @@
     </div>
 </div>
 <div class="row">
-    @forelse ($notes as $note)
     <div class="row">
-        {{ $notes->render() }}
-    </div>    
+        {{ $notes->links() }}
+    </div>
+    <form action="{{ route('quiz') }}" method="GET">
+        <div class="col s4">
+            <div class="input-field inline">
+                <i class="material-icons prefix">filter_list</i>
+                <select name="search-subject">
+                    <option value="" selected>{{ __('All') }}</option>
+                    @foreach ($subjects as $subject)
+                        <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                    @endforeach
+                </select>    
+            </div>
+        </div>
+        <div class="col s8">
+            <div class="input-field inline col s10">
+                <input type="text" id="search-word" name="keyword">
+                <label for="search-word">{{ __('Keyword') }}</label>    
+            </div>
+            <div class="input-field inline">
+                <button type="submit" class="waves-effect waves-light btn right">{{ __('Search') }}</button>
+            </div>
+        </div>
+    </form>    
+    @forelse ($notes as $note)   
     @include('user/notepad/note_module',  ['target' => 'index'])
-    <div class="row">
-        {{ $notes->render() }}
-    </div>    
     @empty
     <div class="col s12" id="no-notes-text">
         <p>{{ __('No Notes') }}</p>
     </div>
     @endforelse
+    <div class="row">
+        {{ $notes->links() }}
+    </div>    
 </div>
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light pulse tooltipped" id="add-note-btn" data-position="left" data-tooltip="{{ __('Create Notepad') }}"><i class="material-icons">add</i></a>
 </div>
+@if (!isset($notes))
 <div class="tap-target" data-target="add-note-btn">
     <div class="tap-target-content">
         <h5>{{ __('Add Notes') }}</h5>
         <p>{{ __('Tap + To Start Create Notes') }}</p>
     </div>
 </div>
+@endif
 @endsection

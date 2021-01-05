@@ -12,20 +12,12 @@ class NotepadController extends Controller
 {
     public function index(Request $request)
     {
-        $notes = Notepad::where('user_id', Auth::user()->id);
-        $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->user_id)->orderBy('subject_name', 'asc')->get();
-        
         $search_keyword = $request->input('search-keyword');
         $search_subject = $request->input('search-subject');
-        if($search_subject == '') {
-            $notes->where('subject_name', $search_subject);
-        }
-        if($search_keyword == '') {
-            $notes->where('title', 'like', '%' . $search_keyword . '%')->orWhere('content', 'like', '%' . $search_keyword . '%');
-        }
-
-        $notes->latest()->paginate(10);
-
+        
+        $notes = Notepad::where('user_id', Auth::user()->id)->subjectFilter($search_keyword)->keywordFilter($search_subject)->latest()->paginate(10);
+        $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->user_id)->orderBy('subject_name', 'asc')->get();
+        
         return view('user.notepad.index', compact('notes'), compact('subjects'));
     }
 
@@ -59,7 +51,7 @@ class NotepadController extends Controller
     public function update(Request $request, $id)
     {
         $note = Notepad::find($id);
-        $note->title = $request->title;
+        if($note->title != $request->title) $note->title = $request->title;
         $note->content = $request->content;
         $note->save();
 

@@ -9,11 +9,16 @@ use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $global_quizzes = Quiz::where('publishing_settings', 1)->latest()->paginate(30);
-        $my_quizzes = Quiz::where('user_id', Auth::user()->id)->latest()->get();
-        return view('user.quiz.index', compact('my_quizzes', 'global_quizzes'));
+        $search_keyword = $request->input('search-keyword');
+        $search_subject = $request->input('search-subject');
+
+        $global_quizzes = Quiz::where('publishing_settings', 1)->subjectFilter($search_keyword)->keywordFilter($search_subject)->latest()->paginate(30);
+        $my_quizzes = Quiz::where('user_id', Auth::user()->id)->subjectFilter($search_keyword)->keywordFilter($search_subject)->latest()->get();
+        $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->user_id)->orderBy('subject_name', 'asc')->get();
+        
+        return view('user.quiz.index', compact('my_quizzes', 'global_quizzes', 'subjects'));
     }
 
     public function show($id)
