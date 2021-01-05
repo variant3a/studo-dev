@@ -14,9 +14,9 @@
                 <div class="col s12">
                     <div class="center-align">
                         @if (Auth::user()->name !== null)
-                            <h2>{{ Auth::user()->name }}</h2>
+                            <h3>{{ Auth::user()->name }}</h3>
                         @else
-                        <h2>{{ Auth::user()->user_id }}</h2>
+                        <h3>{{ Auth::user()->user_id }}</h3>
                         @endif
                         <div>{{ '@' . Auth::user()->user_id }}</div>
                         <div>{{ Auth::user()->email }}</div>
@@ -27,15 +27,15 @@
             <form method="POST" action="{{ route('update_profile') }}" id="edit-profile">
                 @csrf
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 m10 offset-m1">
                         <input type="text" value="{{ Auth::user()->name }}" id="name" name="name" data-length="32">
                         <label for="name" class="@if(!(Auth::user()->name)) active @endif">{{ __('Name any') }}</label>
                     </div>
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 m10 offset-m1">
                         <input class="@error('user_id') is-invalid @enderror validate" type="text" placeholder="{{ Auth::user()->user_id }}" id="user_id" name="user_id" data-length="32">
                         <label for="user_id" class="active">{{ __('User ID') }}</label>
                     </div>
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 m10 offset-m1">
                         <input class="@error('email') is-invalid @enderror validate" type="email" placeholder="{{ Auth::user()->email }}" id="email" name="email">
                         <label for="email" class="active">{{ __('E-Mail Address') }}</label>
                     </div>
@@ -78,26 +78,46 @@
                 </div>
             </div>
         </form>
-        <div class="card-panel">
-            <div class="row">
-                <div class="col s6 l4 center-align">
-                    ステータス1
-                </div>
-                <div class="col s6 l4 center-align">
-                    ステータス2
-                </div>
-                <div class="col s6 l4 center-align">
-                    ステータス3
-                </div>
-                <div class="col s12 l6 center-align">
-                    ステータス4
-                </div>
-                <div class="col s6 l4 center-align">
-                    ステータス5
-                </div>
-                <div class="col s12 l6 center-align">
-                    ステータス6
-                </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="card-title center">{{ __('Statistics') }}</div>
+                <div class="row">
+                    <table class="highlight">
+                        <tr>
+                            <th colspan="3">{{ __('Account') }}</th>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Account Create Date') }}</td><td>{{ date('Y' . __('Year') . 'm' . __('Month') . 'd' . __('Days') . ' H:i:s', strtotime($user->created_at)) }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Account Update Date') }}</td><td>{{ date('Y' . __('Year') . 'm' . __('Month') . 'd' . __('Days') . ' H:i:s', strtotime($user->updated_at)) }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Account Lifetime') }}</td><td>{{ date('d' . __('Days'), $now - strtotime($user->created_at)) }}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">{{ __('Timer') }}</th>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Number of Timer Records') }}</td><td>@if(is_countable($timer)) {{ count($timer) }} @else 0 @endif</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Total Study Time') }}</td><td>{{ gmdate('H' . __('hours') . 'i' . __('minutes') . 's' . __('secs'), $total_study_time) }}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">{{ __('Notepad') }}</th>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Number of Notes') }}</td><td>@if(is_countable($notes)) {{ count($notes) }} @else 0 @endif</td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">{{ __('Quiz') }}</th>
+                        </tr>
+                        <tr>
+                            <td>{{ __('Number of Quizzes') }}</td><td>@if(is_countable($quizzes)) {{ count($quizzes) }} @else 0 @endif</td>
+                        </tr>
+                    </table>
+                </div>    
             </div>
         </div>
     </div>

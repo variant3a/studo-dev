@@ -51,7 +51,7 @@ class NotepadController extends Controller
     public function update(Request $request, $id)
     {
         $note = Notepad::find($id);
-        if($note->title != $request->title) $note->title = $request->title;
+        if(isset($request->title)) $note->title = $request->title;
         $note->content = $request->content;
         $note->save();
 

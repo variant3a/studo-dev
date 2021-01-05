@@ -9280,10 +9280,12 @@ main.app {
 
 ::-moz-selection {
   background-color: #66bb6a;
+  color: white;
 }
 
 ::selection {
   background-color: #66bb6a;
+  color: white;
 }
 
 @font-face {

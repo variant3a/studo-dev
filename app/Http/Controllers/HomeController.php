@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Notepad;
 use App\Models\Quiz;
+use App\Models\Subject;
 use App\Models\Timer;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -37,7 +40,16 @@ class HomeController extends Controller
 
     public function show()
     {
-        return view('user.profile');
+        $now = Carbon::now()->timestamp;
+        $user = User::find(Auth::user()->id);
+        $quizzes = Quiz::where('user_id', Auth::user()->id)->get();
+        $notes = Notepad::where('user_id', Auth::user()->id)->get();
+        $timer = Timer::where('user_id', Auth::user()->id)->get();
+        $started_at = Timer::where('user_id', Auth::user()->id)->sum('started_at');
+        $ended_at = Timer::where('user_id', Auth::user()->id)->sum('ended_at');
+        $total_study_time = $ended_at - $started_at;
+
+        return view('user.profile', compact('now', 'user', 'quizzes', 'notes', 'timer', 'total_study_time'));
     }
 
     public function update(UserRequest $request)
