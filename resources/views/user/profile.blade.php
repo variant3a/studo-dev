@@ -116,6 +116,9 @@
                         <tr>
                             <td>{{ __('Number of Quizzes') }}</td><td>@if(is_countable($quizzes)) {{ count($quizzes) }} @else 0 @endif</td>
                         </tr>
+                        <tr>
+                            <td>{{ __('Accuracy Rate') }}</td><td></td>
+                        </tr>
                     </table>
                 </div>    
             </div>

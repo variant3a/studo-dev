@@ -9,11 +9,25 @@
     <div class="col s12">
         <div class="card">
             <div class="card-content">
-                <div class="card-title">{{ __('Infomation') }}</div>
+                @if (\Carbon\Carbon::now()->format('H') <= 12)
+                    <div class="card-title">{{ __('Good Morning,') . Auth::user()->user_id . __('San') }}</div>
+                @elseif (\Carbon\Carbon::now()->format('H') <= 18)
+                    <div class="card-title">{{ __('Good Afternoon,') . Auth::user()->user_id . __('San') }}</div>
+                @else
+                    <div class="card-title">{{ __('Good Evening,') . Auth::user()->user_id . __('San') }}</div>
+                @endif
             </div>
-            <div class="card-action chartist">
-
-            </div>
+            <canvas class="card-action study-time-chart">{{ __('Your Browser Does Not Support Canvas.') }}</canvas>
+            <table class="chart-data">
+                <tr>
+                    <th>{{ __('Sun') }}</th>
+                    <th>{{ __('Mon') }}</th>
+                    <th>{{ __('Tue') }}</th>
+                    <th>{{ __('Wed') }}</th>
+                    <th>{{ __('Fri') }}</th>
+                    <th>{{ __('Sat') }}</th>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

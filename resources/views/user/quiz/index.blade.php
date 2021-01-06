@@ -12,29 +12,6 @@
 @endsection
 
 @section('content')
-&nbsp;
-<form action="{{ route('quiz') }}" method="GET">
-    <div class="col s4">
-        <div class="input-field inline">
-            <i class="material-icons prefix">filter_list</i>
-            <select name="search-subject">
-                <option value="" selected>{{ __('All') }}</option>
-                @foreach ($subjects as $subject)
-                    <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
-                @endforeach
-            </select>    
-        </div>
-    </div>
-    <div class="col s8">
-        <div class="input-field inline col s10">
-            <input type="text" id="search-word" name="keyword">
-            <label for="search-word">{{ __('Keyword') }}</label>    
-        </div>
-        <div class="input-field inline">
-            <button type="submit" class="waves-effect waves-light btn right">{{ __('Search') }}</button>
-        </div>
-    </div>
-</form>    
 <div class="row">
     <div class="col s12 hide-on-med-and-down">
         <ul class="tabs">
@@ -43,6 +20,28 @@
         </ul>
     </div>
 </div>
+<form action="{{ route('quiz') }}" method="GET">
+    <div class="col s12 m4">
+        <div class="input-field inline col s12">
+            <i class="material-icons prefix">filter_list</i>
+            <select name="search-subject">
+                <option value="" selected>{{ __('All') }}</option>
+                @foreach ($subjects as $subject)
+                    <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="col s12 m8">
+        <div class="input-field inline col s9">
+            <input type="text" id="search-word" name="search-keyword">
+            <label for="search-word">{{ __('Keyword') }}</label>    
+        </div>
+        <div class="input-field inline right">
+            <button type="submit" class="waves-effect waves-light btn right">{{ __('Search') }}</button>
+        </div>
+    </div>
+</form>    
 <div class="row">
     <div id="my-tabs" class="col s12">
         @forelse ($my_quizzes as $my_quiz)
@@ -69,7 +68,11 @@
                                     </div>
                                 </div>
                             </form>                    
-                            <a href="{{ route('quiz_details', $my_quiz->id) }}" class="card-title waves-effect waves-green btn-flat">{{ $my_quiz->title }}</a>
+                            @if ($my_quiz->title)
+                                <a href="{{ route('quiz_details', $my_quiz->id) }}" class="card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ $my_quiz->title }}</a>
+                            @else
+                                <a href="{{ route('quiz_details', $my_quiz->id) }}" class="card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('No Title') }}</a>
+                            @endif
                         </div>
                     </div>
                     <div class="row">
@@ -77,24 +80,33 @@
                             <span class="my-question" data-value="{{ $my_quiz->question }}"></span>
                         </div>
                     </div>
-                    @if ($my_quiz->number_of_answers == 0)
                     <div class="row">
-                    @endif
                         <div class="col s12">
                             <div class="left">
-                                <div class="grey-text">@if($my_quiz->attempt_count) {{ (($my_quiz->correct_count / $my_quiz->appempt_count) * 100) }} @else {{ __('No Challenger') }} @endif</div>
-                            </div>
-                            <div class="right">
-                                <div class="grey-text">{{ $my_quiz->created_at }}</div>
+                                <div class="grey-text">
+                                    @if ($my_quiz->subject_name)
+                                        <div>{{ __('Subject Name') . ': ' . __($my_quiz->subject_name) }}</div>
+                                    @else
+                                        <div>{{ __('Subject Name') . ': ' . __('No Selected') }}</div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    @if ($my_quiz->number_of_answers == 0)
                     </div>
-                    @endif
+                    <div class="right">
+                        <div class="grey-text">{{ $my_quiz->created_at }}</div>
+                    </div>
                 </div>
                 @if ($my_quiz->number_of_answers != 0)
                     <div class="card-action">
                         <a href="{{ route('quiz_details', $my_quiz->id) }}">{{ __('Answer Quiz') }}</a>
+                        <div class="grey-text right">
+                            @if($my_quiz->attempt_count)
+                                <div>{{ __('Accuracy Rate') . (int)($my_quiz->correct_count / $my_quiz->attempt_count * 100) . '%' }} </div>
+                            @else 
+                                <div>{{ __('No Challenger') }} </div>
+                            @endif
+                        </div>
                     </div>
                 @endif
             </div>
@@ -115,7 +127,11 @@
                                 <li><a href="#!">{{ __('Follow') }}</a></li>
                                 <li><a href="#!">{{ __('Report This Post') }}</a></li>
                             </ul>
-                            <a href="{{ route('quiz_details', $global_quiz->id) }}" class="card-title waves-effect waves-green btn-flat">{{ $global_quiz->title }}</a>
+                            @if($global_quiz->title)
+                                <a href="{{ route('quiz_details', $global_quiz->id) }}" class="card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ $global_quiz->title }}</a>
+                            @else
+                                <a href="{{ route('quiz_details', $my_quiz->id) }}" class="card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('No Title') }}</a>
+                            @endif
                         </div>
                     </div>
                     <div class="row">
@@ -123,18 +139,35 @@
                             <span class="global-question" data-value="{{ $global_quiz->question }}" data-count="{{ $global_quiz->number_of_answers }}"></span>
                         </div>
                     </div>
-                    <div class="col s12">
-                        <div class="left">
-                            <div class="grey-text">@if($global_quiz->attempt_count) {{ (($global_quiz->correct_count / $global_quiz->appempt_count) * 100) }} @else {{ __('No Challenger') }} @endif</div>
-                        </div>
-                        <div class="right">
-                            <div class="grey-text">{{ $global_quiz->created_at }}</div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="left">
+                                <div class="grey-text">
+                                    @if ($global_quiz->subject_name)
+                                        <div>{{ __('Subject Name') . ': ' . __($global_quiz->subject_name) }}</div>
+                                    @else
+                                        <div>{{ __('Subject Name') . ': ' . __('No Selected') }}</div>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="right">
+                        <div class="grey-text">{{ $my_quiz->created_at }}</div>
+                    </div>
                 </div>
-                <div class="card-action">
-                    <a href="{{ route('quiz_details', $global_quiz->id) }}">{{ __('Answer Quiz') }}</a>
-                </div>
+                @if ($global_quiz->number_of_answers != 0)
+                    <div class="card-action">
+                        <a href="{{ route('quiz_details', $global_quiz->id) }}">{{ __('Answer Quiz') }}</a>
+                        <div class="grey-text right">
+                            @if($global_quiz->attempt_count)
+                                    <div>{{ __('Accuracy Rate') . (int)($global_quiz->correct_count / $global_quiz->attempt_count * 100) . '%' }} </div>
+                            @else 
+                                <div>{{ __('No Challenger') }} </div>
+                            @endif
+                        </div>
+                    </div>
+                @endif
             </div>
         @empty
             <div class="col s12">

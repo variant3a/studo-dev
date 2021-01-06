@@ -104640,22 +104640,11 @@ $(function () {
 
   /*--------------------------------------------*/
 
-  try {
-    new Chartist.Line('.chartist', {
-      labels: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
-      series: [[5, 2, 4, 7, 9, 8, 0]]
-    }, {
-      height: 400
-    });
-  } catch (e) {
-    console.log(e);
-  }
   /*-----------------------------------------------*/
 
   /*--------------------profile--------------------*/
 
   /*-----------------------------------------------*/
-
 
   $('#edit-profile').hide();
   $('#edit-button, #cancel-edit').on('click', function () {
@@ -104956,6 +104945,7 @@ $(function () {
   } else {
     $('#show-answer-btn').addClass('disabled').text('正解はありません');
     $('#answer-quiz-btn').addClass('disabled');
+    $('#answer-input-container').hide();
   }
 
   function text2quiz(text) {
@@ -105013,23 +105003,30 @@ $(function () {
     $('#answer-result').stop(true, false).slideDown(250);
     $('#show-answer-btn').addClass('disabled');
     $('#answer-quiz-btn').addClass('disabled');
-    /*
-    $.ajax ({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/user/quiz/{id}/details',
-        type: 'POST',
-        data: {
-            'id': recordId
-        }
-    })
-    .done((data, responce) => {
-      })
-    .fail((data) => {
-      })
-    */
+    var final_result = collectOrFail.every(function (val, index, array) {
+      return val;
+    });
+    var quiz_id = $('.quiz-id').val();
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/user/quiz/' + quiz_id + '/details',
+      type: 'POST',
+      data: {
+        'correct_or_fail': final_result
+      }
+    }).done(function (data, responce) {
+      console.log('data stored');
+    }).fail(function (data) {
+      console.log('err');
+    });
   });
+  $('.filter-card').toggleClass('disable');
+
+  function toggleFilterCard() {
+    $('.filter-card').toggleClass('disable');
+  }
 
   function escape_html(string) {
     if (typeof string !== 'string') return string;

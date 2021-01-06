@@ -43,12 +43,37 @@
             <div class="card-content">
                 <div class="row">
                     <div class="col s12">
-                        <span class="card-title">{{ $quiz->title }}</span>
+                        @if($quiz->title)
+                            <span class="card-title">{{ $quiz->title }}</span>
+                        @else
+                            <span class="card-title grey-text">{{ __('No Title') }}</span>
+                        @endif
                     </div>
                 </div>    
                 <div class="row">
                     <div class="col s12">
                         <span class="question details" data-value="{{ $quiz->question }}"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="grey-text">
+                            <div class="left">
+                                @if ($quiz->subject_name)
+                                    <div>{{ __('Subject Name') . ': ' . __($quiz->subject_name) }}</div>
+                                @else
+                                    <div>{{ __('Subject Name') . ': ' . __('No Selected') }}</div>
+                                @endif
+                            </div>
+                            <div class="right">
+                                @if($quiz->attempt_count)
+                                    <div>{{ __('Accuracy Rate') . (int)($quiz->correct_count / $quiz->attempt_count * 100) . '%' }} </div>
+                                @else
+                                    <div>{{ __('No Challenger') }} </div>
+                                @endif
+                            </div>
+                            <input class="quiz-id" type="hidden" value="{{ $quiz->id }}">
+                        </div>
                     </div>
                 </div>
             </div>

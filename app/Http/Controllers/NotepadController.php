@@ -15,7 +15,7 @@ class NotepadController extends Controller
         $search_keyword = $request->input('search-keyword');
         $search_subject = $request->input('search-subject');
         
-        $notes = Notepad::where('user_id', Auth::user()->id)->subjectFilter($search_keyword)->keywordFilter($search_subject)->latest()->paginate(10);
+        $notes = Notepad::where('user_id', Auth::user()->id)->keywordFilter($search_keyword)->subjectFilter($search_subject)->latest()->paginate(10);
         $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->user_id)->orderBy('subject_name', 'asc')->get();
         
         return view('user.notepad.index', compact('notes'), compact('subjects'));

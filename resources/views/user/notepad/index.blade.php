@@ -59,24 +59,24 @@
     <div class="row">
         {{ $notes->links() }}
     </div>
-    <form action="{{ route('quiz') }}" method="GET">
-        <div class="col s4">
-            <div class="input-field inline">
+    <form action="{{ route('notepad') }}" method="GET">
+        <div class="col s12 m4">
+            <div class="input-field inline col s12">
                 <i class="material-icons prefix">filter_list</i>
                 <select name="search-subject">
                     <option value="" selected>{{ __('All') }}</option>
                     @foreach ($subjects as $subject)
                         <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
                     @endforeach
-                </select>    
+                </select>
             </div>
         </div>
-        <div class="col s8">
-            <div class="input-field inline col s10">
-                <input type="text" id="search-word" name="keyword">
+        <div class="col s12 m8">
+            <div class="input-field inline col s9">
+                <input type="text" id="search-word" name="search-keyword">
                 <label for="search-word">{{ __('Keyword') }}</label>    
             </div>
-            <div class="input-field inline">
+            <div class="input-field inline right">
                 <button type="submit" class="waves-effect waves-light btn right">{{ __('Search') }}</button>
             </div>
         </div>

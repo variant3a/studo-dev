@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class HomeController extends Controller
 {
@@ -35,6 +36,10 @@ class HomeController extends Controller
         $timer = Timer::where('user_id', Auth::user()->id)->where('created_at', '>', Carbon::now()->subDay(7))->get();
         $my_quizzes = Quiz::where('user_id', Auth::user()->id)->where('attempt_count', '>', 0)->where('correct_count', 0)->get();
         $global_quizzes = Quiz::where('attempt_count', 0)->get();
+        JavaScriptFacade::put([
+            'timer_data' => $timer
+        ]);
+
         return view('user.home', compact('timer', 'global_quizzes', 'my_quizzes'));
     }
 

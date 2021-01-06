@@ -14,8 +14,8 @@ class QuizController extends Controller
         $search_keyword = $request->input('search-keyword');
         $search_subject = $request->input('search-subject');
 
-        $global_quizzes = Quiz::where('publishing_settings', 1)->subjectFilter($search_keyword)->keywordFilter($search_subject)->latest()->paginate(30);
-        $my_quizzes = Quiz::where('user_id', Auth::user()->id)->subjectFilter($search_keyword)->keywordFilter($search_subject)->latest()->get();
+        $global_quizzes = Quiz::where('publishing_settings', 1)->keywordFilter($search_keyword)->subjectFilter($search_subject)->latest()->paginate(30);
+        $my_quizzes = Quiz::where('user_id', Auth::user()->id)->keywordFilter($search_keyword)->subjectFilter($search_subject)->latest()->get();
         $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->user_id)->orderBy('subject_name', 'asc')->get();
         
         return view('user.quiz.index', compact('my_quizzes', 'global_quizzes', 'subjects'));
@@ -61,6 +61,14 @@ class QuizController extends Controller
         $quiz->save();
 
         return redirect('/user/quiz/index');
+    }
+
+    public function ajaxUpdate(Request $request, $id)
+    {
+        $quiz = Quiz::find($id);
+        $quiz->increment('attempt_count');
+        if ($request->final_result == false) $quiz->increment('correct_count');
+        $quiz->save();
     }
 
     public function destroy($id)

@@ -28,16 +28,6 @@ $(() => {
     /*--------------------home--------------------*/
     /*--------------------------------------------*/
 
-    try {
-        new Chartist.Line('.chartist', {
-            labels: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
-            series: [[5, 2, 4, 7, 9, 8, 0]]
-        }, {
-            height: 400
-        })    
-    } catch(e) {
-        console.log(e)
-    }
 
     /*-----------------------------------------------*/
     /*--------------------profile--------------------*/
@@ -322,6 +312,7 @@ $(() => {
     } else {
         $('#show-answer-btn').addClass('disabled').text('正解はありません')
         $('#answer-quiz-btn').addClass('disabled')
+        $('#answer-input-container').hide()
     }
 
     function text2quiz(text) {
@@ -375,26 +366,34 @@ $(() => {
         $('#answer-result').stop(true, false).slideDown(250)
         $('#show-answer-btn').addClass('disabled')
         $('#answer-quiz-btn').addClass('disabled')
-
-        /*
+        const final_result = collectOrFail.every((val, index, array) => {
+            return (val)
+        })
+        const quiz_id = $('.quiz-id').val()
         $.ajax ({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/user/quiz/{id}/details',
+            url: '/user/quiz/' + quiz_id + '/details',
             type: 'POST',
             data: {
-                'id': recordId
+                'correct_or_fail': final_result
             }
         })
         .done((data, responce) => {
-
+            console.log('data stored')
         })
         .fail((data) => {
-
+            console.log('err')
         })
-        */
+
     })
+    
+    $('.filter-card').hide()
+
+    function toggleFilterCard() {
+        $('.filter-card').stop(true, false).slideToggle(250)
+    }
 
     function escape_html(string) {
         if(typeof string !== 'string') return string

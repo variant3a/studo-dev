@@ -30,11 +30,7 @@
             </div>
             <div class="row">
                 <div class="col s12">
-                    @if ($target == 'index')
-                    <div class="marked-body" style="min-height: 70vh">{!! $markdown->text($note->content) !!}</div>
-                    @else
-                    <div class="marked-body" style="min-height: 50vh">{!! $markdown->text($note->content) !!}</div>
-                    @endif
+                    <div class="marked-body" style="min-height: 40vh">{!! $markdown->text($note->content) !!}</div>
                 </div>
             </div>
             @if ($target == 'index')
