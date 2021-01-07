@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified');
+    }
+
     public function create(Request $request)
     {
         $subject = new Subject();

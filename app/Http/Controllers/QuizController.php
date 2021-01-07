@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified');
+    }
+
     public function index(Request $request)
     {
         $search_keyword = $request->input('search-keyword');
