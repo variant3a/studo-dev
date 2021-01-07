@@ -39,15 +39,15 @@ $markdown
                     <div class="row">
                         <div class="input-field col s12">
                             @if ($note->title)
-                                <input name="title" class="card-title" placeholder="{{ $note->title }}">
+                                <input name="title" class="card-title" placeholder="{{ $note->title }}" autocomplete="off">
                             @else
-                                <input name="title" class="card-title" placeholder="{{ __('No Title') }}">
+                                <input name="title" class="card-title" placeholder="{{ __('No Title') }}" autocomplete="off">
                             @endif
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea name="content" id="update-note-content" class="materialize-textarea validate" required>{{ $note->content }}</textarea>
+                            <textarea name="content" id="update-note-content" class="materialize-textarea validate" autocomplete="off" required>{{ $note->content }}</textarea>
                         </div>
                     </div>
                 </div>

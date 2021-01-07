@@ -14,7 +14,7 @@
                     <div class="col s12">
                         <span class="card-title">{{ __('New Create') }}</span>
                         <div class="input-field">
-                            <input id="quiz-title" type="text" name="title">
+                            <input id="quiz-title" type="text" name="title" autocomplete="off">
                             <label for="quiz-title">{{ __('Title') }}</label>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col s12">
                         <div class="input-field">
-                            <textarea id="quiz-content" type="text" class="materialize-textarea validate" name="content" style="overflow:auto; min-height: 10vh; max-height: 50vh" required></textarea>
+                            <textarea id="quiz-content" type="text" class="materialize-textarea validate" name="content" style="overflow:auto; min-height: 10vh; max-height: 50vh" autocomplete="off" required></textarea>
                             <label for="notepad-content">{{ __('Main Context') }}</label>
                         </div>    
                     </div>

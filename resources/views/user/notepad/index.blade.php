@@ -14,11 +14,11 @@
                     <div class="col s12">
                         <div class="card-title">{{ __('New Create') }}</div>
                         <div class="input-field">
-                            <input id="notepad-title" type="text" name="title">
+                            <input id="notepad-title" type="text" name="title" autocomplete="off">
                             <label for="notepad-title">{{ __('Title') }}</label>
                         </div>
                         <div class="input-field">
-                            <textarea id="notepad-content" type="text" class="materialize-textarea validate" name="content" style="overflow:auto; min-height: 20vh; max-height: 50vh" required></textarea>
+                            <textarea id="notepad-content" type="text" class="materialize-textarea validate" name="content" style="overflow:auto; min-height: 20vh; max-height: 50vh" autocomplete="off" required></textarea>
                             <label for="notepad-content">{{ __('Main Context') }}</label>
                         </div>    
                     </div>
@@ -73,7 +73,7 @@
         </div>
         <div class="col s12 m8">
             <div class="input-field inline col s9">
-                <input type="text" id="search-word" name="search-keyword">
+                <input type="text" id="search-word" name="search-keyword" autocomplete="off">
                 <label for="search-word">{{ __('Keyword') }}</label>    
             </div>
             <div class="input-field inline right">
