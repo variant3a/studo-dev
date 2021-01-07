@@ -20,7 +20,11 @@
     @if (session('status'))
         <script>M.toast({html: '{{ session('status') }}'});</script>
     @endif
-
+    @forelse ($errors->all() as $error)
+        <script>M.toast({html: '{{ $error }}'});</script>
+    @empty
+        
+    @endforelse
 
     <!-------smartphone navigation bar------->
     <div class="hide-on-large-only">

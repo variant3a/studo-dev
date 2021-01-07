@@ -7,33 +7,37 @@
 @section('content')
 <div class="col s12 xl10 offset-xl1">
     <div class="card">
-
         <div class="card-content">
             <div class="card-title">{{ __('Register') }}</div>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-
                 <div class="row">
+                    <!--userid-->
                     <div class="input-field col s12">
                         <label for="user_id">{{ __('User ID') }}</label>
                         <input id="user_id" type="text" class="@error('user_id') is-invalid @enderror validate" name="user_id" value="{{ old('user_id') }}" required autocomplete="id" data-length="32" autofocus>
                     </div>
+                    <!--nickname-->
                     <div class="input-field col s12">
                         <label for="name">{{ __('Name any') }}</label>
-                        <input id="name" type="text" class="" name="name" value="{{ old('name') }}" autocomplete="name" data-length="32">
+                        <input id="name" type="text" class="@error('user_id') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" data-length="32">
                     </div>
+                    <!--email-->
                     <div class="input-field col s12">
                         <label for="email">{{ __('E-Mail Address') }}</label>
                         <input id="email" type="email" class="validate" name="email" value="{{ old('email') }}" required autocomplete="email">
                     </div>
+                    <!--pass-->
                     <div class="input-field col s6">
                         <label for="password">{{ __('Password') }}</label>
                         <input id="password" type="password" class="validate" name="password" required autocomplete="new-password">
                     </div>
+                    <!--retype-->
                     <div class="input-field col s6">
                         <label for="password-confirm">{{ __('Confirm Password') }}</label>
                         <input id="password-confirm" type="password" class="validate" name="password_confirmation" required autocomplete="new-password">
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col s12">

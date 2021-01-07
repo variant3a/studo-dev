@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () { return view('welcome'); });
 Route::get('/privacy', function () { return view('privacy'); })->name('privacy');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/user/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/user/profile', '\App\Http\Controllers\HomeController@show')->name('profile');

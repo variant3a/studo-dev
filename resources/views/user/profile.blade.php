@@ -93,7 +93,7 @@
                             <td>{{ __('Account Update Date') }}</td><td>{{ date('Y' . __('Year') . 'm' . __('Month') . 'd' . __('Days') . ' H:i:s', strtotime($user->updated_at)) }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('Account Lifetime') }}</td><td>{{ date('d' . __('Days'), $now - strtotime($user->created_at)) }}</td>
+                            <td>{{ __('Account Lifetime') }}</td><td>{{ date('j' . __('Days'), $now - strtotime($user->created_at)) }}</td>
                         </tr>
                         <tr>
                             <th colspan="3">{{ __('Timer') }}</th>
