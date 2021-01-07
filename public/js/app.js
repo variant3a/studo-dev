@@ -104603,12 +104603,7 @@ __webpack_require__(/*! ./script */ "./resources/js/script.js");
   !*** ./resources/js/script.js ***!
   \********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _this = this;
-
-var _require = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
-    ajax = _require.ajax;
+/***/ (function(module, exports) {
 
 var PrimaryColor = '#66bb6a';
 hljs.initHighlightingOnLoad();
@@ -104882,10 +104877,6 @@ $(function () {
       isAddClicked = 0;
     }
   });
-  $('#notepad-content').on('input', function () {
-    $(_this).val().replace(/\[/g, '<span style="color: #26c6da">[</span>');
-    $(_this).val().replace(/\]/g, '<span style="color: #26c6da">]</span>');
-  });
   var isEditClicked = 0;
   $('a#edit-note-btn i').css('transition', 'transform 0.5s');
   $('a#edit-note-btn').on('click', function () {
@@ -104908,7 +104899,11 @@ $(function () {
     }, 3000);
   }
 
-  $('button#edit-note-btn').on('click', function () {//$('div.marked-body').prop('contenteditable', true)
+  $('textarea').on('keydown', function (event) {
+    if (event.key == 'Tab' && !event.ctrlKey && !event.altKey && !event.shiftKey) {
+      event.preventDefault();
+      document.execCommand('insertText', false, '\t');
+    }
   });
   /*--------------------------------------------*/
 
@@ -105022,10 +105017,10 @@ $(function () {
       console.log('err');
     });
   });
-  $('.filter-card').toggleClass('disable');
+  $('.filter-card').hide();
 
   function toggleFilterCard() {
-    $('.filter-card').toggleClass('disable');
+    $('.filter-card').stop(true, false).slideToggle(250);
   }
 
   function escape_html(string) {

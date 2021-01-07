@@ -41,5 +41,6 @@
 <br>
 
 <h5>9.連絡先</h5>
-<p>お問合せ先：</p>    
+<p>お問合せ先：<a href="mailto:teamstudo.info&#64;gmail.com">teamstudo.info@gmail.com</a>
+</p>
 <br>

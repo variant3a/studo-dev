@@ -5,6 +5,14 @@
 @section('app-title', __('Note List'))
 
 @section('content')
+
+@php
+    $markdown = new Parsedown();
+    $markdown
+        ->setBreaksenabled(true)
+        ->setSafeMode(true)
+        ->setUrlsLinked(false);
+@endphp
 <div class="col s12 xl8 offset-xl2">
     <div class="card" id="add-note-card">
         <div class="card-content">
@@ -48,8 +56,8 @@
     </div>
 </div>
 <div id="notepad-hint" class="modal">
-    <div class="modal-content">
-        
+    <div class="modal-content markdown-body">
+        {!! $markdown->text(file_get_contents(base_path('storage/app/notepad_usage.md'))) !!}
     </div>
     <div class="modal-footer">
         <a class="modal-close waves-effect waves-light btn-flat" id="confirm-del">{{ __('Close') }}</a>
@@ -95,12 +103,10 @@
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light pulse tooltipped" id="add-note-btn" data-position="left" data-tooltip="{{ __('Create Notepad') }}"><i class="material-icons">add</i></a>
 </div>
-@if (!isset($notes))
 <div class="tap-target" data-target="add-note-btn">
     <div class="tap-target-content">
         <h5>{{ __('Add Notes') }}</h5>
         <p>{{ __('Tap + To Start Create Notes') }}</p>
     </div>
 </div>
-@endif
 @endsection

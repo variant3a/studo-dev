@@ -29,3 +29,11 @@ main.app {
 code, kbd, pre, samp {
     font-family: "Ricty Diminished", monospace;
 }
+
+.markdown-body ul li {
+    list-style-type: initial !important;
+}
+
+.markdown-body ol li {
+    list-style-type: decimal !important;
+}

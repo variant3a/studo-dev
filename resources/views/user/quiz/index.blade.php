@@ -49,8 +49,8 @@
                 <div class="card-content">
                     <div class="row">
                         <div class="col s12">
-                            <a href="#my-post-dropdown" class="dropdown-trigger waves-effect waves-light btn-flat right" data-target="my-post-dropdown"><i class="material-icons">more_vert</i></a>
-                            <ul id='my-post-dropdown' class='dropdown-content'>
+                            <a href="#my-post-dropdown{{ $my_quiz->id }}" class="dropdown-trigger waves-effect waves-light btn-flat right" data-target="my-post-dropdown"><i class="material-icons">more_vert</i></a>
+                            <ul id="my-post-dropdown{{ $my_quiz->id }}" class="dropdown-content">
                                 <li><a href="#delete-my-quiz{{ $my_quiz->id }}" class="waves-effect waves-red red-text modal-trigger"><i class="material-icons left">delete</i>{{ __('Delete') }}</a>
                                 </li>
                             </ul>

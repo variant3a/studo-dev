@@ -1,5 +1,3 @@
-const { ajax } = require("jquery")
-
 const PrimaryColor = '#66bb6a'
 hljs.initHighlightingOnLoad()
 
@@ -252,10 +250,6 @@ $(() => {
             isAddClicked = 0
         }
     })
-    $('#notepad-content').on('input', () => {
-        $(this).val().replace(/\[/g, '<span style="color: #26c6da">[</span>')
-        $(this).val().replace(/\]/g, '<span style="color: #26c6da">]</span>')
-    })
     let isEditClicked = 0
     $('a#edit-note-btn i').css('transition', 'transform 0.5s')
     $('a#edit-note-btn').on('click', () => {
@@ -275,9 +269,11 @@ $(() => {
             $('.tap-target[data-target="add-note-btn"]').tapTarget('close')
         }, 3000)
     }
-
-    $('button#edit-note-btn').on('click', () => {
-        //$('div.marked-body').prop('contenteditable', true)
+    $('textarea').on('keydown', (event) => {
+        if (event.key == 'Tab' && !event.ctrlKey && !event.altKey && !event.shiftKey) {
+            event.preventDefault()
+            document.execCommand('insertText', false, '\t')
+        }
     })
 
     /*--------------------------------------------*/

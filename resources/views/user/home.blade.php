@@ -18,16 +18,6 @@
                 @endif
             </div>
             <canvas class="card-action study-time-chart">{{ __('Your Browser Does Not Support Canvas.') }}</canvas>
-            <table class="chart-data">
-                <tr>
-                    <th>{{ __('Sun') }}</th>
-                    <th>{{ __('Mon') }}</th>
-                    <th>{{ __('Tue') }}</th>
-                    <th>{{ __('Wed') }}</th>
-                    <th>{{ __('Fri') }}</th>
-                    <th>{{ __('Sat') }}</th>
-                </tr>
-            </table>
         </div>
     </div>
 </div>
@@ -35,7 +25,7 @@
     <div class="col s12">
         <div class="card">
             <div class="card-content">
-                <div class="card-title">{{ __('New Quiz') }}</div>
+                <div class="card-title">{{ __('New Post') }}</div>
                 @forelse ($global_quizzes as $global_quiz)
                     <div class="row">
                         <div class="col s12 l10 offset-l1">
@@ -47,9 +37,7 @@
                 @empty
                     <div class="row">
                         <div class="col s12 l10 offset-l1">
-                            <div class="z-depth-1">
-                                <div>{{ __('No New Quiz') }}</div>
-                            </div>
+                            <div>{{ __('No New Quiz') }}</div>
                         </div>
                     </div>
                 @endforelse
@@ -65,7 +53,7 @@
     <div class="col s12">
         <div class="card">
             <div class="card-content">
-                <div class="card-title">{{ __('New Quiz') }}</div>
+                <div class="card-title">{{ __('Review Quiz Offer') }}</div>
                 @forelse ($my_quizzes as $my_quiz)
                     <div class="row">
                         <div class="col s12 l10 offset-l1">
@@ -75,14 +63,12 @@
                         </div>
                     </div>
                 @empty
-                    <div class="row">
-                        <div class="col s12 l10 offset-l1">
-                            <div class="z-depth-1">
-                                <div>{{ __('No New Quiz') }}</div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col s12 l10 offset-l1">
+                        <div>{{ __('No New Quiz') }}</div>
                     </div>
-                @endforelse
+                </div>
+            @endforelse
             </div>
             <div class="card-action">
 
