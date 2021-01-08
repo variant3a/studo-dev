@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubjectRequest extends FormRequest
+class QuizRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class SubjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'create_by' => 'nullable|integer',
-            'subject_name' => 'required|string|max:50|unique:subjects',
-            'category' => 'required|integer',
+            'title' => 'nullable|alpha_dash|max:255',
+            'content' => 'required|string|max:255',
+            'subject_name' => 'nullable|string|max:50',
         ];
     }
 }

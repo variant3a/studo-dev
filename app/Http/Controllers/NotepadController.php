@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NotepadRequest;
 use Illuminate\Http\Request;
 use App\Models\Notepad;
 use App\Models\Subject;
@@ -34,7 +35,7 @@ class NotepadController extends Controller
         return view('user.notepad.details', compact('note'));
     }
 
-    public function create(Request $request)
+    public function create(NotepadRequest $request)
     {
         $note = new Notepad;
         $note->user_id = Auth::user()->id;
@@ -53,7 +54,7 @@ class NotepadController extends Controller
         return view('user.notepad.edit', compact('note'));
     }
 
-    public function update(Request $request, $id)
+    public function update(NotepadRequest $request, $id)
     {
         $note = Notepad::find($id);
         if(isset($request->title)) $note->title = $request->title;

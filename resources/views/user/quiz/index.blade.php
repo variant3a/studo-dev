@@ -35,13 +35,13 @@
     <div class="col s12 m8">
         <div class="input-field inline col s9">
             <input type="text" id="search-word" name="search-keyword" autocomplete="off">
-            <label for="search-word">{{ __('Keyword') }}</label>    
+            <label for="search-word">{{ __('Keyword') }}</label>
         </div>
         <div class="input-field inline right">
-            <button type="submit" class="waves-effect waves-light btn right">{{ __('Search') }}</button>
+            <button type="submit" class="waves-effect waves-light btn right"><i class="material-icons">search</i></button>
         </div>
     </div>
-</form>    
+</form>
 <div class="row">
     <div id="my-tabs" class="col s12">
         @forelse ($my_quizzes as $my_quiz)
@@ -49,7 +49,7 @@
                 <div class="card-content">
                     <div class="row">
                         <div class="col s12">
-                            <a href="#my-post-dropdown{{ $my_quiz->id }}" class="dropdown-trigger waves-effect waves-light btn-flat right" data-target="my-post-dropdown"><i class="material-icons">more_vert</i></a>
+                            <a href="#my-post-dropdown{{ $my_quiz->id }}" class="dropdown-trigger waves-effect waves-light btn-flat right" data-target="my-post-dropdown{{ $my_quiz->id }}"><i class="material-icons">more_vert</i></a>
                             <ul id="my-post-dropdown{{ $my_quiz->id }}" class="dropdown-content">
                                 <li><a href="#delete-my-quiz{{ $my_quiz->id }}" class="waves-effect waves-red red-text modal-trigger"><i class="material-icons left">delete</i>{{ __('Delete') }}</a>
                                 </li>
@@ -67,7 +67,7 @@
                                         <button type="submit" class="waves-effect waves-light btn red">{{ __('Delete') }}</button>
                                     </div>
                                 </div>
-                            </form>                    
+                            </form>
                             @if ($my_quiz->title)
                                 <a href="{{ route('quiz_details', $my_quiz->id) }}" class="card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ $my_quiz->title }}</a>
                             @else
@@ -103,7 +103,7 @@
                         <div class="grey-text right">
                             @if($my_quiz->attempt_count)
                                 <div>{{ __('Accuracy Rate') . (int)($my_quiz->correct_count / $my_quiz->attempt_count * 100) . '%' }} </div>
-                            @else 
+                            @else
                                 <div>{{ __('No Challenger') }} </div>
                             @endif
                         </div>
@@ -122,11 +122,32 @@
                 <div class="card-content">
                     <div class="row">
                         <div class="col s12">
-                            <a href="#global-post-dropdown" class="dropdown-trigger waves-effect waves-light btn-flat right" data-target="global-post-dropdown"><i class="material-icons">more_vert</i></a>
-                            <ul id='global-post-dropdown' class='dropdown-content'>
-                                <li><a href="#!">{{ __('Follow') }}</a></li>
-                                <li><a href="#!">{{ __('Report This Post') }}</a></li>
-                            </ul>
+                            <a href="#global-post-dropdown{{ $global_quiz->id }}" class="dropdown-trigger waves-effect waves-light btn-flat right" data-target="global-post-dropdown{{ $global_quiz->id }}"><i class="material-icons">more_vert</i></a>
+                            @if ($global_quiz->user_id == Auth::user()->id)
+                                <ul id="global-post-dropdown{{ $global_quiz->id }}" class="dropdown-content">
+                                    <li><a href="#delete-my-quiz{{ $global_quiz->id }}" class="waves-effect waves-red red-text modal-trigger"><i class="material-icons left">delete</i>{{ __('Delete') }}</a>
+                                    </li>
+                                </ul>
+                                <form method="POST" action="{{ route('delete_quiz', $global_quiz->id) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <div id="delete-global-quiz{{ $global_quiz->id }}" class="modal">
+                                        <div class="modal-content">
+                                            <h4>{{ __('Attention!') }}</h4>
+                                            <p>{{ __('Are you sure you want to delete this post?') }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#" class="modal-close waves-effect waves-light btn-flat">{{ __('Cancel') }}</a>
+                                            <button type="submit" class="waves-effect waves-light btn red">{{ __('Delete') }}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            @else
+                                <ul id="global-post-dropdown{{ $global_quiz->id }}" class='dropdown-content'>
+                                    <li><a href="#!">{{ __('Follow') }}</a></li>
+                                    <li><a href="#!">{{ __('Report This Post') }}</a></li>
+                                </ul>
+                            @endif
                             @if($global_quiz->title)
                                 <a href="{{ route('quiz_details', $global_quiz->id) }}" class="card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ $global_quiz->title }}</a>
                             @else
@@ -162,7 +183,7 @@
                         <div class="grey-text right">
                             @if($global_quiz->attempt_count)
                                     <div>{{ __('Accuracy Rate') . (int)($global_quiz->correct_count / $global_quiz->attempt_count * 100) . '%' }} </div>
-                            @else 
+                            @else
                                 <div>{{ __('No Challenger') }} </div>
                             @endif
                         </div>

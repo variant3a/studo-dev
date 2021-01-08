@@ -15,7 +15,7 @@ class CreateTimersTable extends Migration
     {
         Schema::create('timers', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->string('subject_name')->nullable();
             $table->bigInteger('started_at');
             $table->bigInteger('ended_at');

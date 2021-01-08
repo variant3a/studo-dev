@@ -150,7 +150,13 @@ return [
         'password' => 'パスワード',
         'user_id' => 'ユーザID',
         'name' => 'ニックネーム',
-        
+        'title' => 'タイトル',
+        'subject_name' => '教科名',
+        'content' => '本文',
+        'question' => '問題文',
+        'category' => 'カテゴリー',
+        'started_at' => '開始時間',
+        'ended_at' => '終了時間',
     ],
 
 ];

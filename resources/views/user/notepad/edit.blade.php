@@ -28,7 +28,7 @@ $markdown
                 <a href="{{ route('notepad_details', $note->id) }}" class="waves-effect waves-red btn-flat tooltipped" id="cancel-edit-note-btn" data-position="bottom" data-tooltip="{{ __('Cancel') }}"><i class="material-icons">cancel</i></a>
             </div>
             <div class="right">
-                <button type="submit" href="#delete-note" class="waves-effect waves-light btn tooltipped" data-position="bottom" data-tooltip="{{ __('Save') }}"><i class="material-icons">save</i></button>
+                <button type="submit" href="#delete-note" class="waves-effect waves-light btn green tooltipped" data-position="bottom" data-tooltip="{{ __('Save') }}"><i class="material-icons">save</i></button>
             </div>
         </div>
     </div>

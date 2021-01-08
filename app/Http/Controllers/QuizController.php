@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuizRequest;
 use App\Models\Quiz;
 use App\Models\Subject;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class QuizController extends Controller
         return view('user.quiz.create', compact('subjects'));
     }
 
-    public function store(Request $request)
+    public function store(QuizRequest $request)
     {
         if ($request->publishing_settings == 1) {
             $publishing_settings = 1;
@@ -68,7 +69,7 @@ class QuizController extends Controller
         return redirect('/user/quiz/index');
     }
 
-    public function ajaxUpdate(Request $request, $id)
+    public function ajaxUpdate(QuizRequest $request, $id)
     {
         $quiz = Quiz::find($id);
         $quiz->increment('attempt_count');

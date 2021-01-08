@@ -34,7 +34,7 @@ class HomeController extends Controller
     public function index()
     {
         $timer = Timer::where('user_id', Auth::user()->id)->where('created_at', '>', Carbon::now()->subDay(7))->get();
-        $my_quizzes = Quiz::where('user_id', Auth::user()->id)->where('number_of_answers', '>', 0)->where('correct_count', 0)->latest()->get();
+        $my_quizzes = Quiz::where('user_id', Auth::user()->id)->where('number_of_answers', '>', 0)->orderBy('correct_count', 'asc')->limit(3)->get();
         $global_quizzes = Quiz::where('user_id', '!=', Auth::user()->id)->where('number_of_answers', '>', 0)->where('correct_count', 0)->latest()->get();
         JavaScriptFacade::put([
             'timer_data' => $timer
@@ -50,11 +50,14 @@ class HomeController extends Controller
         $quizzes = Quiz::where('user_id', Auth::user()->id)->get();
         $notes = Notepad::where('user_id', Auth::user()->id)->get();
         $timer = Timer::where('user_id', Auth::user()->id)->get();
+        $my_subjects = Subject::where('create_by', Auth::user()->id)->get();
+        
         $started_at = Timer::where('user_id', Auth::user()->id)->sum('started_at');
         $ended_at = Timer::where('user_id', Auth::user()->id)->sum('ended_at');
+        
         $total_study_time = $ended_at - $started_at;
 
-        return view('user.profile', compact('now', 'user', 'quizzes', 'notes', 'timer', 'total_study_time'));
+        return view('user.profile', compact('now', 'user', 'quizzes', 'notes', 'timer', 'my_subjects', 'total_study_time'));
     }
 
     public function update(UserRequest $request)

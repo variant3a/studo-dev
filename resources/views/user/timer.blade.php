@@ -55,7 +55,7 @@
                     <p>科目が一覧にない場合、自分で追加することができます。</p>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="text" name="subject_name" id="add-subject-text" class="validate">
+                            <input type="text" name="subject_name" id="add-subject-text" class="validate" data-length="50" autocomplete="off">
                             <label for="add-subject-text">{{ __('Subject Name') }}</label>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                 <option value="2">{{ __('General Subject') }}</option>
                                 <option value="3">{{ __('Other') }}</option>
                             </select>
-                            <label>{{ __('Choose Time') }}</label>
+                            <label>{{ __('Choose Category') }}</label>
                         </div>
                     </div>
                 </div>

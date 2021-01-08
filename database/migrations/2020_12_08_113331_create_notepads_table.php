@@ -15,7 +15,7 @@ class CreateNotepadsTable extends Migration
     {
         Schema::create('notepads', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->string('title')->nullable();
             $table->string('subject_name')->nullable();
             $table->text('content');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubjectRequest;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,14 +14,22 @@ class SubjectController extends Controller
         $this->middleware('verified');
     }
 
-    public function create(Request $request)
+    public function create(SubjectRequest $request)
     {
         $subject = new Subject();
-        $subject->create_by = Auth::user()->user_id;
+        $subject->create_by = Auth::user()->id;
         $subject->category = $request->category;
         $subject->subject_name = $request->subject_name;
         $subject->save();
         
-        return redirect('user/timer')->with('status', __('Added Success'));
+        return back()->with('status', __('Added Success') . ' : ' . $request->subject_name);
+    }
+
+    public function destroy(Request $request)
+    {
+        $subject = Subject::where('create_by', Auth::user()->id);
+        $subject->delete($request->id);
+
+        return redirect('/user/profile')->with('status', __('Delete All') . __('Complete'));
     }
 }

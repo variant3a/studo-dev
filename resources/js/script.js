@@ -2,7 +2,19 @@ const PrimaryColor = '#66bb6a'
 hljs.initHighlightingOnLoad()
 
 $(() => {
+
+    /*---------------------------------------------------*/
+    /*--------------------materialize--------------------*/
+    /*---------------------------------------------------*/
+
+
     M.AutoInit()
+
+    $('input#user_id, input#name, input#password, input#password-confirm, input#add-subject-text, textarea#quiz-content').characterCounter()
+    $('.dropdown-trigger').dropdown({
+        constrainWidth: false,
+        coverTrigger: false,
+    })
 
     /*------------------------------------------------*/
     /*--------------------register--------------------*/
@@ -11,16 +23,11 @@ $(() => {
     $('#term-of-service').on('click', () => {
         $('#register-button').toggleClass('disabled')
     })
-    $('input#user_id, input#name').characterCounter()
 
     /*-------------------------------------------------*/
     /*--------------------studo top--------------------*/
     /*-------------------------------------------------*/
 
-    $('.dropdown-trigger').dropdown({
-        constrainWidth: false,
-        coverTrigger: false,
-    })
 
     /*--------------------------------------------*/
     /*--------------------home--------------------*/
@@ -294,8 +301,8 @@ $(() => {
     })
     let answersArray = []
     $('.details .hidden-answer-text').map((i, value) => {
-        answersArray.push(escape_html($(value).text()))
-        $('#answer-list').append('<div>Q.' + (i + 1) + ' = ' + escape_html($(value).text()) + '</div>')
+        answersArray.push(escapeHtml($(value).text()))
+        $('#answer-list').append('<div>Q.' + (i + 1) + ' = ' + escapeHtml($(value).text()) + '</div>')
         $(value).text('Q.' + (i + 1))
     })
     $('.hidden-answer-text').css('color', PrimaryColor)
@@ -312,7 +319,7 @@ $(() => {
     }
 
     function text2quiz(text) {
-        text = nl2br(escape_html(text))
+        text = nl2br(escapeHtml(text))
         const sbrkt = text.search(/\[/)
         const ebrkt = text.search(/\]/)
         const head = (text.match(/\[/g) || []).length
@@ -334,7 +341,7 @@ $(() => {
     }
 
     for(let i = 0, d = $('#answer-container').data('count'); i < d ;i++) {
-        $('#answer-input').append('<div class="col s12 m6"><div class="input-field"><input class="answer-input" id="answer-input-' + (i + 1) + '" type="text"><label for="answer-input-' + (i + 1) + '">Q.' + (i + 1) + '</label></div></div>')
+        $('#answer-input').append('<div class="col s12 m6"><div class="input-field"><input class="answer-input" id="answer-input-' + (i + 1) + '" type="text" autocomplete="off"><label ="answer-input-' + (i + 1) + '">Q.' + (i + 1) + '</label></div></div>')
     }
     $('#answer-result').hide()
     let collectOrFail = []
@@ -391,7 +398,7 @@ $(() => {
         $('.filter-card').stop(true, false).slideToggle(250)
     }
 
-    function escape_html(string) {
+    function escapeHtml(string) {
         if(typeof string !== 'string') return string
         string = string.replace('&', '&amp;')
             .replace(/'/g, '&#x27;')
@@ -412,4 +419,14 @@ $(() => {
     /*--------------------other--------------------*/
     /*---------------------------------------------*/
 
+    function copyToClipboard(target) {
+        const text = $(target)
+        navigator.clipboard.writeText(text)
+        .then(() => {
+            M.toast({html: 'クリップボードにURLをコピーしました'})
+        })
+        .catch(err => {
+            M.toast({html: '問題が発生しました。URLをコピーできませんでした'})
+        })
+    }
 })

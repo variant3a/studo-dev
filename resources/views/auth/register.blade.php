@@ -15,12 +15,12 @@
                     <!--userid-->
                     <div class="input-field col s12">
                         <label for="user_id">{{ __('User ID') }}</label>
-                        <input id="user_id" type="text" class="@error('user_id') is-invalid @enderror validate" name="user_id" value="{{ old('user_id') }}" required autocomplete="id" data-length="32" autofocus>
+                        <input id="user_id" type="text" class="validate" name="user_id" value="{{ old('user_id') }}" required autocomplete="id" data-length="32" autofocus>
                     </div>
                     <!--nickname-->
                     <div class="input-field col s12">
                         <label for="name">{{ __('Name any') }}</label>
-                        <input id="name" type="text" class="@error('user_id') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" data-length="32">
+                        <input id="name" type="text" name="name" value="{{ old('name') }}" autocomplete="name" data-length="32">
                     </div>
                     <!--email-->
                     <div class="input-field col s12">
@@ -30,12 +30,12 @@
                     <!--pass-->
                     <div class="input-field col s6">
                         <label for="password">{{ __('Password') }}</label>
-                        <input id="password" type="password" class="validate" name="password" required autocomplete="new-password">
+                        <input id="password" type="password" class="validate" name="password" data-length="32" required autocomplete="new-password">
                     </div>
                     <!--retype-->
                     <div class="input-field col s6">
                         <label for="password-confirm">{{ __('Confirm Password') }}</label>
-                        <input id="password-confirm" type="password" class="validate" name="password_confirmation" required autocomplete="new-password">
+                        <input id="password-confirm" type="password" class="validate" name="password_confirmation" data-length="32" required autocomplete="new-password">
                     </div>
 
                 </div>

@@ -15,10 +15,10 @@ class CreateQuizzesTable extends Migration
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->integer('user_id');
             $table->string('title')->nullable();
             $table->boolean('publishing_settings');
-            $table->string('question');
+            $table->string('content');
             $table->string('subject_name')->nullable();
             $table->integer('number_of_answers');
             $table->integer('attempt_count');
