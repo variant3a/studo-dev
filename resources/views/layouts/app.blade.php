@@ -27,7 +27,7 @@
 
     @endforelse
 
-    <!-------smartphone navigation bar------->
+    <!-- smartphone navigation bar -->
     <div class="hide-on-large-only">
         @hasSection ('nav-content')
             <nav class="nav-extended">
@@ -48,10 +48,10 @@
     </div>
 
 
-    <!-------smartphone side navigation------->
+    <!-- smartphone side navigation -->
     <ul id="slide-out" class="sidenav sidenav-fixed">
 
-        <!-------user navigation------->
+        <!-- user navigation -->
         @auth
         @include('layouts.user_sidenav')
         <li class="divider"></li>
@@ -62,7 +62,7 @@
             @csrf
         </form>
 
-        <!-------guest navigation------->
+        <!-- guest navigation -->
         @else
         <li><a href="{{ route('register') }}" class="waves-effect waves-orange">{{ __('Register') }}</a></li>
         <li><a href="{{ route('login') }}" class="waves-effect waves-green">{{ __('Login') }}</a></li>
@@ -72,7 +72,7 @@
     </ul>
 
 
-    <!-------content------->
+    <!-- content -->
     <main class="app">
         <div class="container">
             <div class="row">

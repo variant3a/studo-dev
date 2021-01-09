@@ -127,6 +127,7 @@ $(() => {
         }
 
         if($('#timer-start-button').hasClass('started')) {
+
             function onTimerStarted() {
                 timer.animate(minutes)
                 timer.setText(sec2time(secs))
@@ -346,12 +347,14 @@ $(() => {
     $('#answer-result').hide()
     let collectOrFail = []
     $('#answer-quiz-btn').on('click', () => {
+        let isAnswerInputEmpty
+
         $('.answer-input').map((i, value) => {
             if($('#answer-input-' + (i + 1)).val() == '') {
-                console.log('未入力')
-                return false
+                M.toast({html: 'Q.' + (i + 1) + 'の項目が未入力です'})
+                isAnswerInputEmpty = true
             }
-            if(escape_html($('#answer-input-' + (i + 1)).val()) == answersArray[i]) {
+            if(escapeHtml($('#answer-input-' + (i + 1)).val()) == answersArray[i]) {
                 collectOrFail[i] = true
             } else {
                 collectOrFail[i] = false
@@ -372,24 +375,27 @@ $(() => {
         const final_result = collectOrFail.every((val, index, array) => {
             return (val)
         })
+        console.log(final_result)
         const quiz_id = $('.quiz-id').val()
-        $.ajax ({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: '/user/quiz/' + quiz_id + '/details',
-            type: 'POST',
-            data: {
-                'correct_or_fail': final_result
-            }
-        })
-        .done((data, responce) => {
-            console.log('data stored')
-        })
-        .fail((data) => {
-            console.log('err')
-        })
-
+        if (!isAnswerInputEmpty) {
+            $.ajax ({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/user/quiz/' + quiz_id + '/details',
+                type: 'POST',
+                data: {
+                    'final_result': final_result
+                }
+            })
+            .done((data, responce) => {
+                console.log(data)
+                M.toast({html: '回答を保存しました'})
+            })
+            .fail((data) => {
+                M.toast({html: 'エラーが発生しました'})
+            })
+        }
     })
 
     $('.filter-card').hide()

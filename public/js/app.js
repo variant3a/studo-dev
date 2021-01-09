@@ -104979,13 +104979,16 @@ $(function () {
   $('#answer-result').hide();
   var collectOrFail = [];
   $('#answer-quiz-btn').on('click', function () {
+    var isAnswerInputEmpty;
     $('.answer-input').map(function (i, value) {
       if ($('#answer-input-' + (i + 1)).val() == '') {
-        console.log('未入力');
-        return false;
+        M.toast({
+          html: 'Q.' + (i + 1) + 'の項目が未入力です'
+        });
+        isAnswerInputEmpty = true;
       }
 
-      if (escape_html($('#answer-input-' + (i + 1)).val()) == answersArray[i]) {
+      if (escapeHtml($('#answer-input-' + (i + 1)).val()) == answersArray[i]) {
         collectOrFail[i] = true;
       } else {
         collectOrFail[i] = false;
@@ -105006,21 +105009,30 @@ $(function () {
     var final_result = collectOrFail.every(function (val, index, array) {
       return val;
     });
+    console.log(final_result);
     var quiz_id = $('.quiz-id').val();
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      url: '/user/quiz/' + quiz_id + '/details',
-      type: 'POST',
-      data: {
-        'correct_or_fail': final_result
-      }
-    }).done(function (data, responce) {
-      console.log('data stored');
-    }).fail(function (data) {
-      console.log('err');
-    });
+
+    if (!isAnswerInputEmpty) {
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: '/user/quiz/' + quiz_id + '/details',
+        type: 'POST',
+        data: {
+          'final_result': final_result
+        }
+      }).done(function (data, responce) {
+        console.log(data);
+        M.toast({
+          html: '回答を保存しました'
+        });
+      }).fail(function (data) {
+        M.toast({
+          html: 'エラーが発生しました'
+        });
+      });
+    }
   });
   $('.filter-card').hide();
 

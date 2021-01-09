@@ -9,7 +9,7 @@
     <div class="col s12">
         <div class="card">
             <div class="card-content">
-                @if (\Carbon\Carbon::now()->format('H') <= 12)
+                @if (\Carbon\Carbon::now()->format('H') <= 10 && \Carbon\Carbon::now()->format('H') >= 4)
                     <div class="card-title">{{ __('Good Morning,') . Auth::user()->user_id . __('San') }}</div>
                 @elseif (\Carbon\Carbon::now()->format('H') <= 18)
                     <div class="card-title">{{ __('Good Afternoon,') . Auth::user()->user_id . __('San') }}</div>

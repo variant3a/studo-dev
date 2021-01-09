@@ -8,6 +8,10 @@ use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
+use function PHPUnit\Framework\isTrue;
+
 class QuizController extends Controller
 {
     public function __construct()
@@ -69,11 +73,13 @@ class QuizController extends Controller
         return redirect('/user/quiz/index');
     }
 
-    public function ajaxUpdate(QuizRequest $request, $id)
+    public function ajaxUpdate(Request $request, $id)
     {
         $quiz = Quiz::find($id);
         $quiz->increment('attempt_count');
-        if ($request->final_result == false) $quiz->increment('correct_count');
+        if($request->final_result == 'true') {
+            $quiz->increment('correct_count');
+        }
         $quiz->save();
     }
 
