@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col s12">
                     {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }}        
+                    {{ __('If you did not receive the email') }}
                 </div>
             </div>
             <div class="row">
@@ -20,7 +20,7 @@
                     <form class="" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
                         <button type="submit" class="waves-effect waves-light btn">{{ __('click here to request another') }}</button>
-                    </form>        
+                    </form>
                 </div>
             </div>
         </div>

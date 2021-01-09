@@ -391,7 +391,7 @@ $(() => {
         })
 
     })
-    
+
     $('.filter-card').hide()
 
     function toggleFilterCard() {

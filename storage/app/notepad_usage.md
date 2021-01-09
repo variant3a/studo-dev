@@ -63,5 +63,5 @@ print('hello, world!')
 
 - 画像
 ```markdown
-![猫の画像](URL) 
+![猫の画像](URL)
 ```

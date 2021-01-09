@@ -15,6 +15,6 @@ class TimersTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
     }
 }

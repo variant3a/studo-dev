@@ -51,10 +51,10 @@ class HomeController extends Controller
         $notes = Notepad::where('user_id', Auth::user()->id)->get();
         $timer = Timer::where('user_id', Auth::user()->id)->get();
         $my_subjects = Subject::where('create_by', Auth::user()->id)->get();
-        
+
         $started_at = Timer::where('user_id', Auth::user()->id)->sum('started_at');
         $ended_at = Timer::where('user_id', Auth::user()->id)->sum('ended_at');
-        
+
         $total_study_time = $ended_at - $started_at;
 
         return view('user.profile', compact('now', 'user', 'quizzes', 'notes', 'timer', 'my_subjects', 'total_study_time'));

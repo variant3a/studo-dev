@@ -22,7 +22,7 @@
     "San": " さん",
     "Other": "その他",
     "Timer": "タイマー",
-    "TopPage": "Studo!トップ", 
+    "TopPage": "Studo!トップ",
     "MyPage": "マイページ",
     "Edit profile": "プロフィールを編集",
     "Close": "閉じる",
@@ -92,7 +92,7 @@
     "Note List": "ノート一覧",
     "Notepad Details": "ノートの詳細",
     "Quiz List": "クイズ一覧",
-    "Create New Quiz": "クイズの作成", 
+    "Create New Quiz": "クイズの作成",
     "No Quizzes": "クイズはありません",
     "No Selected": "選択なし",
     "Details Link": "詳細へ",
@@ -172,4 +172,4 @@
 
     "Assembly Language": "アセンブリ言語",
     "FORTRAN": "フォートラン"
-} 
+}

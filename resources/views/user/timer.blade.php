@@ -44,7 +44,7 @@
                 <option value="240">240{{ __('Minutes') }}</option>
             </select>
             <label>{{ __('Choose Time') }}</label>
-        </div>    
+        </div>
         <a href="#add-subject-modal" id="add-subject" class="modal-trigger">教科が一覧にない場合</a>
         <form method="POST" action="{{ route('add_subject') }}">
             @csrf

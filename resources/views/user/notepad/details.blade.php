@@ -3,7 +3,7 @@
 @if ($note->title)
     @section('title', $note->title . ' | ' . __('Notepad'))
 @else
-    @section('title', __('No Title') . ' | ' . __('Notepad'))  
+    @section('title', __('No Title') . ' | ' . __('Notepad'))
 @endif
 
 @section('app-title', __('Notepad Details'))

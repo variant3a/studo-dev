@@ -21,7 +21,7 @@ class SubjectController extends Controller
         $subject->category = $request->category;
         $subject->subject_name = $request->subject_name;
         $subject->save();
-        
+
         return back()->with('status', __('Added Success') . ' : ' . $request->subject_name);
     }
 

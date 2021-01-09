@@ -28,7 +28,7 @@
                         <div class="input-field">
                             <textarea id="notepad-content" type="text" class="materialize-textarea validate" name="content" style="overflow:auto; min-height: 20vh; max-height: 50vh" autocomplete="off" required></textarea>
                             <label for="notepad-content">{{ __('Main Context') }}</label>
-                        </div>    
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -113,14 +113,14 @@
         <div class="col s12 m8">
             <div class="input-field inline col s9">
                 <input type="text" id="search-word" name="search-keyword" autocomplete="off">
-                <label for="search-word">{{ __('Keyword') }}</label>    
+                <label for="search-word">{{ __('Keyword') }}</label>
             </div>
             <div class="input-field inline right">
                 <button type="submit" class="waves-effect waves-light btn right"><i class="material-icons">search</i></button>
             </div>
         </div>
-    </form>    
-    @forelse ($notes as $note)   
+    </form>
+    @forelse ($notes as $note)
     @include('user/notepad/note_module',  ['target' => 'index'])
     @empty
     <div class="col s12" id="no-notes-text">
@@ -129,7 +129,7 @@
     @endforelse
     <div class="row">
         {{ $notes->links() }}
-    </div>    
+    </div>
 </div>
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large waves-effect waves-light pulse tooltipped" id="add-note-btn" data-position="left" data-tooltip="{{ __('Create Notepad') }}"><i class="material-icons">add</i></a>

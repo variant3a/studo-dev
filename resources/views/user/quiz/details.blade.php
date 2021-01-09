@@ -3,7 +3,7 @@
 @if ($quiz->title)
     @section('title', $quiz->title . ' | ' . __('Quiz'))
 @else
-    @section('title', __('No Title') . ' | ' . __('Quiz'))  
+    @section('title', __('No Title') . ' | ' . __('Quiz'))
 @endif
 
 @section('app-title', __('Quiz Details'))
@@ -31,7 +31,7 @@
                             <button type="submit" class="waves-effect waves-light btn red">{{ __('Delete') }}</button>
                         </div>
                     </div>
-                </form>                
+                </form>
             @endif
         </div>
     </div>
@@ -48,7 +48,7 @@
                             <span class="card-title grey-text">{{ __('No Title') }}</span>
                         @endif
                     </div>
-                </div>    
+                </div>
                 <div class="row">
                     <div class="col s12">
                         <span class="question details" data-value="{{ $quiz->question }}"></span>

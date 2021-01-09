@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col s12">
                         <a class="waves-effect waves-light btn-flat modal-trigger" href="#modal1">{{ __('Term of service') }}</a>
-                        <div id="modal1" class="modal modal-fixed-footer"> 
+                        <div id="modal1" class="modal modal-fixed-footer">
                             <div class="modal-content">
                                 @include('../tos')
                             </div>

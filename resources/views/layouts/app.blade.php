@@ -24,7 +24,7 @@
     @forelse ($errors->all() as $error)
         <script>M.toast({html: '{{ $error }}'});</script>
     @empty
-        
+
     @endforelse
 
     <!-------smartphone navigation bar------->
@@ -70,13 +70,13 @@
         <li><a href="{{ url('/') }}" class="waves-effect waves-green">{{ __('TopPage') }}</a></li>
         @endauth
     </ul>
-    
+
 
     <!-------content------->
     <main class="app">
         <div class="container">
             <div class="row">
-                @yield('content')    
+                @yield('content')
             </div>
         </div>
     </main>
