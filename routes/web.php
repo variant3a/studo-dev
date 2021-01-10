@@ -36,7 +36,7 @@ Route::post('/user/quiz/{id}/details', '\App\Http\Controllers\QuizController@aja
 Route::post('/user/timer/create', '\App\Http\Controllers\SubjectController@create')->name('add_subject');
 Route::put('/user/notepad/{id}/edit', '\App\Http\Controllers\NotepadController@update')->name('update_note');
 Route::delete('/user/profile', '\App\Http\Controllers\HomeController@destroy')->name('delete_account');
-Route::delete('/user/profile/subject', '\App\Http\Controllers\SubjectController@destroy')->name('delete_subjects');
+Route::delete('/user/profile/{id}', '\App\Http\Controllers\SubjectController@destroy')->name('delete_subject');
 Route::delete('/user/timer', '\App\Http\Controllers\TimerController@destroy')->name('del_timer_rec');
 Route::delete('/user/notepad/{id}/details', '\App\Http\Controllers\NotepadController@destroy')->name('delete_note');
 Route::delete('/user/quiz/{id}/details', '\App\Http\Controllers\QuizController@destroy')->name('delete_quiz');

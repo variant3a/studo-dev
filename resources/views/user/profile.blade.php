@@ -99,10 +99,10 @@
                                 @else
                                     <td>{{ __('Other') }}</td>
                                 @endif
-                                <form action="{{ route('delete_subjects', $my_subject->id) }}" method="POST">
+                                <form action="{{ route('delete_subject', $my_subject->id) }}" id="form_{{ $my_subject->id }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <td><button type="submit" id="delete-all-subjects" class="waves-effect waves-red btn-flat"><i class="material-icons">delete</i></button></td>
+                                    <td><button type="submit" class="waves-effect waves-red btn-flat" data-id="{{ $my_subject->id }}"><i class="material-icons">delete</i></button></td>
                                 </form>
                             </tr>
                         @empty

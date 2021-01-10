@@ -25,11 +25,11 @@ class SubjectController extends Controller
         return back()->with('status', __('Added Success') . ' : ' . $request->subject_name);
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $subject = Subject::where('create_by', Auth::user()->id);
-        $subject->delete($request->id);
+        $subject = Subject::find($id);
+        $subject->delete();
 
-        return redirect('/user/profile')->with('status', __('Delete All') . __('Complete'));
+        return redirect('/user/profile')->with('status', __('Delete') . __('Complete'));
     }
 }
