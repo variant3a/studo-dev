@@ -45,7 +45,7 @@
                         @if($quiz->title)
                             <span class="card-title">{{ $quiz->title }}</span>
                         @else
-                            <span class="card-title grey-text">{{ __('No Title') }}</span>
+                            <span class="card-title">{{ __($quiz->subject_name) }}</span>
                         @endif
                     </div>
                 </div>
