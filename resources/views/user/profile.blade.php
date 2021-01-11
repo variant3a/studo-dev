@@ -25,6 +25,7 @@
             </div>
             <!-------edit profile------->
             <form method="POST" action="{{ route('update_profile') }}" id="edit-profile">
+                @method('PUT')
                 @csrf
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1">

@@ -28,12 +28,12 @@ Route::get('/user/quiz/{id}/details', '\App\Http\Controllers\QuizController@show
 Route::get('/user/notepad/index', '\App\Http\Controllers\NotepadController@index')->name('notepad');
 Route::get('/user/notepad/{id}/details', '\App\Http\Controllers\NotepadController@show')->name('notepad_details');
 Route::get('/user/notepad/{id}/note', '\App\Http\Controllers\NotepadController@edit')->name('edit_note');
-Route::post('/user/profile', '\App\Http\Controllers\HomeController@update')->name('update_profile');
 Route::post('/user/timer', '\App\Http\Controllers\TimerController@ajaxCreate')->name('ajax_create_timer');
 Route::post('/user/notepad', '\App\Http\Controllers\NotepadController@create')->name('create_note');
 Route::post('/user/quiz/index', '\App\Http\Controllers\QuizController@store')->name('store_quiz');
 Route::post('/user/quiz/{id}/details', '\App\Http\Controllers\QuizController@ajaxUpdate')->name('store_result');
 Route::post('/user/timer/create', '\App\Http\Controllers\SubjectController@create')->name('add_subject');
+Route::put('/user/profile', '\App\Http\Controllers\HomeController@update')->name('update_profile');
 Route::put('/user/notepad/{id}/edit', '\App\Http\Controllers\NotepadController@update')->name('update_note');
 Route::delete('/user/profile', '\App\Http\Controllers\HomeController@destroy')->name('delete_account');
 Route::delete('/user/profile/{id}', '\App\Http\Controllers\SubjectController@destroy')->name('delete_subject');
