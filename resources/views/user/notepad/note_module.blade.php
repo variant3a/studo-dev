@@ -35,13 +35,21 @@
                         @if ($note->title)
                             <a href="{{ route('notepad_details', $note->id) }}" class="card-title btn-flat waves-effect waves-green waves-block tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ $note->title }}</a>
                         @else
-                            <a href="{{ route('notepad_details', $note->id) }}" class="card-title btn-flat waves-effect waves-green waves-block tooltipped grey-text" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('No Title') }}</a>
+                            @if ($note->subject_name)
+                                <a href="{{ route('notepad_details', $note->id) }}" class="card-title btn-flat waves-effect waves-green waves-block tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __($note->subject_name) }}</a>
+                            @else
+                                <a href="{{ route('notepad_details', $note->id) }}" class="card-title btn-flat waves-effect waves-green waves-block tooltipped grey-text" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('No Title') }}</a>
+                            @endif
                         @endif
                     @else
                         @if ($note->title)
                             <div class="card-title">{{ $note->title }}</div>
                         @else
-                            <div class="card-title grey-text">{{ __('No Title') }}</div>
+                            @if ($note->subject_name)
+                                <div class="card-title grey-text">{{ __($note->subject_name) }}</div>
+                            @else
+                                <div class="card-title grey-text">{{ __('No Title') }}</div>
+                            @endif
                         @endif
                     @endif
                 </div>

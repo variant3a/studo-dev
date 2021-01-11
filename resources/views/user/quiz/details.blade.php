@@ -45,13 +45,17 @@
                         @if($quiz->title)
                             <span class="card-title">{{ $quiz->title }}</span>
                         @else
-                            <span class="card-title">{{ __($quiz->subject_name) }}</span>
+                            @if ($quiz->subject_name)
+                                <span class="card-title">{{ __($quiz->subject_name) }}</span>
+                            @else
+                                <span class="card-title">{{ __('No Title') }}</span>
+                            @endif
                         @endif
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <span class="question details" data-value="{{ $quiz->question }}"></span>
+                        <span class="question details" data-value="{{ $quiz->content }}"></span>
                     </div>
                 </div>
                 <div class="row">

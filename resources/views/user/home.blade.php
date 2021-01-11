@@ -32,13 +32,17 @@
                                 @if ($global_quiz->title)
                                     <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . $global_quiz->title }}</a>
                                 @else
-                                    <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __('No Title') }}</a>
+                                    @if ($global_quiz->subject_name)
+                                        <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __($global_quiz->subject_name) }}</a>
+                                    @else
+                                        <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __('No Title') }}</a>
+                                    @endif
                                 @endif
                             </div>
                         </div>
                         <div class="row">
                             <div class="col s12">
-                                <span class="global-question" data-value="{{ $global_quiz->question }}"></span>
+                                <span class="global-question" data-value="{{ $global_quiz->content }}"></span>
                             </div>
                         </div>
                         <div class="row">
@@ -75,13 +79,17 @@
                             @if ($my_quiz->title)
                                 <a href="{{ route('quiz_details', $my_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . $my_quiz->title }}</a>
                             @else
-                                <a href="{{ route('quiz_details', $my_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __($global_quiz->subject_name) }}</a>
+                                @if ($my_quiz->subject_name)
+                                    <a href="{{ route('quiz_details', $my_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __($my_quiz->subject_name) }}</a>
+                                @else
+                                    <a href="{{ route('quiz_details', $my_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __('No Title') }}</a>
+                                @endif
                             @endif
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <span class="my-question" data-value="{{ $my_quiz->question }}"></span>
+                            <span class="my-question" data-value="{{ $my_quiz->content }}"></span>
                         </div>
                     </div>
                     <div class="row">

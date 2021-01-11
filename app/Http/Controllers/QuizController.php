@@ -64,7 +64,7 @@ class QuizController extends Controller
         $quiz->title = $request->title;
         $quiz->publishing_settings = $publishing_settings;
         $quiz->subject_name = $request->subjects;
-        $quiz->question = $request->content;
+        $quiz->content = $request->content;
         $quiz->number_of_answers = $number_of_answers;
         $quiz->attempt_count = 0;
         $quiz->correct_count = 0;
