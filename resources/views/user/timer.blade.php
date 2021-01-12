@@ -25,12 +25,10 @@
         <div class="input-field">
             <select name="subjects" id="subjects">
                 <option value="" selected>{{ __('Choose Your Option Any') }}</option>
-                <!--
-                forelse ($subjects as $subject)
-                    <option value="{{-- $subject->subject_name --}}">{{-- __($subject->subject_name) --}}</option>
-                empty
-                endforelse
-                -->
+                @forelse ($subjects as $subject)
+                    <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                @empty
+                @endforelse
             </select>
             <label>{{ __('Choose Subjects') }}</label>
         </div>
