@@ -25,44 +25,46 @@
         <div class="card">
             <div class="card-content" style="word-wrap: break-word">
                 <div class="card-title">{{ __('New Post') . ' - ' . __('Global') }}</div>
-                @forelse ($global_quizzes as $global_quiz)
-                    <div class="card-action">
-                        <div class="row">
-                            <div class="col s12">
-                                @if ($global_quiz->title)
-                                    <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . $global_quiz->title }}</a>
-                                @elseif ($global_quiz->subject_name)
-                                    <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __($global_quiz->subject_name) }}</a>
+            </div>
+            @forelse ($global_quizzes as $global_quiz)
+                <div class="card-action">
+                    <div class="row">
+                        <div class="col s12">
+                            @if ($global_quiz->title)
+                                <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . $global_quiz->title }}</a>
+                            @elseif ($global_quiz->subject_name)
+                                <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __($global_quiz->subject_name) }}</a>
+                            @else
+                                <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __('No Title') }}</a>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <span class="global-question" data-value="{{ $global_quiz->content }}"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="grey-text">
+                                @if ($global_quiz->subject_name)
+                                    <div>{{ __('Subject Name') . ': ' . __($global_quiz->subject_name) }}</div>
                                 @else
-                                    <a href="{{ route('quiz_details', $global_quiz->id) }}" class="col s12 card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('Offer') . $loop->iteration . ' : ' . __('No Title') }}</a>
+                                    <div>{{ __('Subject Name') . ': ' . __('No Selected') }}</div>
                                 @endif
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col s12">
-                                <span class="global-question" data-value="{{ $global_quiz->content }}"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="grey-text">
-                                    @if ($global_quiz->subject_name)
-                                        <div>{{ __('Subject Name') . ': ' . __($global_quiz->subject_name) }}</div>
-                                    @else
-                                        <div>{{ __('Subject Name') . ': ' . __('No Selected') }}</div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                @empty
-                    <div class="card-action">
-                        <div class="col s12">
+                </div>
+            @empty
+                <div class="card-action">
+                    <div class="row">
+                        <div class="col s12 l10 offset-l1">
                             <div>{{ __('No New Quiz') }}</div>
                         </div>
                     </div>
-                @endforelse
-            </div>
+                </div>
+            @endforelse
         </div>
     </div>
     <div class="col s12 m6 l12 xl6">
@@ -109,9 +111,6 @@
                     </div>
                 </div>
             @endforelse
-            <div class="card-action">
-
-            </div>
         </div>
     </div>
 </div>

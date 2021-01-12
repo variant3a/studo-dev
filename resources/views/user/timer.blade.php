@@ -26,7 +26,7 @@
             <select name="subjects" id="subjects">
                 <option value="" selected>{{ __('Choose Your Option Any') }}</option>
                 @forelse ($subjects as $subject)
-                    <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                    <option value="{{ $subject->subject_name }}" @if (old('subjects') == $subject->subject_name) selected @endif>{{ __($subject->subject_name) }}</option>
                 @empty
                 @endforelse
             </select>
@@ -37,11 +37,11 @@
         <div class="input-field">
             <select name="minutes" id="minutes">
                 <option value="" disabled selected>{{ __('Choose Your Option') }}</option>
-                <option value="5">5{{ __('Minutes') }}</option>
-                <option value="30">30{{ __('Minutes') }}</option>
-                <option value="60">60{{ __('Minutes') }}</option>
-                <option value="120">120{{ __('Minutes') }}</option>
-                <option value="240">240{{ __('Minutes') }}</option>
+                <option value="5" @if (old('minutes') == '5') selected @endif>5{{ __('Minutes') }}</option>
+                <option value="30" @if (old('minutes') == '30') selected @endif>30{{ __('Minutes') }}</option>
+                <option value="60" @if (old('minutes') == '60') selected @endif>60{{ __('Minutes') }}</option>
+                <option value="120" @if (old('minutes') == '120') selected @endif>120{{ __('Minutes') }}</option>
+                <option value="240" @if (old('minutes') == '240') selected @endif>240{{ __('Minutes') }}</option>
             </select>
             <label>{{ __('Choose Time') }}</label>
         </div>

@@ -14,7 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}"></script>
-    <style>html::-webkit-scrollbar{display: none}</style>
+    <style>html::-webkit-scrollbar{display: none;};</style>
 </head>
 
 <body>
@@ -56,6 +56,7 @@
         @include('layouts.user_sidenav')
         <li class="divider"></li>
         <li><a href="{{ url('/') }}" class="waves-effect waves-green">{{ __('TopPage') }}</a></li>
+        <li><a href="{{ route('contact_index') }}" class="waves-effect waves-green">{{ __('Contact Us') }}</a></li>
         <li class="divider"></li>
         <li><a href="{{ route('logout') }}" class="waves-effect waves-red" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -68,6 +69,7 @@
         <li><a href="{{ route('login') }}" class="waves-effect waves-green">{{ __('Login') }}</a></li>
         <li class="divider"></li>
         <li><a href="{{ url('/') }}" class="waves-effect waves-green">{{ __('TopPage') }}</a></li>
+        <li><a href="{{ route('contact_index') }}" class="waves-effect waves-green">{{ __('Contact Us') }}</a></li>
         @endauth
     </ul>
 

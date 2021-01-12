@@ -22,11 +22,11 @@
                     <div class="col s12">
                         <div class="card-title">{{ __('New Create') }}</div>
                         <div class="input-field">
-                            <input id="notepad-title" type="text" name="title" autocomplete="off">
+                            <input id="notepad-title" type="text" name="title" value="{{ old('title') }}" autocomplete="off">
                             <label for="notepad-title">{{ __('Title') }}</label>
                         </div>
                         <div class="input-field">
-                            <textarea id="notepad-content" type="text" class="materialize-textarea validate" name="content" style="overflow:auto; min-height: 20vh; max-height: 50vh" autocomplete="off" required></textarea>
+                            <textarea id="notepad-content" type="text" class="materialize-textarea validate" name="content" style="overflow:auto; min-height: 20vh; max-height: 50vh" autocomplete="off" required>{{ old('content') }}</textarea>
                             <label for="notepad-content">{{ __('Main Context') }}</label>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         <select name="subjects" id="subjects">
                             <option value="" selected>{{ __('Choose Your Option Any') }}</option>
                             @forelse ($subjects as $subject)
-                                <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                                <option value="{{ $subject->subject_name }}" @if (old('subjects') == $subject->subject_name) selected @endif>{{ __($subject->subject_name) }}</option>
                             @empty
                             @endforelse
                         </select>
@@ -105,14 +105,14 @@
                 <select name="search-subject">
                     <option value="" selected>{{ __('All') }}</option>
                     @foreach ($subjects as $subject)
-                        <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                        <option value="{{ $subject->subject_name }}" @if (old('subjects') == $subject->subject_name) selected @endif>{{ __($subject->subject_name) }}</option>
                     @endforeach
                 </select>
             </div>
         </div>
         <div class="col s12 m8">
             <div class="input-field inline col s9">
-                <input type="text" id="search-word" name="search-keyword" autocomplete="off">
+                <input type="text" id="search-word" name="search-keyword" value="{{ old('search-keyword') }}" autocomplete="off">
                 <label for="search-word">{{ __('Keyword') }}</label>
             </div>
             <div class="input-field inline right">

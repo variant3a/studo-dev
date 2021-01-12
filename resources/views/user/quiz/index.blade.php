@@ -27,14 +27,14 @@
             <select name="search-subject">
                 <option value="" selected>{{ __('All') }}</option>
                 @foreach ($subjects as $subject)
-                    <option value="{{ $subject->subject_name }}">{{ __($subject->subject_name) }}</option>
+                    <option value="{{ $subject->subject_name }}" @if (old('subjects') == $subject->subject_name) selected @endif>{{ __($subject->subject_name) }}</option>
                 @endforeach
             </select>
         </div>
     </div>
     <div class="col s12 m8">
         <div class="input-field inline col s9">
-            <input type="text" id="search-word" name="search-keyword" autocomplete="off">
+            <input type="text" id="search-word" name="search-keyword" value="{{ old('search-keyword') }}" autocomplete="off">
             <label for="search-word">{{ __('Keyword') }}</label>
         </div>
         <div class="input-field inline right">

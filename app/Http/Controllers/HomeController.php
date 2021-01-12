@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
         $timer = Timer::where('user_id', Auth::user()->id)->where('created_at', '>', Carbon::now()->subDay(7))->get();
         $my_quizzes = Quiz::where('user_id', Auth::user()->id)->where('number_of_answers', '>', 0)->orderBy('correct_count', 'asc')->limit(3)->get();
-        $global_quizzes = Quiz::where('user_id', '!=', Auth::user()->id)->where('number_of_answers', '>', 0)->where('correct_count', 0)->latest()->get();
+        $global_quizzes = Quiz::where('user_id', '!=', Auth::user()->id)->where('publishing_settings', 1)->where('number_of_answers', '>', 0)->where('correct_count', 0)->latest()->get();
 
         return view('user.home', compact('timer', 'global_quizzes', 'my_quizzes'));
     }

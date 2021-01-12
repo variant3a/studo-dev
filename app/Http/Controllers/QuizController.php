@@ -34,7 +34,10 @@ class QuizController extends Controller
     public function show($id)
     {
         $quiz = Quiz::findOrFail($id);
-        return view('user.quiz.details', compact('quiz'));
+        if ($quiz->publishing_settings == 1 || $quiz->user_id == Auth::user()->id) {
+            return view('user.quiz.details', compact('quiz'));
+        }
+        return redirect('/user/quiz/index')->with('status', __('This Post has been Private'));
     }
 
     public function createView()

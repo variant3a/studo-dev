@@ -10,7 +10,7 @@ $(() => {
 
     M.AutoInit()
 
-    $('input#user_id, input#name, input#password, input#password-confirm, input#add-subject-text, textarea#quiz-content').characterCounter()
+    $('input#user_id, input#name, input#password, input#password-confirm, input#add-subject-text, textarea#quiz-content, input#contact-title, textarea#contact-content').characterCounter()
     $('.dropdown-trigger').dropdown({
         constrainWidth: false,
         coverTrigger: false,
@@ -57,7 +57,7 @@ $(() => {
     try {
         timer = new ProgressBar.Circle('#timer-1', {
             color: PrimaryColor,
-            trailColor: '#eee',
+            trailColor: '#eeeeee',
             strokeWidth: 5,
             duration: 100,
             easing: 'easeOutCubic',

@@ -1,3 +1,7 @@
+html {
+    background-color: #f5f5f5;
+};
+
 main.app {
     padding-left: 300px;
 }
@@ -36,4 +40,8 @@ code, kbd, pre, samp {
 
 .markdown-body ol li {
     list-style-type: decimal !important;
+}
+
+.tabs {
+    background-color: #f5f5f5;
 }
