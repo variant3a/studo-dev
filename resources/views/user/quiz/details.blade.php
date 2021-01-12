@@ -44,12 +44,10 @@
                     <div class="col s12">
                         @if($quiz->title)
                             <span class="card-title">{{ $quiz->title }}</span>
+                        @elseif ($quiz->subject_name)
+                            <span class="card-title">{{ __($quiz->subject_name) }}</span>
                         @else
-                            @if ($quiz->subject_name)
-                                <span class="card-title">{{ __($quiz->subject_name) }}</span>
-                            @else
-                                <span class="card-title">{{ __('No Title') }}</span>
-                            @endif
+                            <span class="card-title">{{ __('No Title') }}</span>
                         @endif
                     </div>
                 </div>
