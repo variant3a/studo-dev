@@ -39,7 +39,7 @@ class QuizController extends Controller
 
     public function createView()
     {
-        $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->user_id)->orderBy('subject_name', 'asc')->get();
+        $subjects = Subject::where('create_by', null)->orWhere('create_by', Auth::user()->id)->orderBy('subject_name', 'asc')->get();
         return view('user.quiz.create', compact('subjects'));
     }
 
