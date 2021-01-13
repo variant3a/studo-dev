@@ -16,10 +16,21 @@ class ContactController extends Controller
 
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::find(Auth::user()->id);
-        return view('contact.index', compact('user'));
+        if (Auth::user()) {
+            $user = User::find(Auth::user()->id);
+        }
+        $request->session()->flash('_old_input',
+            [
+                'category' => $request->category,
+                'email' => $user->email ?? null,
+                'title' => $request->title,
+                'content' => $request->content
+            ]
+        );
+
+        return view('contact.index');
     }
 
     public function submit(ContactRequest $request)

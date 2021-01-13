@@ -21,7 +21,7 @@
                     </div>
                     <div class="input-field col s12">
                         <label for="password" class="">{{ __('Password') }}</label>
-                        <input id="password" type="password" class="validate" name="password" required autocomplete="current-password">
+                        <input id="password" type="password" class="validate" name="password" data-length="32" required autocomplete="current-password">
                     </div>
                     <div class="col s10">
                         <label for="remember">

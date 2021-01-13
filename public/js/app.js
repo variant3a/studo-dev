@@ -106761,6 +106761,12 @@ $(function () {
     constrainWidth: false,
     coverTrigger: false
   });
+  $('select').formSelect({
+    dropdownOptions: {
+      constrainWidth: false,
+      coverTrigger: false
+    }
+  });
   /*------------------------------------------------*/
 
   /*--------------------register--------------------*/

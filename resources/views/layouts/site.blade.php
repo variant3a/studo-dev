@@ -103,7 +103,7 @@
                         <h5 class="white-text">リンク</h5>
                         <ul>
                             <li><a href="#" class="grey-text text-lighten-3">Studoとは？</a></li>
-                            <li><a href="#" class="grey-text text-lighten-3">リンク3</a></li>
+                            <li><a href="{{ route('contact_index') }}" class="grey-text text-lighten-3">{{ __('Contact Us') }}</a></li>
                         </ul>
                     </div>
                     <div class="col s12 l4">

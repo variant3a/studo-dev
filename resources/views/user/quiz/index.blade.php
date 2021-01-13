@@ -27,7 +27,7 @@
             <select name="search-subject">
                 <option value="" selected>{{ __('All') }}</option>
                 @foreach ($subjects as $subject)
-                    <option value="{{ $subject->subject_name }}" @if (old('subjects') == $subject->subject_name) selected @endif>{{ __($subject->subject_name) }}</option>
+                    <option value="{{ $subject->subject_name }}" @if (old('search-subject') == $subject->subject_name) selected @endif>{{ __($subject->subject_name) }}</option>
                 @endforeach
             </select>
         </div>
@@ -127,7 +127,7 @@
                             <a href="#global-post-dropdown{{ $global_quiz->id }}" class="dropdown-trigger waves-effect waves-light btn-flat right" data-target="global-post-dropdown{{ $global_quiz->id }}"><i class="material-icons">more_vert</i></a>
                             @if ($global_quiz->user_id == Auth::user()->id)
                                 <ul id="global-post-dropdown{{ $global_quiz->id }}" class="dropdown-content">
-                                    <li><a href="#delete-my-quiz{{ $global_quiz->id }}" class="waves-effect waves-red red-text modal-trigger"><i class="material-icons left">delete</i>{{ __('Delete') }}</a>
+                                    <li><a href="#delete-global-quiz{{ $global_quiz->id }}" class="waves-effect waves-red red-text modal-trigger"><i class="material-icons left">delete</i>{{ __('Delete') }}</a>
                                     </li>
                                 </ul>
                                 <form method="POST" action="{{ route('delete_quiz', $global_quiz->id) }}">
@@ -147,7 +147,12 @@
                             @else
                                 <ul id="global-post-dropdown{{ $global_quiz->id }}" class='dropdown-content'>
                                     <li><a href="#!">{{ __('Follow') }}</a></li>
-                                    <li><a href="#!">{{ __('Report This Post') }}</a></li>
+                                    <form action="{{ route('contact_index') }}" method="GET">
+                                        <input type="hidden" name="category" value="{{ __('Report Posts') }}">
+                                        <input type="hidden" name="title" value="{{ __('Report Posts') }}">
+                                        <input type="hidden" name="content" value="{{ __('User Name: ') . $global_quiz->user_id . "\n" . __('Post URL: ') . route('quiz_details', $global_quiz->id) . "\n" . __('Reasons: ') . "\n" }}">
+                                        <li><button type="submit">{{ __('Report This Post') }}</button></li>
+                                    </form>
                                 </ul>
                             @endif
                             @if($global_quiz->title)
@@ -155,7 +160,7 @@
                             @elseif ($global_quiz->subject_name)
                                 <a href="{{ route('quiz_details', $global_quiz->id) }}" class="card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __($global_quiz->subject_name) }}</a>
                             @else
-                                <a href="{{ route('quiz_details', $global_quiz->id) }}" class="card-title waves-effect waves-green btn-flat tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('No Title') }}</a>
+                                <a href="{{ route('quiz_details', $global_quiz->id) }}" class="card-title waves-effect waves-green btn-flat grey-text tooltipped" data-position="top" data-tooltip="{{ __('Details Link') }}" style="color:inherit;">{{ __('No Title') }}</a>
                             @endif
                         </div>
                     </div>

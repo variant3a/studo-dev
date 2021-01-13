@@ -4,10 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Vinkla\Hashids\Facades\Hashids;
+use App\Http\Traits\Hashidable;
 
 class Notepad extends Model
 {
-    use HasFactory;
+    use HasFactory, Hashidable;
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     protected $dates = [
         'created_at',
@@ -25,4 +32,17 @@ class Notepad extends Model
         if(isset($keyword)) $query->where('title', 'like', '%' . $keyword . '%')->orWhere('content', 'like', '%' . $keyword . '%');
         return $query;
     }
+
+    public function getRouteKey(): string
+    {
+        return Hashids::encode($this->getKey());
+    }
+
+    public function resolveRouteBinding($value, $field = null): ?Model
+    {
+        $value = Hashids::decode($value)[0] ?? null;
+
+        return $this->where($this->getRouteKeyName(), $value)->first();
+    }
+
 }

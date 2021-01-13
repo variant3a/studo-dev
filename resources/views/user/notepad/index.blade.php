@@ -105,7 +105,7 @@
                 <select name="search-subject">
                     <option value="" selected>{{ __('All') }}</option>
                     @foreach ($subjects as $subject)
-                        <option value="{{ $subject->subject_name }}" @if (old('subjects') == $subject->subject_name) selected @endif>{{ __($subject->subject_name) }}</option>
+                        <option value="{{ $subject->subject_name }}" @if (old('search-subject') == $subject->subject_name) selected @endif>{{ __($subject->subject_name) }}</option>
                     @endforeach
                 </select>
             </div>
@@ -119,7 +119,7 @@
                 <button type="submit" class="waves-effect waves-light btn right"><i class="material-icons">search</i></button>
             </div>
         </div>
-    </form>
+        </form>
     @forelse ($notes as $note)
     @include('user/notepad/note_module',  ['target' => 'index'])
     @empty

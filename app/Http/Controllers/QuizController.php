@@ -23,6 +23,12 @@ class QuizController extends Controller
     {
         $search_keyword = $request->input('search-keyword');
         $search_subject = $request->input('search-subject');
+        $request->session()->flash('_old_input',
+            [
+                'search-keyword' => $search_keyword,
+                'search-subject' => $search_subject
+            ]
+        );
 
         $global_quizzes = Quiz::where('publishing_settings', 1)->keywordFilter($search_keyword)->subjectFilter($search_subject)->latest()->paginate(30);
         $my_quizzes = Quiz::where('user_id', Auth::user()->id)->keywordFilter($search_keyword)->subjectFilter($search_subject)->latest()->get();

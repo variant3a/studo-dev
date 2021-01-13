@@ -172,7 +172,9 @@
     "This is Automatically send mail.": "これは自動送信メールです",
     "We have received your application, and the following are the details:": "以下のとおり、お申し込みを受け付けました。",
     "Sama": "様",
-
+    "User Name: ": "ユーザー名 : ",
+    "Post URL: ": "投稿のURL : ",
+    "Reasons: ": "理由 : ",
 
     "Verify Your Email Address":"ユーザ登録を完了してください",
     "A fresh verification link has been sent to your email address.":"新しいリンクをあなたのメールアドレスに送信しました。",
