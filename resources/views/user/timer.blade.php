@@ -45,6 +45,8 @@
             </select>
             <label>{{ __('Choose Time') }}</label>
         </div>
+    </div>
+    <div class="row">
         <a href="#add-subject-modal" id="add-subject" class="modal-trigger">教科が一覧にない場合</a>
         <form method="POST" action="{{ route('add_subject') }}">
             @csrf
@@ -76,6 +78,16 @@
                 </div>
             </div>
         </form>
+        <a href="#timer-hint" class="waves-effect waves-green btn-flat modal-trigger tooltipped" id="store-notes" data-position="top" data-tooltip="{{ __('Hint') }}"><i class="material-icons">info_outline</i></a>
+    </div>
+</div>
+<div id="timer-hint" class="modal">
+    <div class="modal-content">
+        <h4>{{ __('Timer Usage') }}</h4>
+        <p></p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect btn-flat">{{ __('Close') }}</a>
     </div>
 </div>
 <div class="col s12 xl10 offset-xl1">

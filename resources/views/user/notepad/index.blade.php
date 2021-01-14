@@ -100,7 +100,7 @@
     </div>
     <form action="{{ route('notepad') }}" method="GET">
         <div class="col s12 m4">
-            <div class="input-field inline col s12">
+            <div class="input-field col s12">
                 <i class="material-icons prefix">filter_list</i>
                 <select name="search-subject">
                     <option value="" selected>{{ __('All') }}</option>
