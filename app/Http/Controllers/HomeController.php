@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('verified');
+        $this->middleware('auth')->only('destroy');
+        $this->middleware('verified')->except(['index', 'show', 'destroy']);
     }
 
     /**
@@ -73,7 +74,7 @@ class HomeController extends Controller
         $user = User::findOrFail(Auth::user()->id);
         $user->delete();
 
-        return redirect('/');
+        return redirect('/')->with('status', __('Account') . ' ' . __('Delete Complete'));
     }
 
 }

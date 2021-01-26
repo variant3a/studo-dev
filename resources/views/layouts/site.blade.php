@@ -14,7 +14,7 @@
     @hasSection ('description')
         <meta name="description" content="@yield('description')">
     @else
-        <meta name="description" content="Studoの説明が入ります">
+        <meta name="description" content="簡単に使える！プログラマーのためのプログラミング勉強サポートアプリ">
     @endif
     <link rel="shortcut icon" href="{{ asset('/favicon_studo_s.ico') }}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
