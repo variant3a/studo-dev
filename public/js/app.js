@@ -107055,7 +107055,7 @@ $(function () {
   $('textarea').on('keydown', function (event) {
     if (event.key == 'Tab' && !event.ctrlKey && !event.altKey && !event.shiftKey) {
       event.preventDefault();
-      document.execCommand('insertText', false, '\t');
+      document.execCommand('insertText', false, '    ');
     }
   });
   /*--------------------------------------------*/
