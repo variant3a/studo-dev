@@ -47,5 +47,13 @@ code, kbd, pre, samp {
 }
 
 .dropdown-content {
-    min-width: 240px;
+    min-width: max-content;
+}
+
+.inblock {
+    display: inline-block;
+}
+
+.parallax-container {
+    height: 60vh;
 }

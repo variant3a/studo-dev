@@ -10314,6 +10314,16 @@ samp {
 }
 
 .dropdown-content {
-  min-width: 240px;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+}
+
+.inblock {
+  display: inline-block;
+}
+
+.parallax-container {
+  height: 60vh;
 }
 
