@@ -4,13 +4,13 @@
 @section('description', 'トップページの説明が入ります')
 
 @section('content')
-    <div class="parallax-container" style="width: 100vw">
+    <div class="parallax-container" style="width: 100vw;top:-5px">
         <div class="parallax"><img src="{{ asset('images/home_background_code.JPG') }}" style="height: 300%"></div>
 
         <div class="row" style="margin: 5em 0 10em 0">
             <div class="col s12 center white-text">
-                <h3 style="text-shadow: black 0 0 5px"><span class="inblock">プログラマーのための</span><br>
-                    <span class="inblock">プログラミング勉強</span><span class="inblock">サポート</span><span class="inblock">アプリ</span></h3>
+                <div style="font-size: 2.4rem;text-shadow: black 0 0 5px"><span class="inblock">プログラマーのための</span><br>
+                    <span class="inblock">プログラミング勉強</span><span class="inblock">サポート</span><span class="inblock">アプリ</span></div>
             </div>
             <div class="col s12 center">
                 <a href="{{ route('login') }}" class="waves-effect waves-light btn-large">{{ __('Login') }}</a>
