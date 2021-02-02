@@ -9,8 +9,8 @@
 
         <div class="row" style="margin: 5em 0 10em 0">
             <div class="col s12 center white-text">
-                <div style="font-size: 2.4rem;text-shadow: black 0 0 5px"><span class="inblock">プログラマーのための</span><br>
-                    <span class="inblock">プログラミング勉強</span><span class="inblock">サポート</span><span class="inblock">アプリ</span></div>
+                <h4 style="text-shadow: black 0 0 5px"><span class="inblock">プログラマーのための</span><br>
+                    <span class="inblock">プログラミング勉強</span><span class="inblock">サポート</span><span class="inblock">アプリ</span></h4>
             </div>
             <div class="col s12 center">
                 <a href="{{ route('login') }}" class="waves-effect waves-light btn-large">{{ __('Login') }}</a>
