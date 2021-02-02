@@ -4,52 +4,85 @@
 @section('description', 'トップページの説明が入ります')
 
 @section('content')
-    <div class="parallax-container" style="width: 100vw;top:-5px">
+    <div class="parallax-container" style="width: 100%;top:-5px">
         <div class="parallax"><img src="{{ asset('images/home_background_code.JPG') }}" style="height: 300%"></div>
 
-        <div class="row" style="margin: 5em 0 10em 0">
-            <div class="col s12 center white-text">
-                <h4 style="text-shadow: black 0 0 5px"><span class="inblock">プログラマーのための</span><br>
+        <div class="container">
+            <div class="row" style="margin: 5em 0 10em 0">
+                <div class="center white-text">
+                    <h4 style="text-shadow: black 0 0 5px"><span class="inblock">プログラマーのための</span><br>
                     <span class="inblock">プログラミング勉強</span><span class="inblock">サポート</span><span class="inblock">アプリ</span></h4>
-            </div>
-            <div class="col s12 center">
-                <a href="{{ route('login') }}" class="waves-effect waves-light btn-large">{{ __('Login') }}</a>
-                <a href="{{ route('register') }}" class="waves-effect waves-light btn-large">{{ __('Register') }}</a>
+                </div>
+                <div class="center">
+                    <a href="{{ route('login') }}" class="waves-effect waves-light btn-large">{{ __('Login') }}</a>
+                    <a href="{{ route('register') }}" class="waves-effect waves-light btn-large">{{ __('Register') }}</a>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row" style="margin: 5em 0">
-            <div class="col s12 center">
+    <div class="container center">
+        <div class="row top-white-section">
+            <div class="col s12">
                 <h4>What is Studo?</h4>
-                <div class="">Studoでできること</div>
-                &nbsp;
-                <div class="row">
-                    <div class="col s12 m6 l3">
-                        <i class="material-icons large amber-text text-darken-1">timer</i>
-                        <div class="center">
-                            <h5>{{ __('Timer') }}</h5>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <i class="material-icons large amber-text text-darken-1">library_books</i>
-                        <div class="center">
-                            <h5>{{ __('Notepad') }}</h5>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <i class="material-icons large amber-text text-darken-1">rate_review</i>
-                        <div class="center">
-                            <h5>{{ __('Quiz') }}</h5>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <i class="material-icons large amber-text text-darken-1">insert_chart</i>
-                        <div class="center">
-                            <h5><span class="inblock">勉強時間の</span><span class="inblock">記録</span></h5>
-                        </div>
-                    </div>
+                <p>Studoでできること</p>
+            </div>
+        </div>
+        <div class="row top-white-section">
+            <div class="col s12 m6 l3">
+                <i class="material-icons large amber-text text-darken-1">timer</i>
+                <div class="center">
+                    <h5>{{ __('Timer') }}</h5>
+                    <p>教科を選択し、勉強時間を記録することが出来ます。</p>
                 </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <i class="material-icons large amber-text text-darken-1">subject</i>
+                <div class="center">
+                    <h5>{{ __('Notepad') }}</h5>
+                    <p>Markdown記法の使えるノートです。もちろん教科で分けることが可能。</p>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <i class="material-icons large amber-text text-darken-1">rate_review</i>
+                <div class="center">
+                    <h5>{{ __('Quiz') }}</h5>
+                    <p>プログラミングに関するクイズが作成できます。</p>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <i class="material-icons large amber-text text-darken-1">insert_chart</i>
+                <div class="center">
+                    <h5>勉強記録</h5>
+                    <p>勉強に関する各種統計情報が閲覧できます。</p>
+                </div>
+            </div>
+        </div>
+        <div class="row top-white-section">
+            <div class="col s12">
+                <h4>Tehnical Infomation</h4>
+                <p>Studoはこんな技術を利用して設計されています</p>
+            </div>
+        </div>
+        <div class="row top-white-section">
+            <div class="col s12 m6">
+                <img src="{{ asset('images/laravel-logo.png') }}" alt="" class="responsive-img" width="20%">
+                <h5>Laravel 8.x</h5>
+                <p>最新のLaravelフレームワークで稼働しています。</p>
+            </div>
+            <div class="col s12 m6">
+                <img src="{{ asset('images/materialize-logo.png') }}" alt="" class="responsive-img" width="20%">
+                <h5>Materialize</h5>
+                <p>CSSフレームワークにMaterializeを使用。<br>よりモダンに、慣れ親しんだインターフェースに。</p>
+            </div>
+            <div class="col s12 m6">
+                <img src="{{ asset('images/jquery-logo.png') }}" alt="" class="responsive-img" width="20%">
+                <h5>JQuery</h5>
+                <p>開発速度の向上。メンテナンス性も向上しています。</p>
+            </div>
+            <div class="col s12 m6">
+                <img src="{{ asset('images/heroku-logo.png') }}" alt="" class="responsive-img" width="14%">
+                <h5>Heroku</h5>
+                <p>クラウドを利用するからどんな時も快適に稼動。</p>
             </div>
         </div>
     </div>
