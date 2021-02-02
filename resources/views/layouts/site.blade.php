@@ -34,7 +34,7 @@
 
                     <!-- pc/tab navigation bar -->
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        <li><a href="{{ route('home') }}" class="waves-effect waves-light"><i class="material-icons right">home</i>{{ __('MyPage') }}</a></li>
+                        <li><a href="{{ route('home') }}" class="waves-effect waves-light"><i class="material-icons left">home</i>{{ __('MyPage') }}</a></li>
                     </ul>
 
                     <a href="{{ url('/') }}" class="brand-logo waves-effect waves-light center">{{ config('app.name', 'Studo!') }}</a>
@@ -46,8 +46,8 @@
                         @auth
                         <li><a class="dropdown-trigger waves-effect waves-light" href="#" data-target="dropdown1">{{ Auth::user()->user_id . __('San') }}<i class="material-icons right">arrow_drop_down</i></a>
                             <ul id="dropdown1" class="dropdown-content">
-                                <li><a href="{{ route('profile') }}" class="waves-effect waves-light">{{ __('Profile') }}</a></li>
-                                <li><a href="{{ route('logout') }}" class="waves-effect waves-light" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+                                <li><a href="{{ route('profile') }}" class="waves-effect waves-light"><i class="material-icons left">person</i>{{ __('Profile') }}</a></li>
+                                <li><a href="{{ route('logout') }}" class="waves-effect waves-light" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons left red-text">logout</i>{{  __('Logout')  }}</a></li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
                                     @csrf
                                 </form>
@@ -56,8 +56,8 @@
 
                         <!-- guest navigation -->
                         @else
-                        <li><a href="{{ route('login') }}" class="">{{ __('Login') }}</a></li>
-                        <li><a href="{{ route('register') }}" class="">{{ __('Register') }}</a></li>
+                        <li><a href="{{ route('login') }}" class="waves-effect waves-light"><i class="material-icons left">login</i>{{ __('Login') }}</a></li>
+                        <li><a href="{{ route('register') }}" class="waves-effect waves-light"><i class="material-icons left">person_add</i>{{ __('Register') }}</a></li>
                         @endauth
                     </ul>
 
@@ -68,10 +68,10 @@
                         @auth
                         @include('layouts.user_sidenav')
                         <li class="divider"></li>
-                        <li><a href="{{ url('/') }}" class="waves-effect waves-green">{{ __('TopPage') }}</a></li>
-                        <li><a href="{{ route('contact_index') }}" class="waves-effect waves-green">{{ __('Contact Us') }}</a></li>
+                        <li><a href="{{ url('/') }}" class="waves-effect waves-green"><i class="material-icons left green-text text-lighten-1">web</i>{{ __('TopPage') }}</a></li>
+                        <li><a href="{{ route('contact_index') }}" class="waves-effect waves-green"><i class="material-icons left amber-text text-darken-1">mail_outline</i>{{ __('Contact Us') }}</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ route('logout') }}" class="waves-effect waves-red" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+                        <li><a href="{{ route('logout') }}" class="waves-effect waves-red" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons left red-text">logout</i>{{ __('Logout') }}</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                         </form>
@@ -81,7 +81,7 @@
                         <li><a href="{{ route('register') }}" class="waves-effect waves-green">{{ __('Register') }}</a></li>
                         <li><a href="{{ route('login') }}" class="waves-effect waves-yellow">{{ __('Login') }}</a></li>
                         <li class="divider"></li>
-                        <li><a href="{{ url('/') }}" class="waves-effect waves-green">{{ __('TopPage') }}</a></li>
+                        <li><a href="{{ url('/') }}" class="waves-effect waves-green"><i class="material-icons left amber-text text-darken-1">web</i>{{ __('TopPage') }}</a></li>
                         <li><a href="{{ route('contact_index') }}" class="waves-effect waves-green">{{ __('Contact Us') }}</a></li>
                         @endauth
                     </ul>

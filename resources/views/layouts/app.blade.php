@@ -56,21 +56,21 @@
         @auth
         @include('layouts.user_sidenav')
         <li class="divider"></li>
-        <li><a href="{{ url('/') }}" class="waves-effect waves-green">{{ __('TopPage') }}</a></li>
-        <li><a href="{{ route('contact_index') }}" class="waves-effect waves-green">{{ __('Contact Us') }}</a></li>
+        <li><a href="{{ url('/') }}" class="waves-effect waves-green"><i class="material-icons left green-text text-lighten-1">web</i>{{ __('TopPage') }}</a></li>
+        <li><a href="{{ route('contact_index') }}" class="waves-effect waves-green"><i class="material-icons left amber-text text-darken-1">mail_outline</i>{{ __('Contact Us') }}</a></li>
         <li class="divider"></li>
-        <li><a href="{{ route('logout') }}" class="waves-effect waves-red" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+        <li><a href="{{ route('logout') }}" class="waves-effect waves-red" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="material-icons left red-text">logout</i>{{ __('Logout') }}</a></li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
             @csrf
         </form>
 
         <!-- guest navigation -->
         @else
-        <li><a href="{{ route('register') }}" class="waves-effect waves-orange">{{ __('Register') }}</a></li>
-        <li><a href="{{ route('login') }}" class="waves-effect waves-green">{{ __('Login') }}</a></li>
+        <li><a href="{{ route('register') }}" class="waves-effect waves-orange"><i class="material-icons left green-text text-lighten-1">person_add</i>{{ __('Register') }}</a></li>
+        <li><a href="{{ route('login') }}" class="waves-effect waves-green"><i class="material-icons left amber-text text-darken-1">login</i>{{ __('Login') }}</a></li>
         <li class="divider"></li>
-        <li><a href="{{ url('/') }}" class="waves-effect waves-green">{{ __('TopPage') }}</a></li>
-        <li><a href="{{ route('contact_index') }}" class="waves-effect waves-green">{{ __('Contact Us') }}</a></li>
+        <li><a href="{{ url('/') }}" class="waves-effect waves-green"><i class="material-icons left green-text text-lighten-1">web</i>{{ __('TopPage') }}</a></li>
+        <li><a href="{{ route('contact_index') }}" class="waves-effect waves-green"><i class="material-icons left amber-text text-darken-1">mail_outline</i>{{ __('Contact Us') }}</a></li>
         @endauth
     </ul>
 
