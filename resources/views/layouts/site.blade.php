@@ -33,10 +33,11 @@
                     <a href="#slide-out" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
                     <!-- pc/tab navigation bar -->
+                    @auth
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a href="{{ route('home') }}" class="waves-effect waves-light"><i class="material-icons left">home</i>{{ __('MyPage') }}</a></li>
                     </ul>
-
+                    @endauth
                     <a href="{{ url('/') }}" class="brand-logo waves-effect waves-light center">{{ config('app.name', 'Studo!') }}</a>
 
                     <!-- pc/tab navigation bar -->
