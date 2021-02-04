@@ -29,7 +29,7 @@
     @endforelse
 
     <!-- smartphone navigation bar -->
-    <div class="hide-on-large-only">
+    <div class="hide-on-large-only navbar-fixed">
         @hasSection ('nav-content')
             <nav class="nav-extended">
                 <div class="nav-wrapper">

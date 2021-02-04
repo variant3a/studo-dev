@@ -59,7 +59,7 @@
         </div>
         <div class="row top-white-section">
             <div class="col s12">
-                <h4>Tehnical Infomation</h4>
+                <h4>Technical Infomation</h4>
                 <p>Studoはこんな技術を利用して設計されています</p>
             </div>
         </div>
