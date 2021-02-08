@@ -99,21 +99,19 @@
     <footer class="page-footer">
         <div class="container">
             <div class="row">
-                <div class="col s12 l4">
+                <div class="col s12 l5">
                     <h5 class="white-text">Studoについて</h5>
-                    <p>ここに説明が入ります</p>
-                </div>
-                <div class="col s12 l4">
-                    <h5 class="white-text">リンク</h5>
                     <ul>
-                        <li><a href="#" class="grey-text text-lighten-3">Studoとは？</a></li>
-                        <li><a href="{{ route('contact_index') }}" class="grey-text text-lighten-3">{{ __('Contact Us') }}</a></li>
+                        <li><a href="{{ route('what_is_studo') }}" class="grey-text text-lighten-3">Studoとは？</a></li>
+                        <li><a href="{{ route('register') }}" class="grey-text text-lighten-3">{{ __('Register') }}</a></li>
+                        <li><a href="{{ route('login') }}" class="grey-text text-lighten-3">{{ __('Login') }}</a></li>
+                        <li><a href="{{ route('privacy') }}" class="grey-text text-lighten-3">利用規約・プライバシーポリシー</a></li>
                     </ul>
                 </div>
-                <div class="col s12 l4">
-                    <h5 class="white-text">その他</h5>
+                <div class="col s12 l6">
+                    <h5 class="white-text">{{ __('Support') }}</h5>
                     <ul>
-                        <li><a href="{{ route('privacy') }}" class="grey-text text-lighten-3">利用規約・プライバシーポリシー</a></li>
+                        <li><a href="{{ route('contact_index') }}" class="grey-text text-lighten-3">{{ __('Contact Us') }}</a></li>
                     </ul>
                 </div>
             </div>

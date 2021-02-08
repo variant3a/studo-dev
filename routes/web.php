@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { return view('welcome'); });
-Route::get('/privacy', function () { return view('privacy'); })->name('privacy');
+Route::get('/', fn() => view('welcome') );
+Route::get('/privacy', fn() => view('privacy'))->name('privacy');
+Route::get('/what_is_studo', fn() => view('what_is_studo'))->name('what_is_studo');
+
 
 Auth::routes(['verify' => true]);
 
