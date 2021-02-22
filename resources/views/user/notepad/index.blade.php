@@ -87,7 +87,7 @@
     </div>
 </form>
 <div id="notepad-hint" class="modal">
-    <div class="modal-content markdown-body">
+    <div class="modal-content modal-fixed-footer markdown-body">
         {!! $markdown->text(file_get_contents(base_path('storage/app/notepad_usage.md'))) !!}
     </div>
     <div class="modal-footer">

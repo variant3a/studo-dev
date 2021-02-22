@@ -5,6 +5,14 @@
 @section('app-title', __('Timer'))
 
 @section('content')
+
+@php
+    $markdown = new Parsedown();
+    $markdown
+        ->setBreaksenabled(true)
+        ->setSafeMode(true)
+        ->setUrlsLinked(false);
+@endphp
 <div class="col s10 offset-s1 m8 offset-m2 xl6 offset-xl3">
     <div class="row">
         &nbsp;
@@ -82,9 +90,8 @@
     </div>
 </div>
 <div id="timer-hint" class="modal">
-    <div class="modal-content">
-        <h4>{{ __('Timer Usage') }}</h4>
-        <p></p>
+    <div class="modal-content modal-fixed-footer markdown-body">
+        {!! $markdown->text(file_get_contents(base_path('storage/app/timer_usage.md'))) !!}
     </div>
     <div class="modal-footer">
         <a class="modal-close waves-effect btn-flat">{{ __('Close') }}</a>

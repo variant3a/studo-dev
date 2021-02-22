@@ -47,7 +47,7 @@
                                 @include('../tos')
                             </div>
                             <div class="modal-footer">
-                                <a href="#" class="modal-close waves-effect waves-light btn-flat">{{ __('Close') }}</a>
+                                <a href="#" class="modal-close waves-effect btn-flat">{{ __('Close') }}</a>
                             </div>
                         </div>
                     </div>

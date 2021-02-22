@@ -34,6 +34,10 @@ code, kbd, pre, samp {
     font-family: "Ricty Diminished", monospace;
 }
 
+.markdown-body .highlight pre, .markdown-body pre {
+    background-color: #282c34;
+}
+
 .markdown-body ul li {
     list-style-type: initial !important;
 }

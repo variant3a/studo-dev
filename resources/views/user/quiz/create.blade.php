@@ -5,6 +5,14 @@
 @section('app-title', __('Create New Quiz'))
 
 @section('content')
+
+@php
+    $markdown = new Parsedown();
+    $markdown
+        ->setBreaksenabled(true)
+        ->setSafeMode(true)
+        ->setUrlsLinked(false);
+@endphp
 &nbsp;
 <div class="row">
     <div class="col s12">
@@ -102,8 +110,8 @@
     </div>
 </form>
 <div id="quiz-hint" class="modal">
-    <div class="modal-content">
-
+    <div class="modal-content modal-fixed-footer markdown-body">
+        {!! $markdown->text(file_get_contents(base_path('storage/app/quiz_usage.md'))) !!}
     </div>
     <div class="modal-footer">
         <a class="modal-close waves-effect btn-flat">{{ __('Close') }}</a>
