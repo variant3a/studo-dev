@@ -5,7 +5,7 @@
 @section('app-title', __('Contact Us'))
 
 @section('content')
-<form method="POST" action="{{ route('contact_submit') }}">
+<form method="POST" action="{{ route('contact_submit') }}" onsubmit="M.toast({html: '{{ __('Sending...') }}'});">
 @csrf
     <div class="col s12 xl10 offset-xl1">
         <div class="card">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <button type="submit" class="waves-effect waves-light btn">{{ __('Submit') }}</button>
+                        <button type="submit" class="waves-effect waves-light btn right">{{ __('Submit') }}</button>
                     </div>
                 </div>
             </div>
